@@ -5,14 +5,12 @@
 
 #include "al/Common.h"
 
+#include "al/app/Application.h"
+
 struct GLFWwindow;
 
 namespace al { namespace graphics {
-
-	typedef std::function<void(float delta)> UpdateCallback;
-	typedef std::function<void()> RenderCallback;
-
-
+	
 #define MAX_KEYS	1024
 #define MAX_BUTTONS	32
 
@@ -24,17 +22,17 @@ namespace al { namespace graphics {
 		GLFWwindow *m_Window;
 		bool m_Closed;
 
-		UpdateCallback m_OnUpdate;
-		RenderCallback m_OnRender;
-
 		bool m_Keys[MAX_KEYS];
 		bool m_MouseButtons[MAX_BUTTONS];
 		double mx, my;
+
+		const app::Application* m_App;
 	public:
-		Window(const char *name, int width, int height);
+		Window(const char *title, int width, int height, const app::Application* app);
 		~Window();
+
 		void Clear() const;
-		void Update();
+		void Update() const;
 		bool Closed() const;
 
 		inline int GetWidth() const { return m_Width; }
@@ -44,10 +42,7 @@ namespace al { namespace graphics {
 		bool IsMouseButtonPressed(unsigned int button) const;
 		void GetMousePosition(double& x, double& y) const;
 
-		inline void SetUpdateCallback(const UpdateCallback& callback) { m_OnUpdate = callback; }
-		inline void SetRenderCallback(const RenderCallback& callback) { m_OnRender = callback; }
-
-		void Show();
+		void Show() const;
 	private:
 		
 		friend static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);

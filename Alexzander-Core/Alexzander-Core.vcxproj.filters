@@ -510,6 +510,9 @@
     <ClInclude Include="src\al\graphics\layer\Layer2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\app\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\al\graphics\Window.cpp">

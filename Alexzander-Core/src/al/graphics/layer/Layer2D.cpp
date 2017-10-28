@@ -1,4 +1,5 @@
 #include "Layer2D.h"
+#include "glm/gtc/matrix_transform.hpp"
 
 namespace al { namespace graphics {
 	
@@ -24,10 +25,8 @@ namespace al { namespace graphics {
 		m_Shader->Enable();
 		
 		m_Renderer->Begin();
-		for (int i = 0; i < m_Renderables.size(); ++i)
-		{
-			m_Renderer->Submit(m_Renderables[i]);
-		}
+		for (const Renderable2D* renderable: m_Renderables)
+			m_Renderer->Submit(renderable);
 		m_Renderer->End();
 		m_Renderer->Flush();
 	}

@@ -9,8 +9,9 @@
 
 namespace al { namespace graphics {
 
-	Window::Window(const char *title, int width, int height)
+	Window::Window(const char *title, int width, int height, const app::Application* app)
 	{
+		m_App = app;
 		m_Title = title;
 		m_Width = width;
 		m_Height = height;
@@ -63,10 +64,11 @@ namespace al { namespace graphics {
 
 	Window::~Window()
 	{
+		delete m_App;
 		glfwTerminate();
 	}
 
-	void Window::Show()
+	void Window::Show() const
 	{
 		glfwShowWindow(m_Window);
 		Timer time;
@@ -76,8 +78,8 @@ namespace al { namespace graphics {
 		{
 			Clear();
 
-			m_OnUpdate(time.elapsed());
-			m_OnRender();
+			m_App->OnUpdate(time.elapsed());
+			m_App->OnRender();
 
 			Update();
 			frames++;
@@ -128,7 +130,7 @@ namespace al { namespace graphics {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
- 	void Window::Update()
+ 	void Window::Update() const
 	{
 		GLErrorCheck();
 
