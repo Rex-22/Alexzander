@@ -22,8 +22,10 @@
     <ClInclude Include="src\Alex.h" />
     <ClInclude Include="src\al\app\Application.h" />
     <ClInclude Include="src\al\Common.h" />
+    <ClInclude Include="src\al\graphics\Texture.h" />
     <ClInclude Include="src\al\graphics\layer\Group.h" />
     <ClInclude Include="src\al\graphics\layer\Layer2D.h" />
+    <ClInclude Include="src\al\utils\ImageUtils.h" />
     <ClInclude Include="src\glm\common.hpp" />
     <ClInclude Include="src\glm\detail\compute_vector_relational.hpp" />
     <ClInclude Include="src\glm\detail\qualifier.hpp" />
@@ -198,11 +200,16 @@
     <ClCompile Include="src\al\graphics\buffers\VertexArray.cpp" />
     <ClCompile Include="src\al\graphics\Shader.cpp" />
     <ClCompile Include="src\al\graphics\Sprite.cpp" />
+    <ClCompile Include="src\al\graphics\Texture.cpp" />
     <ClCompile Include="src\al\graphics\Window.cpp" />
+    <ClCompile Include="src\al\utils\ImageUtils.cpp" />
     <ClCompile Include="src\glm\detail\dummy.cpp" />
     <ClCompile Include="src\glm\detail\glm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dependencies\FreeImage\FreeImage.vcxproj">
+      <Project>{6f2ff135-e343-4138-a6fb-2d1f2540a3f8}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Dependencies\GLEW\GLEW.vcxproj">
       <Project>{6e0deef6-f4c2-4b7e-a2fe-bb9bae5ec8d1}</Project>
     </ProjectReference>
@@ -381,7 +388,7 @@
     <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\Intermediates\</IntDir>
     <TargetName>AL-core</TargetName>
     <TargetExt>.dll</TargetExt>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -389,7 +396,7 @@
     <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\Intermediates\</IntDir>
     <TargetName>AL-core</TargetName>
     <TargetExt>.dll</TargetExt>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\;$(LibraryPath)</LibraryPath>
     <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -397,14 +404,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies/GLFW/</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -421,8 +429,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -433,7 +441,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Dependencies/GLFW/</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

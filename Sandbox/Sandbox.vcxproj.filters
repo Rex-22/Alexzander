@@ -31,4 +31,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\textures\sample.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\textures\test.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
