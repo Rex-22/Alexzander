@@ -513,6 +513,9 @@
     <ClInclude Include="src\al\app\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\graphics\layer\Group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\al\graphics\Window.cpp">
@@ -549,6 +552,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\layer\Group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

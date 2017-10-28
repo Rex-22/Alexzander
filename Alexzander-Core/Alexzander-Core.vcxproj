@@ -22,6 +22,7 @@
     <ClInclude Include="src\Alex.h" />
     <ClInclude Include="src\al\app\Application.h" />
     <ClInclude Include="src\al\Common.h" />
+    <ClInclude Include="src\al\graphics\layer\Group.h" />
     <ClInclude Include="src\al\graphics\layer\Layer2D.h" />
     <ClInclude Include="src\glm\common.hpp" />
     <ClInclude Include="src\glm\detail\compute_vector_relational.hpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="src\sp\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\graphics\layer\Group.cpp" />
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
     <ClCompile Include="src\al\graphics\renderer\BasicRenderer2D.cpp" />
     <ClCompile Include="src\al\graphics\BasicSprite.cpp" />

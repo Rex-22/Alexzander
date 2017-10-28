@@ -4,12 +4,13 @@
 #include <Alex.h>
 
 #include "graphics/TileLayer.h"
+#include "glm/gtc/matrix_transform.hpp"
 
 using namespace al;
 using namespace graphics;
 using namespace app;
 
-#define TEST_50K 1
+#define TEST_50K 0
 
 class Game : public Application
 {
@@ -56,12 +57,16 @@ void Game::Init() {
 		for (float x = -16.0f; x < 16.0f; x += 0.1f)
 			m_Layer1->Add(new Sprite(x, y, 0.09f, 0.09f, glm::vec4(rand() % 1000 / 1000.0f, 0, 1, 1)));
 #else
-		for (float y = -9.0; y < 9.0f; y++)
-			for (float x = -16.0f; x < 16.0f; x++)
-				m_Layer1->Add(new Sprite(x, y, 0.9f, 0.9f, glm::vec4(rand() % 1000 / 1000.0f, 0, 1, 1)));
-#endif
+	Group* group = new Group(glm::translate(glm::mat4(1.0f), { -15.0f, 5.0f, 0.0f }));
+	group->Add(new Sprite(0, 0, 6, 3, glm::vec4(1, 1, 1, 1)));
 
-	m_Layer2->Add(new Sprite(-2, -2, 4, 4, glm::vec4(0.8f, 0.2f, 0.8f, 1)));
+	Group* button = new Group(glm::translate(glm::mat4(1.0f), { 0.5f, 0.5f, 0.0f }));
+	button->Add(new Sprite(0, 0, 5.0f, 2.0f, glm::vec4(1, 0, 1, 1)));
+	button->Add(new Sprite(0.5f, 0.5f, 3.0f, 1.0f, glm::vec4(0.2f, 0.3f, 0.8f, 1)));
+	group->Add(button);
+
+	m_Layer1->Add(group);
+#endif
 
 	m_Window->Show();
 }
@@ -72,11 +77,11 @@ void Game::OnUpdate(float delta) const
 	double x, y;
 	m_Window->GetMousePosition(x, y);
 
-	m_Shader1->Enable();
-	m_Shader1->SetUniform2f("light_pos", glm::vec2(0, 0));
-
 	m_Shader2->Enable();
-	m_Shader2->SetUniform2f("light_pos", glm::vec2((float)(x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - y * 18.0f / m_Window->GetHeight())));
+	m_Shader2->SetUniform2f("light_pos", glm::vec2(0, 0));
+
+	m_Shader1->Enable();
+	m_Shader1->SetUniform2f("light_pos", glm::vec2((float)(x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - y * 18.0f / m_Window->GetHeight())));
 }
 
 void  Game::OnRender() const 

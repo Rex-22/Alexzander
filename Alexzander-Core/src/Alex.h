@@ -7,6 +7,7 @@
 #include <al/graphics/renderer/Renderer2D.h>
 
 #include <al/graphics/layer/Layer2D.h>
+#include <al/graphics/layer/Group.h>
 
 #include <al/graphics/Renderable2D.h>
 #include <al/graphics/BasicSprite.h>

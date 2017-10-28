@@ -1,4 +1,6 @@
 #include "BasicRenderer2D.h"
+#include "../Renderable2D.h"
+
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/glm.hpp"
 

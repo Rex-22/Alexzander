@@ -2,10 +2,15 @@
 
 #include <vector>
 
+#include "al/Common.h"
+
 #include "glm/glm.hpp"
-#include "../Renderable2D.h"
+
+#include "gl/gl.h"
 
 namespace al { namespace graphics {
+
+	class Renderable2D;
 
 	class AL_API Renderer2D
 	{

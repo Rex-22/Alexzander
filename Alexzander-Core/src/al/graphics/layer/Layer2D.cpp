@@ -26,7 +26,7 @@ namespace al { namespace graphics {
 		
 		m_Renderer->Begin();
 		for (const Renderable2D* renderable: m_Renderables)
-			m_Renderer->Submit(renderable);
+			renderable->Submit(m_Renderer);
 		m_Renderer->End();
 		m_Renderer->Flush();
 	}

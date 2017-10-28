@@ -1,7 +1,8 @@
 #pragma once
 
 #include <cstddef>
-#include "Renderer2d.h"
+#include "Renderer2D.h"
+#include "../Renderable2D.h"
 #include "../buffers/IndexBuffer.h"
 
 #include "al/Common.h"
