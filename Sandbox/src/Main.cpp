@@ -1,10 +1,11 @@
 #include <iostream>
-#include <time.h>
 
 #include <Alex.h>
 
 #include "graphics/TileLayer.h"
 #include "glm/gtc/matrix_transform.hpp"
+
+#include <time.h>
 
 using namespace al;
 using namespace graphics;
@@ -67,6 +68,10 @@ void Game::Init() {
 
 	m_Layer1->Add(group);
 #endif
+
+	Texture* texture = new Texture("src/textures/test.png");
+
+	std::cout << "Width: " << texture->GetWidth() << std::endl << "Height: " << texture->GetHeight() << std::endl;
 
 	m_Window->Show();
 }

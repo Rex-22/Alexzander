@@ -516,6 +516,12 @@
     <ClInclude Include="src\al\graphics\layer\Group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\graphics\Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\utils\ImageUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\al\graphics\Window.cpp">
@@ -555,6 +561,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\layer\Group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\utils\ImageUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

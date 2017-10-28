@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 
 #include "al/utils/Timer.h"
+
+#include <FreeImage.h>
 #include "al/Types.h"
 
 #include "gl/gl.h"
@@ -60,6 +62,8 @@ namespace al { namespace graphics {
 		}
 
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
+
+		FreeImage_Initialise(TRUE);
 	}
 
 	Window::~Window()
