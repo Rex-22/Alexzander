@@ -2,7 +2,7 @@
 
 #include <cstddef>
 #include "Renderer2D.h"
-#include "../Renderable2D.h"
+#include "../renderables/Renderable2D.h"
 #include "../buffers/IndexBuffer.h"
 
 #include "al/Common.h"
@@ -16,7 +16,9 @@ namespace al { namespace graphics {
 #define RENDERER_INDICES_SIZE	RENDERER_MAX_SPRITES * 6
 
 #define SHADER_VERTEX_INDEX 0
-#define SHADER_COLOR_INDEX	1
+#define SHADER_UV_INDEX		1
+#define SHADER_TID_INDEX	2
+#define SHADER_COLOR_INDEX	3
 
 	class AL_API BatchRenderer2D : public Renderer2D
 	{
@@ -26,6 +28,8 @@ namespace al { namespace graphics {
 		IndexBuffer* m_IBO;
 		GLsizei m_IndexCount;
 		VertexData* m_Buffer;
+
+		std::vector<GLuint> m_TextureSlots;
 	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();
@@ -34,7 +38,7 @@ namespace al { namespace graphics {
 		void End() override;
 		void Flush() override;
 	private:
-		void init();
+		void Init();
 	};
 
 } }

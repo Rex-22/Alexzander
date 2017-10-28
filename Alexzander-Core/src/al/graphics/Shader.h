@@ -24,7 +24,9 @@ namespace al { namespace graphics {
 
 
 		void SetUniform1f(const GLchar* name, float value);
+		void SetUniform1fv(const GLchar* name, float* value, int count);
 		void SetUniform1i(const GLchar* name, int value);
+		void SetUniform1iv(const GLchar* name, int* value, int count);
 		void SetUniform2f(const GLchar* name, const glm::vec2& vector);
 		void SetUniform3f(const GLchar* name, const glm::vec3& vector);
 		void SetUniform4f(const GLchar* name, const glm::vec4& vector);

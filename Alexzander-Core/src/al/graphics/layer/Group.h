@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "../Renderable2D.h"
+#include "../renderables/Renderable2D.h"
 
 #include "al/Common.h"
 

@@ -80,9 +80,19 @@ namespace al { namespace graphics {
 		glUniform1f(GetUniformLocation(name), value);
 	}
 
+	void Shader::SetUniform1fv(const GLchar* name, float* value, int count)
+	{
+		glUniform1fv(GetUniformLocation(name), count, value);
+	}
+
 	void Shader::SetUniform1i(const GLchar* name, int value)
 	{
 		glUniform1i(GetUniformLocation(name), value);
+	}
+
+	void Shader::SetUniform1iv(const GLchar* name, int *value, int count)
+	{
+		glUniform1iv(GetUniformLocation(name), count, value);
 	}
 
 	void Shader::SetUniform2f(const GLchar* name, const glm::vec2& vector)

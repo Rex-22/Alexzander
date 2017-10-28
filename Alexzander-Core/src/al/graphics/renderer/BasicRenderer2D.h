@@ -2,13 +2,13 @@
 
 #include <deque>
 #include "Renderer2D.h"
-#include "../BasicSprite.h"
+#include "../renderables/BasicSprite.h"
 
 #include "al/Common.h"
 
 namespace al { namespace graphics {
 
-	class AL_API Simple2DRenderer : public Renderer2D
+	class AL_API BasicRenderer2D : public Renderer2D
 	{
 	private:
 		std::deque<const BasicSprite*> m_RenderQueue;

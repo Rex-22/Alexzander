@@ -32,10 +32,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="src\textures\sample.png">
+    <Image Include="src\textures\test1.png">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="src\textures\test.png">
+    <Image Include="src\textures\test2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="src\textures\test3.png">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

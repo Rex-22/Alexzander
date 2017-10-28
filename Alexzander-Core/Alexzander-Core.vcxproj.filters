@@ -30,9 +30,6 @@
     <ClInclude Include="src\gl\gl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\BasicSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\graphics\buffers\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -42,13 +39,7 @@
     <ClInclude Include="src\al\graphics\buffers\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\Renderable2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\graphics\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\al\graphics\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\al\utils\FileUtils.h">
@@ -516,18 +507,24 @@
     <ClInclude Include="src\al\graphics\layer\Group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\Texture.h">
+    <ClInclude Include="src\al\utils\ImageUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\utils\ImageUtils.h">
+    <ClInclude Include="src\al\graphics\renderables\BasicSprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\renderables\Renderable2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\renderables\Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\renderables\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\al\graphics\Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\graphics\BasicSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\buffers\Buffer.cpp">
@@ -540,9 +537,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\graphics\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\glm\detail\dummy.cpp">
@@ -563,10 +557,16 @@
     <ClCompile Include="src\al\graphics\layer\Group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\graphics\Texture.cpp">
+    <ClCompile Include="src\al\utils\ImageUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\utils\ImageUtils.cpp">
+    <ClCompile Include="src\al\graphics\renderables\BasicSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\renderables\Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\renderables\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

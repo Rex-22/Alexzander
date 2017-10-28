@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../renderer/Renderer2D.h"
-#include "../Renderable2D.h"
+#include "../renderables/Renderable2D.h"
 
 #include "al/Common.h"
 
