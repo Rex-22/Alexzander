@@ -51,13 +51,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="freetype-gl\src\distance-field.c" />
-    <ClCompile Include="freetype-gl\src\edtaa3func.c" />
-    <ClCompile Include="freetype-gl\src\platform.c" />
-    <ClCompile Include="freetype-gl\src\texture-atlas.c" />
-    <ClCompile Include="freetype-gl\src\texture-font.c" />
-    <ClCompile Include="freetype-gl\src\utf8-utils.c" />
-    <ClCompile Include="freetype-gl\src\vector.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\distance-field.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\edtaa3func.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\platform.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\texture-atlas.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\texture-font.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\utf8-utils.c" />
+    <ClCompile Include="freetype-gl\freetype-gl\vector.c" />
     <ClCompile Include="src\autofit\afangles.c" />
     <ClCompile Include="src\autofit\afblue.c" />
     <ClCompile Include="src\autofit\afcjk.c" />
@@ -435,8 +435,10 @@
     <ClInclude Include="src\winfonts\fnterrs.h" />
     <ClInclude Include="src\winfonts\winfnt.h" />
   </ItemGroup>
-  <!--
-    Switch the PlatformToolset based on the Visual Studio Version
+  <!--
+
+    Switch the PlatformToolset based on the Visual Studio Version
+
 -->
   <PropertyGroup>
     <!-- Assume Visual Studio 2010 / 4.0 as the default -->
@@ -458,8 +460,10 @@
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '15.0'">
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
-  <!--
-    End of: Switch the PlatformToolset based on the Visual Studio Version
+  <!--
+
+    End of: Switch the PlatformToolset based on the Visual Studio Version
+
 -->
   <PropertyGroup Label="Globals">
     <ProjectGuid>{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}</ProjectGuid>
