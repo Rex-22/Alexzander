@@ -26,6 +26,7 @@
     <ClInclude Include="src\al\graphics\layer\Layer2D.h" />
     <ClInclude Include="src\al\graphics\renderables\Texture.h" />
     <ClInclude Include="src\al\utils\ImageUtils.h" />
+    <ClInclude Include="src\al\utils\ShaderUtils.h" />
     <ClInclude Include="src\glm\common.hpp" />
     <ClInclude Include="src\glm\detail\compute_vector_relational.hpp" />
     <ClInclude Include="src\glm\detail\qualifier.hpp" />

@@ -522,6 +522,9 @@
     <ClInclude Include="src\al\graphics\renderables\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\utils\ShaderUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\al\graphics\Window.cpp">

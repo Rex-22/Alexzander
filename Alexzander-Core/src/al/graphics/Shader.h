@@ -4,11 +4,12 @@
 #include <vector>
 
 #include "gl/gl.h"
-#include "al/utils/fileutils.h"
+#include "al/utils/ShaderUtils.h"
 
 #include "glm/glm.hpp"
 
 #include "al/Common.h"
+#include "al/Types.h"
 
 namespace al { namespace graphics {
 
@@ -16,10 +17,9 @@ namespace al { namespace graphics {
 	{
 	private:
 		GLuint m_ShaderID;
-		const char* m_VertPath;
-		const char* m_FragPath;
+		const char* m_ShaderPath;
 	public:
-		Shader(const char* vertPath, const char* fragPath);
+		Shader(const char* shaderPath);
 		~Shader();
 
 
@@ -35,7 +35,9 @@ namespace al { namespace graphics {
 		void Enable() const;
 		void Disable() const;
 	private:
-		GLuint Load();
+		GLuint CreateProgram();
+		GLuint CreateShader(uint type, const char* source);
+		const char* GetType(uint type) const;
 		GLint GetUniformLocation(const GLchar* name);
 	};
 

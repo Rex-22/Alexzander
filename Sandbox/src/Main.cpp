@@ -37,7 +37,7 @@ Game::Game(const char* title, int width, int height)
 {
 	m_Window = new graphics::Window(title, width, height, this);
 
-	m_Shader = new Shader("src/shaders/basic.vert", "src/shaders/basic.frag");
+	m_Shader = new Shader("src/shaders/basic.shader");
 
 	m_Layer = new TileLayer(m_Shader);
 

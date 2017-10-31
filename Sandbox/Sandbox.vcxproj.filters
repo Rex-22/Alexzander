@@ -25,6 +25,7 @@
   <ItemGroup>
     <None Include="src\shaders\basic.frag" />
     <None Include="src\shaders\basic.vert" />
+    <None Include="src\shaders\basic.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\TileLayer.h">

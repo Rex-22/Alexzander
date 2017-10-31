@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\basic.frag" />
+    <None Include="src\shaders\basic.shader" />
     <None Include="src\shaders\basic.vert" />
   </ItemGroup>
   <ItemGroup>
