@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{6a5b1c1a-f9eb-4bd9-8458-abd5cff3e792}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fonts">
+      <UniqueIdentifier>{3b1d3c72-d703-40bf-bc99-84197fd255f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -23,9 +29,15 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shaders\basic.frag" />
-    <None Include="src\shaders\basic.vert" />
-    <None Include="src\shaders\basic.shader" />
+    <None Include="src\shaders\basic.frag">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="src\shaders\basic.glsl">
+      <Filter>Shader</Filter>
+    </None>
+    <None Include="src\shaders\basic.vert">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\TileLayer.h">
@@ -44,7 +56,8 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Font Include="arial.ttf" />
-    <Font Include="Jellee-Roman.ttf" />
+    <Font Include="Jellee-Roman.ttf">
+      <Filter>Fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@
 #include "al/Common.h"
 
 #include "gl/gl.h"
-#include "Texture.h"
+#include "al/graphics/renderer/Texture.h"
 
 namespace al { namespace graphics {
 
@@ -15,16 +15,15 @@ namespace al { namespace graphics {
 		VertexArray* m_VertexArray;
 		IndexBuffer* m_IndexBuffer;
 		Shader& m_Shader;
-		Texture& m_Texture;
 	public:
 		BasicSprite(float x, float y, float width, float height, const glm::vec4& color, Shader& shader);
+		BasicSprite(float x, float y, float width, float height, uint color, Shader& shader);
 		BasicSprite(float x, float y, float width, float height, Texture& texture, Shader& shader);
 		~BasicSprite();
 
 		inline const VertexArray* getVAO() const { return m_VertexArray; }
 		inline const IndexBuffer* getIBO() const { return m_IndexBuffer; }
 
-		inline Texture& GetTexture() const { return m_Texture; }
 		inline Shader& getShader() const { return m_Shader; }
 	};
 

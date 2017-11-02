@@ -39,7 +39,7 @@ Game::Game(const char* title, int width, int height)
 {
 	m_Window = new graphics::Window(title, width, height, this);
 
-	m_Shader = new Shader("src/shaders/basic.shader");
+	m_Shader = new Shader("src/shaders/basic.glsl");
 
 	m_Layer = new TileLayer(m_Shader);
 
@@ -70,20 +70,24 @@ void Game::Init() {
 	for (float y = -9.0; y < 9.0f; y ++)
 		for (float x = -16.0f; x < 16.0f; x ++)
 		{
+			int r = rand() % 256;
+			
+			int col = 0xffff00 << 8 | r;
+
 			if (rand() % 4 == 0)
-				 m_Layer->Add(new Sprite(x, y, 0.9f, 0.9f, glm::vec4(rand() % 1000 / 1000.0f, 0, 1, 1)));
+				 m_Layer->Add(new Sprite(x, y, 0.9f, 0.9f, col));
 			else
 				m_Layer->Add(new Sprite(x, y, 0.9f, 0.9f, textures[rand() % 3]));
 		}
 #else
-	Sprite* sprite = new Sprite(1.0f, 1.0f, 5.0f, 5.0f, {1.0f, 0.0f, 1.0f, 1.0f});
+	Sprite* sprite = new Sprite(1.0f, 1.0f, 5.0f, 5.0f, 0xffff00ff);
 
-	m_Layer1->Add(sprite);
+	m_Layer->Add(sprite);
 #endif
 
 	Group* g = new Group(glm::translate(glm::mat4(1.0f), glm::vec3(-15.8f, 7.0f, 0.0f)));
-	m_FPS = new Label("", 0.4f, 0.4f, FontManager::Get("Jellee-Roman.ttf"));
-	g->Add(new Sprite(0, 0, 5, 1.5f, glm::vec4(0.3f, 0.3f, 0.3f, 0.9f)));
+	m_FPS = new Label("", 0.4f, 0.4f, FontManager::Get("Jellee-Roman"));
+	g->Add(new Sprite(0, 0, 5, 1.5f, 0x505050DD));
 	g->Add(m_FPS);
 
 	m_Layer->Add(g);

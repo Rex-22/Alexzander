@@ -5,6 +5,7 @@
 #include <al/graphics/renderer/BasicRenderer2D.h>
 #include <al/graphics/renderer/BatchRenderer2D.h>
 #include <al/graphics/renderer/Renderer2D.h>
+#include <al/graphics/renderer/Texture.h>
 
 #include <al/graphics/Shader.h>
 
@@ -13,7 +14,6 @@
 
 #include <al/graphics/renderables/Renderable2D.h>
 #include <al/graphics/renderables/BasicSprite.h>
-#include <al/graphics/renderables/Texture.h>
 #include <al/graphics/renderables/Sprite.h>
 
 #include <al/graphics/ui/Label.h>

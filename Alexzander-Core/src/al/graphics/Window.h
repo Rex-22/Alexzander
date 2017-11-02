@@ -24,7 +24,12 @@ namespace al { namespace graphics {
 		bool m_Closed;
 
 		bool m_Keys[MAX_KEYS];
+		bool m_KeyState[MAX_KEYS];
+		bool m_KeyTyped[MAX_KEYS];
+
 		bool m_MouseButtons[MAX_BUTTONS];
+		bool m_MouseState[MAX_BUTTONS];
+		bool m_MouseClicked[MAX_BUTTONS];
 		double mx, my;
 
 		app::Application* m_App;
@@ -32,18 +37,20 @@ namespace al { namespace graphics {
 		Window(const char *title, int width, int height, app::Application* app);
 		~Window();
 
-		void Clear() const;
-		void Update() const;
-		bool Closed() const;
+		void Clear();
+		void Update();
+		bool Closed();
 
 		inline int GetWidth() const { return m_Width; }
 		inline int GetHeight() const { return m_Height; }
 
 		bool IsKeyPressed(unsigned int keycode) const;
+		bool IsKeyTyped(unsigned int keycode) const;
 		bool IsMouseButtonPressed(unsigned int button) const;
+		bool IsMouseClicked(unsigned int button) const;
 		void GetMousePosition(double& x, double& y) const;
 
-		void Show() const;
+		void Show();
 	private:
 		
 		friend static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);

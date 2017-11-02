@@ -18,14 +18,19 @@ namespace al { namespace graphics {
 		m_Width = width;
 		m_Height = height;
 
+
 		for (int i = 0; i < MAX_KEYS; i++)
 		{
 			m_Keys[i] = false;
+			m_KeyState[i] = false;
+			m_KeyTyped[i] = false;
 		}
 
 		for (int i = 0; i < MAX_BUTTONS; i++)
 		{
 			m_MouseButtons[i] = false;
+			m_MouseState[i] = false;
+			m_MouseClicked[i] = false;
 		}
 
 		if (!glfwInit())
@@ -67,7 +72,7 @@ namespace al { namespace graphics {
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
 		FreeImage_Initialise(TRUE);
-		FontManager::Add(new Font("Jellee-Roman.ttf", 32, { 0.2f, 0.8f, 0.3f, 1.0f }));
+		FontManager::Add(new Font("Jellee-Roman", "Jellee-Roman.ttf", 28, 0xffffff00));
 	}
 
 	Window::~Window()
@@ -76,7 +81,7 @@ namespace al { namespace graphics {
 		glfwTerminate();
 	}
 
-	void Window::Show() const
+	void Window::Show()
 	{
 		glfwShowWindow(m_Window);
 		Timer time;
@@ -118,7 +123,16 @@ namespace al { namespace graphics {
 
 		return m_Keys[keycode];
 	}
-	 
+
+	bool Window::IsKeyTyped(unsigned keycode) const
+	{
+		// TODO: Log this!
+		if (keycode >= MAX_KEYS)
+		 return false;
+
+		return m_KeyTyped[keycode];
+	}
+
 	bool Window::IsMouseButtonPressed(unsigned int button) const
 	{
 		// TODO: Log this!
@@ -128,26 +142,44 @@ namespace al { namespace graphics {
 		return m_MouseButtons[button];
 	}
 
+	bool Window::IsMouseClicked(unsigned int button) const
+	{
+		// TODO: Log this!
+		if (button >= MAX_BUTTONS)
+			return false;
+	
+		return m_MouseClicked[button];
+	}
+
 	void Window::GetMousePosition(double& x, double& y) const
 	{
 		x = mx;
 		y = my;
 	}
 
-	void Window::Clear() const
+	void Window::Clear()
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
- 	void Window::Update() const
+ 	void Window::Update()
 	{
 		GLErrorCheck();
+
+		for (int i = 0; i < MAX_KEYS; i++)
+			m_KeyTyped[i] = m_Keys[i] && !m_KeyState[i];
+		
+		for (int i = 0; i < MAX_BUTTONS; i++)
+			m_MouseClicked[i] = m_MouseButtons[i] && !m_MouseState[i];
+		
+		memcpy(m_KeyState, m_Keys, MAX_KEYS);
+		memcpy(m_MouseState, m_MouseButtons, MAX_BUTTONS);
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 	}
 
-	bool Window::Closed() const
+	bool Window::Closed()
 	{
 		return glfwWindowShouldClose(m_Window) == 1;
 	}

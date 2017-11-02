@@ -3,6 +3,7 @@
 #include "Renderable2D.h"
 
 #include "al/Common.h"
+#include "al/Types.h"
 
 namespace al { namespace graphics {
 
@@ -11,7 +12,7 @@ namespace al { namespace graphics {
 	private:
 
 	public:
-		Sprite(float x, float y, float width, float height, const glm::vec4& color);
+		Sprite(float x, float y, float width, float height, const uint color);
 		Sprite(float x, float y, float width, float height, Texture* texture);
 	};
 

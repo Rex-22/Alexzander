@@ -66,12 +66,11 @@ namespace al { namespace graphics {
 	void BatchRenderer2D::Submit(const Renderable2D* renderable)
 	{
 		const glm::vec3& position = renderable->GetPosition();
-		const std::vector<glm::vec2>& uv = renderable->getUV();
-		const glm::vec2& size = renderable->getSize();
-		const glm::vec4& color = renderable->getColor();
+		const std::vector<glm::vec2>& uv = renderable->GetUV();
+		const glm::vec2& size = renderable->GetSize();
+		const uint color = renderable->GetColor();
 		const GLuint tid = renderable->GetTID();
-		
-		uint c = 0;
+
 		float ts = 0.0f;
 		if (tid > 0)
 		{
@@ -98,37 +97,30 @@ namespace al { namespace graphics {
 				ts = (float)(m_TextureSlots.size());
 			}
 		}
-					
-		int r = color.x * 255.0f;
-		int g = color.y * 255.0f;
-		int b = color.z * 255.0f;
-		int a = color.w * 255.0f;
-
-		c = a << 24 | b << 16 | g << 8 | r;
 		
 		
 		m_Buffer->vertex = *m_LastMatrix * glm::vec4(position, 1);
 		m_Buffer->uv = uv[0];
 		m_Buffer->tid = ts;
-		m_Buffer->color = c;
+		m_Buffer->color = color;
 		m_Buffer++;
 
 		m_Buffer->vertex = *m_LastMatrix * glm::vec4(position.x, position.y + size.y, position.z, 1);
 		m_Buffer->uv = uv[1];
 		m_Buffer->tid = ts;
-		m_Buffer->color = c;
+		m_Buffer->color = color;
 		m_Buffer++;
 
 		m_Buffer->vertex = *m_LastMatrix * glm::vec4(position.x + size.x, position.y + size.y, position.z, 1);
 		m_Buffer->uv = uv[2];
 		m_Buffer->tid = ts;
-		m_Buffer->color = c;
+		m_Buffer->color = color;
 		m_Buffer++;
 
 		m_Buffer->vertex = *m_LastMatrix * glm::vec4(position.x + size.x, position.y, position.z, 1);
 		m_Buffer->uv = uv[3];
 		m_Buffer->tid = ts;
-		m_Buffer->color = c;
+		m_Buffer->color = color;
 		m_Buffer++;
 
 		m_IndexCount += 6;
@@ -138,12 +130,7 @@ namespace al { namespace graphics {
 	{
 		using namespace ftgl;
 
-		int r = font->GetColour().x * 255.0f;
-		int g = font->GetColour().y * 255.0f;
-		int b = font->GetColour().z * 255.0f;
-		int a = font->GetColour().w * 255.0f;
-
-		unsigned int col = a << 24 | b << 16 | g << 8 | r;
+		uint col = font->GetColour();
 
 		float ts = 0.0f;
 		bool found = false;

@@ -15,20 +15,33 @@ namespace al { namespace graphics {
 	class AL_API Font
 	{
 	private :
+		String m_Name;
 		String m_FontName;
 		int m_FontSize;
-		glm::vec4 m_Colour;
+		uint m_Colour;
 
 		ftgl::texture_atlas_t* m_FTAtlas;
 		ftgl::texture_font_t* m_FTFont;
 	public:
-		Font(const String& name, int size, const glm::vec4& colour);
+		Font(const String& name, const String& fontFile, int size, const uint colour);
+		Font(const String& name, const String& fontFile, int size, glm::vec4 colour);
 		~Font();
 
 		int GetID() const;
-		inline const String& GetName() { return m_FontName; }
+		inline const String& GetName() { return m_Name; }
+		inline const String& GetFontName() { return m_FontName; }
 		inline ftgl::texture_font_t* GetFont() const { return m_FTFont; }
-		inline const glm::vec4& const GetColour() const { return m_Colour; }
+		inline const uint const GetColour() const { return m_Colour; }
+
+		inline void SetColour(uint colour) { m_Colour = colour; }
+		inline void SetColour(glm::vec4 colour) {
+			int r = colour.x * 255.0f;
+			int g = colour.y * 255.0f;
+			int b = colour.z * 255.0f;
+			int a = colour.w * 255.0f;
+
+			m_Colour = a << 24 | b << 16 | g << 8 | r;
+		}
 	};
 
 } }

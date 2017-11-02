@@ -1,4 +1,5 @@
 #include "ImageUtils.h"
+
 #include <FreeImage.h>
 
 namespace al {
@@ -6,7 +7,7 @@ namespace al {
 	BYTE* ImageUtils::LoadImage(const char* filename, uint* width, uint* height)
 	{
 		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
-		FIBITMAP *dib = nullptr;
+		FIBITMAP* dib = nullptr;
 		fif = FreeImage_GetFileType(filename, 0);
 
 		if (fif == FIF_UNKNOWN)
@@ -23,9 +24,16 @@ namespace al {
 		if (!dib)
 			return nullptr;
 
-		BYTE* result = FreeImage_GetBits(dib);
+		BYTE* pixels = FreeImage_GetBits(dib);
 		*width = FreeImage_GetWidth(dib);
 		*height = FreeImage_GetHeight(dib);
+
+		int bits = FreeImage_GetBPP(dib);
+		
+		int size = *width * *height * (bits / 8);
+		BYTE* result = new BYTE[size];
+		memcpy(result, pixels, size);
+		FreeImage_Unload(dib);
 
 		return result;
 	}

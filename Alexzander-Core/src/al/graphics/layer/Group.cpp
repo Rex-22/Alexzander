@@ -7,6 +7,12 @@ namespace al { namespace graphics {
 	{
 	}
 
+	Group::~Group()
+	{
+		for (Renderable2D* renderable: m_Renderables)
+			delete renderable;
+	}
+
 	void Group::Add(Renderable2D* renderable)
 	{
 		m_Renderables.push_back(renderable);

@@ -6,7 +6,7 @@
 
 #include "al/graphics/renderer/Renderer2D.h"
 #include "al/graphics/Shader.h"
-#include "Texture.h"
+#include "al/graphics/renderer/Texture.h"
 #include "al/Common.h"
 
 #include "glm/glm.hpp"
@@ -16,7 +16,6 @@ namespace al { namespace graphics {
 	struct AL_API VertexData
 	{
 		glm::vec3 vertex;
-		// maths::vec4 color;
 		glm::vec2 uv;
 		GLfloat tid;
 		uint color;
@@ -28,21 +27,19 @@ namespace al { namespace graphics {
 		glm::vec3 m_Position;
 		glm::vec2 m_Size;
 		std::vector<glm::vec2> m_UV;
-		glm::vec4 m_Color;
+		uint m_Color;
 		Texture* m_Texture;
 	protected :
 		Renderable2D()
 	{ SetUVDefaults(); }
 	public:
-		Renderable2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
+		Renderable2D(glm::vec3 position, glm::vec2 size, uint color)
 			: m_Position(position), m_Size(size), m_Color(color), m_Texture(nullptr)
 		{ SetUVDefaults(); }
 
 		Renderable2D(glm::vec3 position, glm::vec2 size, Texture* texture)
-			: m_Position(position), m_Size(size), m_Color({1.0f, 1.0f, 1.0f, 1.0f}), m_Texture(texture) 
-		{
-			SetUVDefaults();
-		}
+			: m_Position(position), m_Size(size), m_Color(0xffffffff), m_Texture(texture) 
+		{ SetUVDefaults(); }
 
 		virtual ~Renderable2D() { }
 
@@ -51,10 +48,22 @@ namespace al { namespace graphics {
 			renderer->Submit(this);
 		}
 
+		void setColor(uint color) { m_Color = color; }
+		void setColor(const glm::vec4& color)
+		{
+			int r = color.x * 255.0f;
+			int g = color.y * 255.0f;
+			int b = color.z * 255.0f;
+			int a = color.w * 255.0f;
+		
+			m_Color = a << 24 | b << 16 | g << 8 | r;
+		}
+
 		inline const glm::vec3& GetPosition() const { return m_Position; }
-		inline const std::vector<glm::vec2>& getUV() const { return m_UV; }
-		inline const glm::vec2& getSize() const { return m_Size; }
-		inline const glm::vec4& getColor() const { return m_Color; }
+		inline const std::vector<glm::vec2>& GetUV() const { return m_UV; }
+		inline const glm::vec2& GetSize() const { return m_Size; }
+		inline const uint GetColor() const { return m_Color; }
+		inline const Texture& GetTexture() const { return *m_Texture; }
 
 		inline const uint GetTID() const
 		{
