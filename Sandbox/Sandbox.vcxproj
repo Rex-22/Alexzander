@@ -147,6 +147,10 @@
     <Image Include="src\textures\test2.png" />
     <Image Include="src\textures\test3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="arial.ttf" />
+    <Font Include="Jellee-Roman.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -3,9 +3,9 @@
 #include <vector>
 
 #include "al/Common.h"
+#include "al/Types.h"
 
 #include "glm/glm.hpp"
-
 #include "gl/gl.h"
 
 namespace al { namespace graphics {
@@ -46,6 +46,7 @@ namespace al { namespace graphics {
 
 		virtual void Begin() {}
 		virtual void Submit(const Renderable2D* renderable) = 0;
+		virtual void DrawString(const String& text, float x, float y, const glm::vec4& colour) {}
 		virtual void End() {}
 		virtual void Flush() = 0;
 	};

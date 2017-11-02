@@ -1,11 +1,16 @@
 #pragma once
 
-#include <cstddef>
 #include "Renderer2D.h"
 #include "al/graphics/renderables/Renderable2D.h"
 #include "al/graphics/buffers/IndexBuffer.h"
 
 #include "al/Common.h"
+#include "al/Types.h"
+
+namespace ftgl {
+	struct texture_atlas_t;
+	struct texture_font_t;
+}
 
 namespace al { namespace graphics {
 
@@ -30,11 +35,16 @@ namespace al { namespace graphics {
 		VertexData* m_Buffer;
 
 		std::vector<GLuint> m_TextureSlots;
+
+		ftgl::texture_atlas_t* m_FTAtlas;
+		ftgl::texture_font_t* m_FTFont;
 	public:
 		BatchRenderer2D();
 		~BatchRenderer2D();
 		void Begin() override;
 		void Submit(const Renderable2D* renderable) override;
+		void DrawString(const String& text, float x, float y, const glm::vec4& colour) override;
+		void DrawString(const String& text, glm::vec2 position, const glm::vec4& colour);
 		void End() override;
 		void Flush() override;
 	private:

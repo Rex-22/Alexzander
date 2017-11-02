@@ -26,9 +26,9 @@ namespace al { namespace graphics {
 		bool m_MouseButtons[MAX_BUTTONS];
 		double mx, my;
 
-		const app::Application* m_App;
+		app::Application* m_App;
 	public:
-		Window(const char *title, int width, int height, const app::Application* app);
+		Window(const char *title, int width, int height, app::Application* app);
 		~Window();
 
 		void Clear() const;

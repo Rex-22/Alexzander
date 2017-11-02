@@ -620,25 +620,25 @@
     <ClCompile Include="src\winfonts\winfnt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\platform.c">
+    <ClCompile Include="freetype-gl\distance-field.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\texture-atlas.c">
+    <ClCompile Include="freetype-gl\edtaa3func.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\vector.c">
+    <ClCompile Include="freetype-gl\platform.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\distance-field.c">
+    <ClCompile Include="freetype-gl\texture-atlas.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\utf8-utils.c">
+    <ClCompile Include="freetype-gl\texture-font.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\edtaa3func.c">
+    <ClCompile Include="freetype-gl\utf8-utils.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="freetype-gl\src\texture-font.c">
+    <ClCompile Include="freetype-gl\vector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1157,6 +1157,39 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="freetype-gl\src\texture-font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\distance-field.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\edtaa3func.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\freetype-gl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\opengl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\texture-atlas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\texture-font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\utf8-utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\vec234.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="freetype-gl\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -51,13 +51,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="freetype-gl\freetype-gl\distance-field.c" />
-    <ClCompile Include="freetype-gl\freetype-gl\edtaa3func.c" />
-    <ClCompile Include="freetype-gl\freetype-gl\platform.c" />
-    <ClCompile Include="freetype-gl\freetype-gl\texture-atlas.c" />
-    <ClCompile Include="freetype-gl\freetype-gl\texture-font.c" />
-    <ClCompile Include="freetype-gl\freetype-gl\utf8-utils.c" />
-    <ClCompile Include="freetype-gl\freetype-gl\vector.c" />
+    <ClCompile Include="freetype-gl\distance-field.c" />
+    <ClCompile Include="freetype-gl\edtaa3func.c" />
+    <ClCompile Include="freetype-gl\platform.c" />
+    <ClCompile Include="freetype-gl\texture-atlas.c" />
+    <ClCompile Include="freetype-gl\texture-font.c" />
+    <ClCompile Include="freetype-gl\utf8-utils.c" />
+    <ClCompile Include="freetype-gl\vector.c" />
     <ClCompile Include="src\autofit\afangles.c" />
     <ClCompile Include="src\autofit\afblue.c" />
     <ClCompile Include="src\autofit\afcjk.c" />
@@ -262,6 +262,17 @@
     <ClCompile Include="src\winfonts\winfnt.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="freetype-gl\common.h" />
+    <ClInclude Include="freetype-gl\distance-field.h" />
+    <ClInclude Include="freetype-gl\edtaa3func.h" />
+    <ClInclude Include="freetype-gl\freetype-gl.h" />
+    <ClInclude Include="freetype-gl\opengl.h" />
+    <ClInclude Include="freetype-gl\platform.h" />
+    <ClInclude Include="freetype-gl\texture-atlas.h" />
+    <ClInclude Include="freetype-gl\texture-font.h" />
+    <ClInclude Include="freetype-gl\utf8-utils.h" />
+    <ClInclude Include="freetype-gl\vec234.h" />
+    <ClInclude Include="freetype-gl\vector.h" />
     <ClInclude Include="freetype-gl\src\common.h" />
     <ClInclude Include="freetype-gl\src\distance-field.h" />
     <ClInclude Include="freetype-gl\src\edtaa3func.h" />
@@ -618,7 +629,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(UserOptionDirectory);$(SolutionDir)Dependencies\FreeType\Include;$(UserIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(UserOptionDirectory);$(SolutionDir)Alexzander-core\src;$(SolutionDir)Dependencies\FreeType\Include;$(UserIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;FT_DEBUG_LEVEL_ERROR;FT_DEBUG_LEVEL_TRACE;FT2_BUILD_LIBRARY;$(UserDefines);%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>

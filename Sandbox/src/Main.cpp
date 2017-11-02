@@ -23,6 +23,8 @@ private :
 	TileLayer* m_Layer;
 
 	Texture* textures[3];
+
+	Label* m_FPS;
 public:
 	Game(const char* title, int width, int height);
 	~Game();
@@ -60,11 +62,10 @@ void Game::Init() {
 	{
 		0,1,2,3,4,5,6,7,8,9
 	};
-	
+
 	m_Shader->Enable();
 	m_Shader->SetUniform1iv("textures", texIDs, 10);
 #if TEST_50K
-	
 
 	for (float y = -9.0; y < 9.0f; y ++)
 		for (float x = -16.0f; x < 16.0f; x ++)
@@ -80,6 +81,14 @@ void Game::Init() {
 	m_Layer1->Add(sprite);
 #endif
 
+	Group* g = new Group(glm::translate(glm::mat4(1.0f), glm::vec3(-15.8f, 7.0f, 0.0f)));
+	m_FPS = new Label("", 0.4f, 0.4f, glm::vec4(1, 1, 1, 1));
+	g->Add(new Sprite(0, 0, 5, 1.5f, glm::vec4(0.3f, 0.3f, 0.3f, 0.9f)));
+	g->Add(m_FPS);
+
+	m_Layer->Add(g);
+
+
 	m_Window->Show();
 }
 
@@ -91,6 +100,7 @@ void Game::OnUpdate(float delta) const
 
 	m_Shader->Enable();
 	m_Shader->SetUniform2f("light_pos", glm::vec2((float)(x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - y * 18.0f / m_Window->GetHeight())));
+	m_FPS->SetText(std::to_string(m_Frames) + " fps");
 }
 
 void  Game::OnRender() const 

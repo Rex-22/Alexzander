@@ -11,7 +11,7 @@
 
 namespace al { namespace graphics {
 
-	Window::Window(const char *title, int width, int height, const app::Application* app)
+	Window::Window(const char *title, int width, int height, app::Application* app)
 	{
 		m_App = app;
 		m_Title = title;
@@ -61,6 +61,9 @@ namespace al { namespace graphics {
 			std::cout << "Could not initialize GLEW!" << std::endl;
 		}
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
 		FreeImage_Initialise(TRUE);
@@ -91,6 +94,7 @@ namespace al { namespace graphics {
 			{
 				timer += 1.0f;
 				printf("%d fps\n", frames);
+				m_App->SetFrames(frames);
 				frames = 0;
 			}
 		}

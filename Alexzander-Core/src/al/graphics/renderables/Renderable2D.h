@@ -39,7 +39,7 @@ namespace al { namespace graphics {
 		{ SetUVDefaults(); }
 
 		Renderable2D(glm::vec3 position, glm::vec2 size, Texture* texture)
-			: m_Position(position), m_Size(size), m_Color({1.0f, 0.0f, 1.0f, 0.0f}), m_Texture(texture) 
+			: m_Position(position), m_Size(size), m_Color({1.0f, 1.0f, 1.0f, 1.0f}), m_Texture(texture) 
 		{
 			SetUVDefaults();
 		}

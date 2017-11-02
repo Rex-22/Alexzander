@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\al\graphics\ui\Label.h" />
     <ClInclude Include="src\Alex.h" />
     <ClInclude Include="src\al\app\Application.h" />
     <ClInclude Include="src\al\Common.h" />
@@ -191,6 +192,7 @@
     <ClInclude Include="src\sp\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\graphics\ui\Label.cpp" />
     <ClCompile Include="src\al\graphics\layer\Group.cpp" />
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
     <ClCompile Include="src\al\graphics\renderables\Texture.cpp" />
@@ -336,6 +338,9 @@
     <None Include="src\glm\gtx\vector_query.inl" />
     <None Include="src\glm\gtx\wrap.inl" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Jellee-Roman.ttf" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{CA3B791F-356B-46C3-B76B-B814E6676EA8}</ProjectGuid>
@@ -408,7 +413,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\FreeType\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
@@ -417,6 +422,7 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
