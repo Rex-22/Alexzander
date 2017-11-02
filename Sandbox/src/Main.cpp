@@ -32,10 +32,10 @@ public:
 	Game(const char* title, int width, int height);
 	~Game();
 
-	void Init();
+	void Init() override;
 private:
 	void OnUpdate(float delta) override;
-	void OnRender() const override;
+	void OnRender() override;
 };
 
 Game::Game(const char* title, int width, int height)
@@ -140,7 +140,7 @@ void Game::OnUpdate(float delta)
 	
 }
 
-void  Game::OnRender() const 
+void  Game::OnRender() 
 {
 	m_Layer->Render();
 }

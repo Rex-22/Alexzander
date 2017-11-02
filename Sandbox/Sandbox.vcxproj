@@ -138,6 +138,9 @@
     <None Include="src\shaders\basic.frag" />
     <None Include="src\shaders\basic.glsl" />
     <None Include="src\shaders\basic.vert" />
+    <None Include="src\sound\AMemoryAway.ogg" />
+    <None Include="src\sound\Deeper.ogg" />
+    <None Include="src\sound\FromHere.ogg" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\graphics\TileLayer.h" />
@@ -146,9 +149,6 @@
     <Image Include="src\textures\test1.png" />
     <Image Include="src\textures\test2.png" />
     <Image Include="src\textures\test3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Font Include="Jellee-Roman.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

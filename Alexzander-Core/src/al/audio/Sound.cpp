@@ -48,7 +48,7 @@ namespace al { namespace audio {
 
 	void Sound::Resume()
 	{
-		gc_int32 quit = 0;
+		m_Playing = true;
 		ga_handle_play(m_Handle);
 	}
 
