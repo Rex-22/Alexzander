@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Alexzander-Core", "Alexzander-Core\Alexzander-Core.vcxproj", "{CA3B791F-356B-46C3-B76B-B814E6676EA8}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -17,6 +17,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImage", "Dependencies\FreeImage\FreeImage.vcxproj", "{6F2FF135-E343-4138-A6FB-2D1F2540A3F8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "freetype", "Dependencies\FreeType\freetype.vcxproj", "{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gorilla", "Dependencies\gorila-audio\build\gorilla.vcxproj", "{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,6 +156,28 @@ Global
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|x64.Build.0 = Release|x64
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|x86.ActiveCfg = Release|Win32
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B}.Release|x86.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Multithreaded|x64.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Multithreaded|x64.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Multithreaded|x86.ActiveCfg = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Multithreaded|x86.Build.0 = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Singlethreaded|x64.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Singlethreaded|x64.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Singlethreaded|x86.ActiveCfg = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug Singlethreaded|x86.Build.0 = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug|x64.ActiveCfg = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug|x86.ActiveCfg = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Debug|x86.Build.0 = Debug|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Multithreaded|x64.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Multithreaded|x64.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Multithreaded|x86.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Multithreaded|x86.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Singlethreaded|x64.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Singlethreaded|x64.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Singlethreaded|x86.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release Singlethreaded|x86.Build.0 = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release|x64.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release|x86.ActiveCfg = Release|Win32
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,6 +186,7 @@ Global
 		{6E0DEEF6-F4C2-4B7E-A2FE-BB9BAE5EC8D1} = {9DB39A5A-DC75-4D75-AB9A-DFA3C679C5A0}
 		{6F2FF135-E343-4138-A6FB-2D1F2540A3F8} = {9DB39A5A-DC75-4D75-AB9A-DFA3C679C5A0}
 		{78B079BD-9FC7-4B9E-B4A6-96DA0F00248B} = {9DB39A5A-DC75-4D75-AB9A-DFA3C679C5A0}
+		{A5D700A6-06FB-33AB-A5D5-7C83AD15AAF8} = {9DB39A5A-DC75-4D75-AB9A-DFA3C679C5A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F5C26242-2D45-4C0F-BADF-16E9512569C2}

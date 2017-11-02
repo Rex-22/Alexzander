@@ -10,6 +10,7 @@
 using namespace al;
 using namespace graphics;
 using namespace app;
+using namespace audio;
 
 #define TEST_50K 1
 
@@ -25,13 +26,15 @@ private :
 	Texture* textures[3];
 
 	Label* m_FPS;
+
+	float gain = 0.5f;
 public:
 	Game(const char* title, int width, int height);
 	~Game();
 
 	void Init();
 private:
-	void OnUpdate(float delta) const override;
+	void OnUpdate(float delta) override;
 	void OnRender() const override;
 };
 
@@ -92,12 +95,14 @@ void Game::Init() {
 
 	m_Layer->Add(g);
 
+	AudioEngine::Add(new Sound("Test", "src/sound/AMemoryAway.ogg"));
+	AudioEngine::Get("Test")->SetGain(gain);
 
 	m_Window->Show();
 }
 
 
-void Game::OnUpdate(float delta) const 
+void Game::OnUpdate(float delta) 
 {
 	double x, y;
 	m_Window->GetMousePosition(x, y);
@@ -105,6 +110,34 @@ void Game::OnUpdate(float delta) const
 	m_Shader->Enable();
 	m_Shader->SetUniform2f("light_pos", glm::vec2((float)(x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - y * 18.0f / m_Window->GetHeight())));
 	m_FPS->SetText(std::to_string(m_Frames) + " fps");
+
+	if (m_Window->IsKeyTyped(AL_KEY_P))
+		AudioEngine::Get("Test")->Play();
+	
+	if (m_Window->IsKeyTyped(AL_KEY_L))
+		AudioEngine::Get("Test")->Loop();
+	
+	if (m_Window->IsKeyTyped(AL_KEY_S))
+		AudioEngine::Get("Test")->Stop();
+	
+	if (m_Window->IsKeyTyped(AL_KEY_1))
+		AudioEngine::Get("Test")->Pause();
+	
+	if (m_Window->IsKeyTyped(AL_KEY_2))
+		AudioEngine::Get("Test")->Resume();
+	
+	if (m_Window->IsKeyTyped(AL_KEY_UP))
+	{
+		gain += 0.05f;
+		AudioEngine::Get("Test")->SetGain(gain);
+	}
+	
+	if (m_Window->IsKeyTyped(AL_KEY_DOWN))
+	{
+		gain -= 0.05f;
+		AudioEngine::Get("Test")->SetGain(gain);
+	}
+	
 }
 
 void  Game::OnRender() const 

@@ -7,6 +7,7 @@
 #include "al/graphics/FontManager.h"
 
 #include "al/app/Application.h"
+#include "al/audio/AudioEngine.h"
 
 struct GLFWwindow;
 
@@ -136,10 +137,10 @@ namespace al { namespace graphics {
 #define AL_KEY_NEXT           0x22
 #define AL_KEY_END            0x23
 #define AL_KEY_HOME           0x24
-#define AL_KEY_LEFT           0x25
-#define AL_KEY_UP             0x26
-#define AL_KEY_RIGHT          0x27
-#define AL_KEY_DOWN           0x28
+#define AL_KEY_RIGHT          262
+#define AL_KEY_LEFT           263
+#define AL_KEY_DOWN           264
+#define AL_KEY_UP             265
 #define AL_KEY_SELECT         0x29
 #define AL_KEY_PRINT          0x2A
 #define AL_KEY_EXECUTE        0x2B

@@ -73,11 +73,14 @@ namespace al { namespace graphics {
 
 		FreeImage_Initialise(TRUE);
 		FontManager::Add(new Font("Jellee-Roman", "Jellee-Roman.ttf", 28, 0xffffff00));
+
+		audio::AudioEngine::Init();
 	}
 
 	Window::~Window()
 	{
 		delete m_App;
+		audio::AudioEngine::Clean();
 		glfwTerminate();
 	}
 
@@ -177,6 +180,8 @@ namespace al { namespace graphics {
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
+
+		audio::AudioEngine::Update();
 	}
 
 	bool Window::Closed()

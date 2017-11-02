@@ -23,6 +23,9 @@
 
 #include <al/graphics/Window.h>
 
+#include <al/audio/AudioEngine.h>
+#include <al/audio/Sound.h>
+
 #include <al/utils/FileUtils.h>
 #include <al/utils/ImageUtils.h>
 
