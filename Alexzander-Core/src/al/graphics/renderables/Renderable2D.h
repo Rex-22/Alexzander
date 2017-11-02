@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../buffers/buffer.h"
-#include "../buffers/IndexBuffer.h"
-#include "../buffers/VertexArray.h"
+#include "al/graphics/buffers/buffer.h"
+#include "al/graphics/buffers/IndexBuffer.h"
+#include "al/graphics/buffers/VertexArray.h"
 
-#include "../renderer/Renderer2D.h"
-#include "../Shader.h"
+#include "al/graphics/renderer/Renderer2D.h"
+#include "al/graphics/Shader.h"
 #include "Texture.h"
 #include "al/Common.h"
 

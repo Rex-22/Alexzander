@@ -2,7 +2,7 @@
 
 #include <deque>
 #include "Renderer2D.h"
-#include "../renderables/BasicSprite.h"
+#include "al/graphics/renderables/BasicSprite.h"
 
 #include "al/Common.h"
 

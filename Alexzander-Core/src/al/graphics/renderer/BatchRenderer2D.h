@@ -2,8 +2,8 @@
 
 #include <cstddef>
 #include "Renderer2D.h"
-#include "../renderables/Renderable2D.h"
-#include "../buffers/IndexBuffer.h"
+#include "al/graphics/renderables/Renderable2D.h"
+#include "al/graphics/buffers/IndexBuffer.h"
 
 #include "al/Common.h"
 
