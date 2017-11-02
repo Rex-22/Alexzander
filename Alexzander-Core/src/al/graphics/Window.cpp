@@ -67,6 +67,7 @@ namespace al { namespace graphics {
 		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
 
 		FreeImage_Initialise(TRUE);
+		FontManager::Add(new Font("Jellee-Roman.ttf", 32, { 0.2f, 0.8f, 0.3f, 1.0f }));
 	}
 
 	Window::~Window()

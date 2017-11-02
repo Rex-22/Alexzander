@@ -2,6 +2,9 @@
 
 #include "al/graphics/renderables/Renderable2D.h"
 
+#include "al/graphics/Font.h"
+#include "al/graphics/FontManager.h"
+
 #include "al/Common.h"
 #include "al/Types.h"
 
@@ -13,11 +16,11 @@ namespace al { namespace graphics {
 	{
 	private:
 		String m_Text;
+		Font *m_Font;
 	public:
-		Label(const String& text, const glm::vec2 position);
-		Label(const String& text, const glm::vec2 position, const glm::vec4& colour);
-		Label(const String& text, float x, float y, const glm::vec4& colour);
-		Label(const String& text, float x, float y);
+		Label(const String& text, const glm::vec2 position, Font* font);
+
+		Label(const String& text, float x, float y, Font* font);
 		~Label();
 
 		inline void SetText(const String& text) { this->m_Text = text; }

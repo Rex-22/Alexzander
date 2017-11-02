@@ -82,7 +82,7 @@ void Game::Init() {
 #endif
 
 	Group* g = new Group(glm::translate(glm::mat4(1.0f), glm::vec3(-15.8f, 7.0f, 0.0f)));
-	m_FPS = new Label("", 0.4f, 0.4f, glm::vec4(1, 1, 1, 1));
+	m_FPS = new Label("", 0.4f, 0.4f, FontManager::Get("Jellee-Roman.ttf"));
 	g->Add(new Sprite(0, 0, 5, 1.5f, glm::vec4(0.3f, 0.3f, 0.3f, 0.9f)));
 	g->Add(m_FPS);
 

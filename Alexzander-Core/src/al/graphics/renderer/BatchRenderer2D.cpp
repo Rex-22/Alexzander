@@ -55,9 +55,6 @@ namespace al { namespace graphics {
 		m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
 
 		glBindVertexArray(0);
-
-		m_FTAtlas = texture_atlas_new(512, 512, 2);
-		m_FTFont = texture_font_new_from_file(m_FTAtlas, 28, "Jellee-Roman.ttf");
 	}
 
 	void BatchRenderer2D::Begin()
@@ -137,14 +134,14 @@ namespace al { namespace graphics {
 		m_IndexCount += 6;
 	}
 
-	void BatchRenderer2D::DrawString(const String& text, float x, float y, const glm::vec4& colour)
+	void BatchRenderer2D::DrawString(const String& text, float x, float y, Font* font)
 	{
 		using namespace ftgl;
 
-		int r = colour.x * 255.0f;
-		int g = colour.y * 255.0f;
-		int b = colour.z * 255.0f;
-		int a = colour.w * 255.0f;
+		int r = font->GetColour().x * 255.0f;
+		int g = font->GetColour().y * 255.0f;
+		int b = font->GetColour().z * 255.0f;
+		int a = font->GetColour().w * 255.0f;
 
 		unsigned int col = a << 24 | b << 16 | g << 8 | r;
 
@@ -152,7 +149,7 @@ namespace al { namespace graphics {
 		bool found = false;
 		for (int i = 0; i < m_TextureSlots.size(); i++)
 		{
-			if (m_TextureSlots[i] == m_FTAtlas->id)
+			if (m_TextureSlots[i] == font->GetID())
 			{
 				ts = (float)(i + 1);
 				found = true;
@@ -168,7 +165,7 @@ namespace al { namespace graphics {
 				Flush();
 				Begin();
 			}
-			m_TextureSlots.push_back(m_FTAtlas->id);
+			m_TextureSlots.push_back(font->GetID());
 			ts = (float)(m_TextureSlots.size());
 		}
 
@@ -178,7 +175,7 @@ namespace al { namespace graphics {
 		for (int i = 0; i < text.length(); i++)
 		{
 			char c = text[i];
-			texture_glyph_t* glyph = texture_font_get_glyph(m_FTFont, c);
+			texture_glyph_t* glyph = texture_font_get_glyph(font->GetFont(), c);
 			if (glyph != NULL)
 			{
 
@@ -230,9 +227,9 @@ namespace al { namespace graphics {
 		}
 	}
 
-	void BatchRenderer2D::DrawString(const String& text, glm::vec2 position, const glm::vec4& colour)
+	void BatchRenderer2D::DrawString(const String& text, glm::vec2 position, Font* font)
 	{
-		DrawString(text, position.x, position.y, colour);
+		DrawString(text, position.x, position.y, font);
 	}
 
 	void BatchRenderer2D::End()

@@ -18,6 +18,9 @@
 
 #include <al/graphics/ui/Label.h>
 
+#include <al/graphics/Font.h>
+#include <al/graphics/FontManager.h>
+
 #include <al/graphics/Window.h>
 
 #include <al/utils/FileUtils.h>

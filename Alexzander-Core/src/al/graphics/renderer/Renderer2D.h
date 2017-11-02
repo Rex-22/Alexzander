@@ -2,6 +2,8 @@
 
 #include <vector>
 
+#include "al/graphics/Font.h"
+
 #include "al/Common.h"
 #include "al/Types.h"
 
@@ -46,7 +48,7 @@ namespace al { namespace graphics {
 
 		virtual void Begin() {}
 		virtual void Submit(const Renderable2D* renderable) = 0;
-		virtual void DrawString(const String& text, float x, float y, const glm::vec4& colour) {}
+		virtual void DrawString(const String& text, float x, float y, Font* font) {}
 		virtual void End() {}
 		virtual void Flush() = 0;
 	};

@@ -4,6 +4,7 @@
 #include <functional>
 
 #include "al/Common.h"
+#include "al/graphics/FontManager.h"
 
 #include "al/app/Application.h"
 

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\al\graphics\Font.h" />
+    <ClInclude Include="src\al\graphics\FontManager.h" />
     <ClInclude Include="src\al\graphics\ui\Label.h" />
     <ClInclude Include="src\Alex.h" />
     <ClInclude Include="src\al\app\Application.h" />
@@ -192,6 +194,8 @@
     <ClInclude Include="src\sp\Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\graphics\Font.cpp" />
+    <ClCompile Include="src\al\graphics\FontManager.cpp" />
     <ClCompile Include="src\al\graphics\ui\Label.cpp" />
     <ClCompile Include="src\al\graphics\layer\Group.cpp" />
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
