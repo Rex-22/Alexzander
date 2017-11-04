@@ -1,16 +1,16 @@
 #pragma once
 
-#include <iostream>
-#include <functional>
-
 #include "al/Common.h"
 #include "al/graphics/FontManager.h"
 
 #include "al/audio/AudioEngine.h"
+#include "al/utils/Log.h"
+
+#include "gl/gl.h"
 
 struct GLFWwindow;
 
-namespace al { namespace graphics {
+namespace al {
 	
 #define MAX_KEYS	1024
 #define MAX_BUTTONS	32
@@ -70,10 +70,15 @@ namespace al { namespace graphics {
 		friend static void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
 
 	public:
-		static void GLErrorCheck();
+		inline static void GLErrorCheck()
+		{
+			GLenum error = glGetError();
+			if (error != GL_NO_ERROR)
+				AL_ERROR("[Engine] OpenGL Error: ", error);
+		}
 	};
 
-} }
+}
 
 #define AL_MOUSE_LEFT	  0x00
 #define AL_MOUSE_MIDDLE	  0x01

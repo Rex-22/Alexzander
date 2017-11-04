@@ -537,9 +537,6 @@
     <ClInclude Include="src\al\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\Window.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\graphics\renderer\BasicRenderer2D.h">
       <Filter>Header Files\graphics\renderer</Filter>
     </ClInclude>
@@ -591,9 +588,6 @@
     <ClInclude Include="src\al\graphics\Shader.h">
       <Filter>Header Files\graphics\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\renderer\Texture.h">
-      <Filter>Header Files\graphics\renderer</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\audio\AudioEngine.h">
       <Filter>Header Files\audio</Filter>
     </ClInclude>
@@ -623,6 +617,12 @@
     </ClInclude>
     <ClInclude Include="src\al\String.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\app\Window.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\Texture.h">
+      <Filter>Header Files\graphics\renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -979,9 +979,6 @@
     <ClCompile Include="src\glm\detail\glm.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\graphics\Window.cpp">
-      <Filter>Source Files\graphics</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\utils\ImageUtils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -1024,9 +1021,6 @@
     <ClCompile Include="src\al\graphics\layer\Group.cpp">
       <Filter>Source Files\graphics\layer</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\graphics\renderer\Texture.cpp">
-      <Filter>Source Files\graphics\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\audio\AudioEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1047,6 +1041,15 @@
     </ClCompile>
     <ClCompile Include="src\al\String.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\Win32Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\app\Window.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\Texture.cpp">
+      <Filter>Source Files\graphics\renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

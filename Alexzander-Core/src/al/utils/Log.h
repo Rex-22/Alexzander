@@ -5,12 +5,16 @@
 
 #include "glm/glm.hpp"
 #include "al/String.h"
-#include <windows.h>
 
 #define ALEX_LOG_LEVEL_FATAL 0
 #define ALEX_LOG_LEVEL_ERROR 1
 #define ALEX_LOG_LEVEL_WARN  2
 #define ALEX_LOG_LEVEL_INFO  3
+#ifdef AL_DEBUG_BUILD
+#define ALEX_LOG_LEVEL_DEBUG 4
+#else
+#define ALEX_LOG_LEVEL_DEBUG ALEX_LOG_LEVEL_INFO
+#endif
 
 #ifdef MOUSE_MOVED
 #undef MOUSE_MOVED // Defined in wincon.h
@@ -30,24 +34,7 @@ namespace al { namespace internal {
 		static char to_string_buffer[1024 * 10];
 		static char sprintf_buffer[1024 * 10];
 
-		AL_API void PlatformLogMessage(uint level, const char* message)
-		{
-			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-			switch (level)
-			{
-			case ALEX_LOG_LEVEL_FATAL:
-				SetConsoleTextAttribute(hConsole, BACKGROUND_RED | BACKGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				break;
-			case ALEX_LOG_LEVEL_ERROR:
-				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
-				break;
-			case ALEX_LOG_LEVEL_WARN:
-				SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-				break;
-			}
-			printf("%s", message);
-			SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
-		}
+		AL_API void PlatformLogMessage(uint level, const char* message);
 
 		template <class T>
 		struct has_iterator
@@ -227,11 +214,11 @@ namespace al { namespace internal {
 #endif
 
 #ifndef ALEX_LOG_LEVEL
-#define ALEX_LOG_LEVEL ALEX_LOG_LEVEL_INFO
+#define ALEX_LOG_LEVEL ALEX_LOG_LEVEL_DEBUG
 #endif
 
 #if ALEX_LOG_LEVEL >= ALEX_LOG_LEVEL_FATAL
-#define AL_FATAL(...)  internal::log_message(ALEX_LOG_LEVEL_FATAL, true, "ALEX:    ", __VA_ARGS__)
+#define AL_FATAL(...)  internal::log_message(ALEX_LOG_LEVEL_FATAL, true, "[FATAL] ALEX:    ", __VA_ARGS__)
 #define _AL_FATAL(...) internal::log_message(ALEX_LOG_LEVEL_FATAL, false, __VA_ARGS__)
 #else
 #define AL_FATAL(...)
@@ -239,7 +226,7 @@ namespace al { namespace internal {
 #endif
 
 #if ALEX_LOG_LEVEL >= ALEX_LOG_LEVEL_ERROR
-#define AL_ERROR(...)  internal::log_message(ALEX_LOG_LEVEL_ERROR, true, "ALEX:    ", __VA_ARGS__)
+#define AL_ERROR(...)  internal::log_message(ALEX_LOG_LEVEL_ERROR, true, "[ERROR] ALEX:    ", __VA_ARGS__)
 #define _AL_ERROR(...) internal::log_message(ALEX_LOG_LEVEL_ERROR, false, __VA_ARGS__)
 #else
 #define AL_ERROR(...)
@@ -247,7 +234,7 @@ namespace al { namespace internal {
 #endif
 
 #if ALEX_LOG_LEVEL >= ALEX_LOG_LEVEL_WARN
-#define AL_WARN(...)  internal::log_message(ALEX_LOG_LEVEL_WARN, true, "ALEX:    ", __VA_ARGS__)
+#define AL_WARN(...)  internal::log_message(ALEX_LOG_LEVEL_WARN, true, "[WARN] ALEX:    ", __VA_ARGS__)
 #define _AL_WARN(...) internal::log_message(ALEX_LOG_LEVEL_WARN, false, __VA_ARGS__)
 #else
 #define AL_WARN(...)
@@ -255,22 +242,22 @@ namespace al { namespace internal {
 #endif
 
 #if ALEX_LOG_LEVEL >= ALEX_LOG_LEVEL_INFO
-#define AL_INFO(...)  internal::log_message(ALEX_LOG_LEVEL_INFO, true, "ALEX:    ", __VA_ARGS__)
+#define AL_INFO(...)  internal::log_message(ALEX_LOG_LEVEL_INFO, true, "[INFO] ALEX:    ", __VA_ARGS__)
 #define _AL_INFO(...) internal::log_message(ALEX_LOG_LEVEL_INFO, false, __VA_ARGS__)
 #else
 #define AL_INFO(...)
 #define _AL_INFO(...)
 #endif
 
-#if ALEX_LOG_LEVEL >= ALEX_LOG_DEBUG
+#if ALEX_LOG_LEVEL >= 4
 #define AL_DEBUG(...)  internal::log_message(ALEX_LOG_LEVEL_INFO, true, "[DEBUG] ALEX:    ", __VA_ARGS__)
 #define _AL_DEBUG(...) internal::log_message(ALEX_LOG_LEVEL_INFO, false, __VA_ARGS__)
 #else
-#define AL_INFO(...)
-#define _AL_INFO(...)
+#define AL_DEBUG(...)
+#define _AL_DEBUG(...)
 #endif
 
-#ifdef AL_DEBUG
+#ifdef AL_DEBUG_BUILD
 #define AL_ASSERT(x, ...) \
 		if (!(x)) {\
 			AL_FATAL("*************************"); \

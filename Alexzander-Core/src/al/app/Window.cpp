@@ -1,15 +1,18 @@
+
 #include "Window.h"
 
-#include <GLFW/glfw3.h>
+#include "al/graphics/TextureManager.h"
 
-#include <FreeImage.h>
 #include "al/Types.h"
-
-#include "gl/gl.h"
-#include "TextureManager.h"
 #include "al/utils/Log.h"
 
-namespace al { namespace graphics {
+#include "gl/gl.h"
+#include <GLFW/glfw3.h>
+#include <FreeImage.h>
+
+namespace al {
+
+	using namespace graphics;
 
 	Window::Window(const String& title, WindowProperties properties)
 		:m_Title(title), m_Properties(properties)
@@ -69,13 +72,6 @@ namespace al { namespace graphics {
 		audio::AudioEngine::Clean();
 		graphics::TextureManager::Clean();
 		glfwTerminate();
-	}
-	
-	void Window::GLErrorCheck()
-	{
-		GLenum error = glGetError();
-		if (error != GL_NO_ERROR)
-			AL_ERROR("[Engine] OpenGL Error: ", error);
 	}
 
 	void Window::SetVsync(bool enabled)
@@ -208,4 +204,4 @@ namespace al { namespace graphics {
 		memset(m_MouseState, 0, MAX_BUTTONS);
 		memset(m_MouseClicked, 0, MAX_BUTTONS);
 	}
-} }
+}

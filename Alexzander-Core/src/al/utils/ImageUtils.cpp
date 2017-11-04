@@ -7,25 +7,25 @@ namespace al {
 
 	byte* ImageUtils::LoadImage(const char* filename, uint* width, uint* height)
 	{
+		AL_DEBUG("[Resource] Loading image resource '", filename,"'...");
 		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 		FIBITMAP* dib = nullptr;
-		fif = FreeImage_GetFileType(filename, 0);
 
+		fif = FreeImage_GetFIFFromFilename(filename);
+		
 		if (fif == FIF_UNKNOWN)
-			fif = FreeImage_GetFIFFromFilename(filename);
-
-		if (fif == FIF_UNKNOWN)
-			return nullptr;
-
-		AL_ASSERT(fif, "[Resource] Unknown image file format!");
-
+		{
+			AL_WARN("[Resource] Could not detect image type from file name \nChecking image data...");
+			fif = FreeImage_GetFileType(filename, 0);
+			AL_ASSERT(fif == FIF_UNKNOWN, "[Resource] Unknown file format!");
+		}
+		
+		AL_DEBUG("[Resource] File type found!");
+			
 		if (FreeImage_FIFSupportsReading(fif))
 			dib = FreeImage_Load(fif, filename);
 
-		if (!dib)
-			return nullptr;
-
-		AL_ASSERT(dib, "[Resource] Could not load image '", filename, "'!");
+		AL_ASSERT(dib != NULL, "[Resource] Could not load image resource'", filename, "'!");
 
 		BYTE* pixels = FreeImage_GetBits(dib);
 		*width = FreeImage_GetWidth(dib);
@@ -37,7 +37,7 @@ namespace al {
 		BYTE* result = new BYTE[size];
 		memcpy(result, pixels, size);
 		FreeImage_Unload(dib);
-
+		AL_DEBUG("[Resource] Loaded image resource '", filename, "'!");
 		return result;
 	}
 }

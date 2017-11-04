@@ -2,7 +2,7 @@
 
 #include "al/al.h"
 #include "al/Common.h"
-#include "al/graphics/renderer/Texture.h"
+#include "al/graphics/Texture.h"
 namespace al { namespace graphics {
 
 	class AL_API TextureManager
