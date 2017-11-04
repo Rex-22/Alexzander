@@ -38,13 +38,13 @@
     <ClInclude Include="src\al\graphics\renderables\Renderable2D.h" />
     <ClInclude Include="src\al\graphics\renderables\Sprite.h" />
     <ClInclude Include="src\al\graphics\renderer\IRenderer.h" />
-    <ClInclude Include="src\al\graphics\renderer\Texture.h" />
+    <ClInclude Include="src\al\graphics\Texture.h" />
     <ClInclude Include="src\al\graphics\renderer\BasicRenderer2D.h" />
     <ClInclude Include="src\al\graphics\renderer\BatchRenderer2D.h" />
     <ClInclude Include="src\al\graphics\renderer\Renderer2D.h" />
     <ClInclude Include="src\al\graphics\Shader.h" />
     <ClInclude Include="src\al\graphics\ui\Label.h" />
-    <ClInclude Include="src\al\graphics\Window.h" />
+    <ClInclude Include="src\al\app\Window.h" />
     <ClInclude Include="src\al\String.h" />
     <ClInclude Include="src\al\Types.h" />
     <ClInclude Include="src\al\utils\FileUtils.h" />
@@ -217,12 +217,13 @@
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
     <ClCompile Include="src\al\graphics\renderables\BasicSprite.cpp" />
     <ClCompile Include="src\al\graphics\renderables\Sprite.cpp" />
-    <ClCompile Include="src\al\graphics\renderer\Texture.cpp" />
+    <ClCompile Include="src\al\graphics\Texture.cpp" />
     <ClCompile Include="src\al\graphics\renderer\BasicRenderer2D.cpp" />
     <ClCompile Include="src\al\graphics\renderer\BatchRenderer2D.cpp" />
     <ClCompile Include="src\al\graphics\Shader.cpp" />
     <ClCompile Include="src\al\graphics\ui\Label.cpp" />
-    <ClCompile Include="src\al\graphics\Window.cpp" />
+    <ClCompile Include="src\al\app\Window.cpp" />
+    <ClCompile Include="src\al\platfrom\Win32Log.cpp" />
     <ClCompile Include="src\al\String.cpp" />
     <ClCompile Include="src\al\utils\ImageUtils.cpp" />
     <ClCompile Include="src\al\utils\PoixTimer.cpp" />
@@ -434,7 +435,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;$(SolutionDir)Dependencies\gorilla-audio\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;AL_DEBUG;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;AL_DEBUG_BUILD;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

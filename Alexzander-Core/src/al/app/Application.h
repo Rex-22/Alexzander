@@ -2,7 +2,7 @@
 
 #include "al/Common.h"
 
-#include "al/graphics/Window.h"
+#include "Window.h"
 #include "al/utils/Timestep.h"
 #include "al/utils/Timer.h"
 #include "al/graphics/layer/Layer.h"
@@ -12,7 +12,7 @@ namespace al {
 	class AL_API Application
 	{
 	public :
-		graphics::Window* window;
+		Window* window;
 	protected:
 		bool m_Running, m_Suspended;
 		Timer* m_Timer;
@@ -20,12 +20,12 @@ namespace al {
 		float m_Frametime;
 
 		String m_Name;
-		graphics::WindowProperties m_Properties;
+		WindowProperties m_Properties;
 
 		std::vector<graphics::Layer*> m_LayerStack;
 		std::vector<graphics::Layer*> m_OverlayStack;
 	public:
-		Application(const String& name, const graphics::WindowProperties& properties);
+		Application(const String& name, const WindowProperties& properties);
 		virtual ~Application();
 
 		virtual void Init() {}

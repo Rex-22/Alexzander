@@ -2,7 +2,7 @@
 
 #include "Shader.h"
 
-#include "Window.h"
+#include "al/app/Window.h"
 
 namespace al { namespace graphics {
 

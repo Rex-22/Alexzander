@@ -2,7 +2,7 @@
 
 #include <FreeImage.h>
 
-#include "al/graphics/Window.h"
+#include "al/app/Window.h"
 #include "al/utils/ImageUtils.h"
 
 namespace al { namespace graphics {

@@ -7,10 +7,10 @@
 namespace al { 
 	using namespace graphics;
 
-	Application::Application(const String& name, const graphics::WindowProperties& properties)
+	Application::Application(const String& name, const WindowProperties& properties)
 		:m_Name(name), m_Properties(properties)
 	{
-		window = new graphics::Window(name.c_str(), properties);
+		window = new Window(name.c_str(), properties);
 	}
 
 	Application::~Application()

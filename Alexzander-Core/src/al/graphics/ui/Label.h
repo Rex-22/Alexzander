@@ -3,7 +3,6 @@
 #include "al/graphics/renderables/Renderable2D.h"
 
 #include "al/graphics/Font.h"
-#include "al/graphics/FontManager.h"
 
 #include "al/Common.h"
 #include "al/Types.h"

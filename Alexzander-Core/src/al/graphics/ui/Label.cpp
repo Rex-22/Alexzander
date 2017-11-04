@@ -1,5 +1,7 @@
 #include "Label.h"
 
+#include "al/graphics/FontManager.h"
+
 namespace al { namespace graphics {
 	
 	Label::Label(const String& text, const glm::vec2 position, Font* font)

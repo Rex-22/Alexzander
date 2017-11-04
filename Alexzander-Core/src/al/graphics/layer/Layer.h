@@ -1,7 +1,7 @@
 #pragma once
 
 #include "al/Common.h"
-#include "al/graphics/Window.h"
+#include "al/app/Window.h"
 #include "al/utils/Timestep.h"
 
 namespace al { namespace graphics {

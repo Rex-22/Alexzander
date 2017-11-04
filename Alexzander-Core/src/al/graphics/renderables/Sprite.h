@@ -1,4 +1,3 @@
-#pragma once
 
 #include "Renderable2D.h"
 
