@@ -12,8 +12,10 @@ namespace al { namespace graphics {
 	private:
 
 	public:
-		Sprite(float x, float y, float width, float height, const uint color);
+		Sprite(Texture* texture);
+		Sprite(float x, float y, Texture* texture);
 		Sprite(float x, float y, float width, float height, Texture* texture);
+		Sprite(float x, float y, float width, float height, const uint color);
 	};
 
 } }

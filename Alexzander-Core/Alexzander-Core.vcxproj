@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\al\al.h" />
     <ClInclude Include="src\al\audio\AudioEngine.h" />
     <ClInclude Include="src\Alex.h" />
     <ClInclude Include="src\al\app\Application.h" />
@@ -30,10 +31,13 @@
     <ClInclude Include="src\al\graphics\Font.h" />
     <ClInclude Include="src\al\graphics\FontManager.h" />
     <ClInclude Include="src\al\graphics\layer\Group.h" />
+    <ClInclude Include="src\al\graphics\layer\Layer.h" />
     <ClInclude Include="src\al\graphics\layer\Layer2D.h" />
     <ClInclude Include="src\al\graphics\renderables\BasicSprite.h" />
+    <ClInclude Include="src\al\graphics\renderables\IRenderable.h" />
     <ClInclude Include="src\al\graphics\renderables\Renderable2D.h" />
     <ClInclude Include="src\al\graphics\renderables\Sprite.h" />
+    <ClInclude Include="src\al\graphics\renderer\IRenderer.h" />
     <ClInclude Include="src\al\graphics\renderer\Texture.h" />
     <ClInclude Include="src\al\graphics\renderer\BasicRenderer2D.h" />
     <ClInclude Include="src\al\graphics\renderer\BatchRenderer2D.h" />
@@ -41,11 +45,14 @@
     <ClInclude Include="src\al\graphics\Shader.h" />
     <ClInclude Include="src\al\graphics\ui\Label.h" />
     <ClInclude Include="src\al\graphics\Window.h" />
+    <ClInclude Include="src\al\String.h" />
     <ClInclude Include="src\al\Types.h" />
     <ClInclude Include="src\al\utils\FileUtils.h" />
     <ClInclude Include="src\al\utils\ImageUtils.h" />
+    <ClInclude Include="src\al\utils\Log.h" />
     <ClInclude Include="src\al\utils\ShaderUtils.h" />
     <ClInclude Include="src\al\utils\Timer.h" />
+    <ClInclude Include="src\al\utils\Timestep.h" />
     <ClInclude Include="src\glm\common.hpp" />
     <ClInclude Include="src\glm\detail\compute_vector_relational.hpp" />
     <ClInclude Include="src\glm\detail\qualifier.hpp" />
@@ -194,8 +201,10 @@
     <ClInclude Include="src\sp\Common.h" />
     <ClInclude Include="src\sp\gl.h" />
     <ClInclude Include="src\sp\Types.h" />
+    <ClInclude Include="src\al\graphics\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\app\Application.cpp" />
     <ClCompile Include="src\al\audio\AudioEngine.cpp" />
     <ClCompile Include="src\al\audio\Sound.cpp" />
     <ClCompile Include="src\al\graphics\buffers\Buffer.cpp" />
@@ -204,6 +213,7 @@
     <ClCompile Include="src\al\graphics\Font.cpp" />
     <ClCompile Include="src\al\graphics\FontManager.cpp" />
     <ClCompile Include="src\al\graphics\layer\Group.cpp" />
+    <ClCompile Include="src\al\graphics\layer\Layer.cpp" />
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
     <ClCompile Include="src\al\graphics\renderables\BasicSprite.cpp" />
     <ClCompile Include="src\al\graphics\renderables\Sprite.cpp" />
@@ -213,21 +223,24 @@
     <ClCompile Include="src\al\graphics\Shader.cpp" />
     <ClCompile Include="src\al\graphics\ui\Label.cpp" />
     <ClCompile Include="src\al\graphics\Window.cpp" />
+    <ClCompile Include="src\al\String.cpp" />
     <ClCompile Include="src\al\utils\ImageUtils.cpp" />
+    <ClCompile Include="src\al\utils\PoixTimer.cpp" />
     <ClCompile Include="src\glm\detail\glm.cpp" />
+    <ClCompile Include="src\al\graphics\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dependencies\FreeImage\FreeImage.vcxproj">
       <Project>{6f2ff135-e343-4138-a6fb-2d1f2540a3f8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Dependencies\FreeType\freetype.vcxproj">
+    <ProjectReference Include="..\Dependencies\freetype\FreeType.vcxproj">
       <Project>{78b079bd-9fc7-4b9e-b4a6-96da0f00248b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Dependencies\GLEW\GLEW.vcxproj">
       <Project>{6e0deef6-f4c2-4b7e-a2fe-bb9bae5ec8d1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Dependencies\gorila-audio\build\gorilla.vcxproj">
-      <Project>{a5d700a6-06fb-33ab-a5d5-7c83ad15aaf8}</Project>
+      <Project>{745a3442-8f28-3f30-8303-cadaaf7e3d20}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -421,9 +434,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;$(SolutionDir)Dependencies\gorilla-audio\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;AL_DEBUG;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;openal32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -446,7 +460,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -460,6 +474,8 @@
       <AdditionalDependencies>glfw3.lib;opengl32.lib;openal32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -473,6 +489,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <Profile>true</Profile>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,17 +13,17 @@ namespace al { namespace graphics {
 
 	Layer2D::~Layer2D()
 	{
-		//delete m_Shader;
+		delete m_Shader;
 		delete m_Renderer;
 
 		for (int i = 0; i < m_Renderables.size(); ++i)
 			delete m_Renderables[i];
 	}
 
-	void Layer2D::Render()
+	void Layer2D::OnRender()
 	{
 		m_Shader->Enable();
-		
+
 		m_Renderer->Begin();
 		for (const Renderable2D* renderable: m_Renderables)
 			renderable->Submit(m_Renderer);

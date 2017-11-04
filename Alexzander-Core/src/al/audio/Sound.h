@@ -24,6 +24,7 @@ namespace al { namespace audio {
 
 		bool m_Playing;
 		float m_Gain;
+		int m_Count;
 	public:
 		Sound(const std::string& name, const std::string& filename);
 		~Sound();

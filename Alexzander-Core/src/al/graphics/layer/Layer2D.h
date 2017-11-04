@@ -4,10 +4,11 @@
 #include "al/graphics/renderables/Renderable2D.h"
 
 #include "al/Common.h"
+#include "Layer.h"
 
 namespace al { namespace graphics {
 	
-	class AL_API Layer2D
+	class AL_API Layer2D : public Layer
 	{
 	protected:
 		
@@ -19,14 +20,14 @@ namespace al { namespace graphics {
 	protected :
 		Layer2D(Renderer2D* renderer, Shader* shader, glm::mat4 projection);
 	public :
-		virtual ~Layer2D();
+		~Layer2D();
 
 		inline virtual void Add(Renderable2D* renderable)
 		{
 			m_Renderables.push_back(renderable);
 		}
 
-		void Render();
+		void OnRender() override;
 	};
 
 } }

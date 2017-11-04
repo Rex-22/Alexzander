@@ -1,154 +1,33 @@
 #include <iostream>
 
 #include <Alex.h>
-
-#include "graphics/TileLayer.h"
-#include "glm/gtc/matrix_transform.hpp"
-
-#include <time.h>
+#include "Test2D.h"
 
 using namespace al;
 using namespace graphics;
-using namespace app;
-using namespace audio;
-
-#define TEST_50K 1
 
 class Game : public Application
 {
-private :
-	Window* m_Window;
+public :
+	Game()
+		: Application("Alexzander!", WindowProperties{ 960, 540, false })
+	{}
 
-	Shader* m_Shader;
-	
-	TileLayer* m_Layer;
-
-	Texture* textures[3];
-
-	Label* m_FPS;
-
-	float gain = 0.5f;
-public:
-	Game(const char* title, int width, int height);
-	~Game();
-
-	void Init() override;
-private:
-	void OnUpdate(float delta) override;
-	void OnRender() override;
+	void Init() override
+	{
+		Application::Init();
+		
+		PushLayer(new Test2D());
+		// PushLayer(spnew Test3D());
+		// PushLayer(spnew SponzaTest());
+		// PushLayer(spnew DeferredTest()); // Doesn't work atm
+	}
 };
-
-Game::Game(const char* title, int width, int height)
-{
-	m_Window = new graphics::Window(title, width, height, this);
-
-	m_Shader = new Shader("src/shaders/basic.glsl");
-
-	m_Layer = new TileLayer(m_Shader);
-
-	textures[0] = new Texture("src/textures/test1.png");
-	textures[1] = new Texture("src/textures/test2.png");
-	textures[2] = new Texture("src/textures/test3.png");
-}
-
-Game::~Game()
-{
-	delete m_Layer;	   
-	for (int i = 0; i < 3; i++)
-		delete textures[i];
-}
-
-void Game::Init() {
-	srand(time(NULL));
-
-	int texIDs[] =
-	{
-		0,1,2,3,4,5,6,7,8,9
-	};
-
-	m_Shader->Enable();
-	m_Shader->SetUniform1iv("textures", texIDs, 10);
-#if TEST_50K
-
-	for (float y = -9.0; y < 9.0f; y ++)
-		for (float x = -16.0f; x < 16.0f; x ++)
-		{
-			int r = rand() % 256;
-			
-			int col = 0xffff00 << 8 | r;
-
-			if (rand() % 4 == 0)
-				 m_Layer->Add(new Sprite(x, y, 0.9f, 0.9f, col));
-			else
-				m_Layer->Add(new Sprite(x, y, 0.9f, 0.9f, textures[rand() % 3]));
-		}
-#else
-	Sprite* sprite = new Sprite(1.0f, 1.0f, 5.0f, 5.0f, 0xffff00ff);
-
-	m_Layer->Add(sprite);
-#endif
-
-	Group* g = new Group(glm::translate(glm::mat4(1.0f), glm::vec3(-15.8f, 7.0f, 0.0f)));
-	m_FPS = new Label("", 0.4f, 0.4f, FontManager::Get("Jellee-Roman"));
-	g->Add(new Sprite(0, 0, 5, 1.5f, 0x505050DD));
-	g->Add(m_FPS);
-
-	m_Layer->Add(g);
-
-	AudioEngine::Add(new Sound("Test", "src/sound/AMemoryAway.ogg"));
-	AudioEngine::Get("Test")->SetGain(gain);
-
-	m_Window->Show();
-}
-
-
-void Game::OnUpdate(float delta) 
-{
-	double x, y;
-	m_Window->GetMousePosition(x, y);
-
-	m_Shader->Enable();
-	m_Shader->SetUniform2f("light_pos", glm::vec2((float)(x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - y * 18.0f / m_Window->GetHeight())));
-	m_FPS->SetText(std::to_string(m_Frames) + " fps");
-
-	if (m_Window->IsKeyTyped(AL_KEY_P))
-		AudioEngine::Get("Test")->Play();
-	
-	if (m_Window->IsKeyTyped(AL_KEY_L))
-		AudioEngine::Get("Test")->Loop();
-	
-	if (m_Window->IsKeyTyped(AL_KEY_S))
-		AudioEngine::Get("Test")->Stop();
-	
-	if (m_Window->IsKeyTyped(AL_KEY_1))
-		AudioEngine::Get("Test")->Pause();
-	
-	if (m_Window->IsKeyTyped(AL_KEY_2))
-		AudioEngine::Get("Test")->Resume();
-	
-	if (m_Window->IsKeyTyped(AL_KEY_UP))
-	{
-		gain += 0.05f;
-		AudioEngine::Get("Test")->SetGain(gain);
-	}
-	
-	if (m_Window->IsKeyTyped(AL_KEY_DOWN))
-	{
-		gain -= 0.05f;
-		AudioEngine::Get("Test")->SetGain(gain);
-	}
-	
-}
-
-void  Game::OnRender() 
-{
-	m_Layer->Render();
-}
 
 int main()
 {
-	Game* game = new Game("Alexzander!", 960, 540);
+	Game game;
 	
-	game->Init();
+	game.Start();
 	return 0;
 }

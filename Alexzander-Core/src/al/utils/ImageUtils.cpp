@@ -1,10 +1,11 @@
 #include "ImageUtils.h"
 
 #include <FreeImage.h>
+#include "al/utils/Log.h"
 
 namespace al {
 
-	BYTE* ImageUtils::LoadImage(const char* filename, uint* width, uint* height)
+	byte* ImageUtils::LoadImage(const char* filename, uint* width, uint* height)
 	{
 		FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
 		FIBITMAP* dib = nullptr;
@@ -13,16 +14,18 @@ namespace al {
 		if (fif == FIF_UNKNOWN)
 			fif = FreeImage_GetFIFFromFilename(filename);
 
-		//TODO:Log this
 		if (fif == FIF_UNKNOWN)
 			return nullptr;
+
+		AL_ASSERT(fif, "[Resource] Unknown image file format!");
 
 		if (FreeImage_FIFSupportsReading(fif))
 			dib = FreeImage_Load(fif, filename);
 
-		//TODO:Log this
 		if (!dib)
 			return nullptr;
+
+		AL_ASSERT(dib, "[Resource] Could not load image '", filename, "'!");
 
 		BYTE* pixels = FreeImage_GetBits(dib);
 		*width = FreeImage_GetWidth(dib);

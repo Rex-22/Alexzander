@@ -3,19 +3,63 @@
 #include "al/Common.h"
 
 #include "al/graphics/Window.h"
+#include "al/utils/Timestep.h"
+#include "al/utils/Timer.h"
+#include "al/graphics/layer/Layer.h"
 
-namespace al { namespace app {
+namespace al {
 	
 	class AL_API Application
 	{
+	public :
+		graphics::Window* window;
 	protected:
-		int m_Frames = 0;
-	public:
-		virtual void Init() = 0;
-		virtual void OnUpdate(float delta) = 0;
-		virtual void OnRender() = 0;
+		bool m_Running, m_Suspended;
+		Timer* m_Timer;
+		uint m_UpdatesPerSecond, m_FramesPerSecond;
+		float m_Frametime;
 
-		inline void SetFrames(int frames) { this->m_Frames = frames; }
+		String m_Name;
+		graphics::WindowProperties m_Properties;
+
+		std::vector<graphics::Layer*> m_LayerStack;
+		std::vector<graphics::Layer*> m_OverlayStack;
+	public:
+		Application(const String& name, const graphics::WindowProperties& properties);
+		virtual ~Application();
+
+		virtual void Init() {}
+
+		void PushLayer(graphics::Layer* layer);
+		graphics::Layer* PopLayer();
+		graphics::Layer* PopLayer(graphics::Layer* layer);
+
+		void PushOverlay(graphics::Layer* layer);
+		graphics::Layer* PopOverlay();
+		graphics::Layer* PopOverlay(graphics::Layer* layer);
+
+		void Start();
+		void Suspend();
+		void Resume();
+		void Stop();
+
+		inline uint GetFPS() const { return m_FramesPerSecond; }
+		inline uint GetUPS() const { return m_UpdatesPerSecond; }
+		inline float GetFrametime() const { return m_Frametime; }
+
+		inline uint GetWindowWidth() const { return window->GetWidth(); }
+		inline uint GetWindowHeight() const { return window->GetHeight(); }
+		inline glm::vec2 GetWindowSize() const { return glm::vec2((float)window->GetWidth(), (float)window->GetHeight()); }
+
+		
+	private:
+		void Run(); 
+
+		void OnUpdate(const Timestep& ts);
+		void OnTick();
+		void OnRender();
+
+		void Clean();
 	};
 
-} }
+}

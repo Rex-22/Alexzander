@@ -70,6 +70,9 @@
     <Filter Include="Source Files\graphics\layer">
       <UniqueIdentifier>{974b6902-1a91-4076-baa7-39a3cba24163}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\audio">
+      <UniqueIdentifier>{4ec7a056-af70-4284-aef6-491275060c70}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\glm\detail\_features.hpp">
@@ -592,9 +595,33 @@
       <Filter>Header Files\graphics\renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\al\audio\AudioEngine.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\renderables\IRenderable.h">
+      <Filter>Header Files\graphics\renderable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\renderer\IRenderer.h">
+      <Filter>Header Files\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\layer\Layer.h">
+      <Filter>Header Files\graphics\layer</Filter>
     </ClInclude>
     <ClInclude Include="src\al\audio\Sound.h">
+      <Filter>Header Files\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\utils\Timestep.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\al.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\utils\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\String.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1004,6 +1031,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\audio\Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\layer\Layer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\app\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\utils\PoixTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

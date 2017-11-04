@@ -7,7 +7,7 @@ namespace al { namespace graphics {
 	Font::Font(const String& name, const String& fontFile, int size, const uint colour)
 		:m_Name(name), m_FontName(fontFile), m_FontSize(size), m_Colour(colour)
 	{
-		m_FTAtlas = texture_atlas_new(512, 512, 2);
+		m_FTAtlas = ftgl::texture_atlas_new(512, 512, 2);
 		m_FTFont = texture_font_new_from_file(m_FTAtlas, size, m_FontName.c_str());
 	}
 

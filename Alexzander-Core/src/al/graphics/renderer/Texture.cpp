@@ -8,16 +8,10 @@
 namespace al { namespace graphics {
 
 
-	Texture::Texture(const String& path)
-		:m_FilePath(path)
+	Texture::Texture(const String& name, const String& path)
+		:m_FilePath(path), m_Name(name)
 	{
 		m_ID = Load();
-	}
-
-	Texture::~Texture()
-	{
-		//TODO: maby...
-		//FreeImage_Unload();
 	}
 
 	GLuint Texture::Load()

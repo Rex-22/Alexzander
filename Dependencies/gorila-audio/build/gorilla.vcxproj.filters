@@ -1,150 +1,150 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\src\ga.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\src\ga.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\src\gau.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\src\gau.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\src\ga_stream.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\src\ga_stream.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\src\devices\ga_openal.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\src\devices\ga_openal.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\src\common\gc_common.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\src\common\gc_common.c">
       <Filter>src\common</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\src\common\gc_thread.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\src\common\gc_thread.c">
       <Filter>src\common</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libogg\src\bitwise.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libogg\src\bitwise.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libogg\src\framing.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libogg\src\framing.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\analysis.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\analysis.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\bitrate.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\bitrate.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\block.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\block.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\codebook.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\codebook.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\envelope.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\envelope.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\floor0.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\floor0.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\floor1.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\floor1.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\info.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\info.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\lpc.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\lpc.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\lsp.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\lsp.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\mapping0.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\mapping0.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\mdct.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\mdct.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\psy.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\psy.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\registry.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\registry.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\res0.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\res0.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\sharedbook.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\sharedbook.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\smallft.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\smallft.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\synthesis.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\synthesis.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\vorbisfile.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\vorbisfile.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\lib\window.c">
+    <ClCompile Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\lib\window.c">
       <Filter>src\oggvorbis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\ga.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\ga.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\gau.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\gau.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\ga_internal.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\ga_internal.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\devices\ga_openal.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\devices\ga_openal.h">
       <Filter>include</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\common\gc_common.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\common\gc_common.h">
       <Filter>include\common</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\common\gc_thread.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\common\gc_thread.h">
       <Filter>include\common</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\include\gorilla\common\gc_types.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\include\gorilla\common\gc_types.h">
       <Filter>include\common</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libogg\include\ogg\ogg.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libogg\include\ogg\ogg.h">
       <Filter>include\oggvorbis</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libogg\include\ogg\os_types.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libogg\include\ogg\os_types.h">
       <Filter>include\oggvorbis</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\include\vorbis\codec.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\include\vorbis\codec.h">
       <Filter>include\oggvorbis</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\include\vorbis\vorbisenc.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\include\vorbis\vorbisenc.h">
       <Filter>include\oggvorbis</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\ext\libvorbis\include\vorbis\vorbisfile.h">
+    <ClInclude Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\ext\libvorbis\include\vorbis\vorbisfile.h">
       <Filter>include\oggvorbis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\Ruben\Desktop\GorillaAudio-0.3.1-src\build\CMakeLists.txt" />
+    <CustomBuild Include="C:\Dev\Cpp\Alexzander\Dependencies\gorila-audio\build\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="include\common">
-      <UniqueIdentifier>{A67269A2-E6A9-3DA3-AC95-B55080A1FAC7}</UniqueIdentifier>
+      <UniqueIdentifier>{0B30360B-076B-3DE9-8865-293C34EAC8CE}</UniqueIdentifier>
     </Filter>
     <Filter Include="include\oggvorbis">
-      <UniqueIdentifier>{B08ED804-4DF7-3A2D-9647-E2449A2994C5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="include">
-      <UniqueIdentifier>{BA6D6499-4F5E-3664-B223-21F995A5EA42}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{0282DD6F-BD94-3354-93E2-832675E9A322}</UniqueIdentifier>
+      <UniqueIdentifier>{870AA619-651E-357B-B17E-CBAE17DB6FC2}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\common">
-      <UniqueIdentifier>{75E26A24-2133-327D-B1C2-D0249B7891AC}</UniqueIdentifier>
+      <UniqueIdentifier>{BA54465A-C91A-38D2-A191-ADA5EB69446F}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\oggvorbis">
-      <UniqueIdentifier>{FF247727-ACBB-3B1C-871A-A91148BDE7C0}</UniqueIdentifier>
+      <UniqueIdentifier>{F8A3A0DE-73C5-3141-B9D6-E4ABB4B85F97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{E010BE51-DEA7-3CDA-AC39-7158A30BDBBF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{46DFFF13-8EEC-3D1F-86A2-E7B1AC1B872F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

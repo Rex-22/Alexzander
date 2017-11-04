@@ -8,7 +8,7 @@ namespace al {
 	class AL_API ImageUtils
 	{
 	public:
-		static BYTE* LoadImage(const char* filename, uint* width, uint* height);
+		static byte* LoadImage(const char* filename, uint* width, uint* height);
 	};
 
 }

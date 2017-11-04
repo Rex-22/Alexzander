@@ -5,6 +5,7 @@
 namespace al { namespace graphics {
 
 	BatchRenderer2D::BatchRenderer2D()
+		:m_IndexCount(0)
 	{
 		Init();
 	}
@@ -13,6 +14,7 @@ namespace al { namespace graphics {
 	{
 		delete m_IBO;
 		glDeleteBuffers(1, &m_VBO);
+		glDeleteVertexArrays(1, &m_VAO);
 	}
 
 	void BatchRenderer2D::Init()

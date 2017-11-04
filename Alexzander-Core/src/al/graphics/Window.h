@@ -6,7 +6,6 @@
 #include "al/Common.h"
 #include "al/graphics/FontManager.h"
 
-#include "al/app/Application.h"
 #include "al/audio/AudioEngine.h"
 
 struct GLFWwindow;
@@ -16,11 +15,17 @@ namespace al { namespace graphics {
 #define MAX_KEYS	1024
 #define MAX_BUTTONS	32
 
+	struct AL_API WindowProperties
+	{
+		int width, height;
+		bool vsync;
+	};
+
 	class AL_API Window
 	{
 	private:
-		const char *m_Title;
-		int m_Width, m_Height;
+		String m_Title;
+		WindowProperties m_Properties;
 		GLFWwindow *m_Window;
 		bool m_Closed;
 
@@ -33,25 +38,29 @@ namespace al { namespace graphics {
 		bool m_MouseClicked[MAX_BUTTONS];
 		double mx, my;
 
-		app::Application* m_App;
 	public:
-		Window(const char *title, int width, int height, app::Application* app);
+		Window(const String& name, WindowProperties properties);
 		~Window();
+		inline GLFWwindow* GetCallback() const { return m_Window; }
 
-		void Clear();
+		static void Clear();
 		void Update();
+		void UpdateInput();
 		bool Closed();
 
-		inline int GetWidth() const { return m_Width; }
-		inline int GetHeight() const { return m_Height; }
+		inline int GetWidth() const { return m_Properties.width; }
+		inline int GetHeight() const { return m_Properties.height; }
+
+		inline bool IsVsyncEnabled() const { return m_Properties.vsync; }
+		void SetVsync(bool enabled);
 
 		bool IsKeyPressed(unsigned int keycode) const;
 		bool IsKeyTyped(unsigned int keycode) const;
 		bool IsMouseButtonPressed(unsigned int button) const;
 		bool IsMouseClicked(unsigned int button) const;
-		void GetMousePosition(double& x, double& y) const;
+		glm::vec2 GetMousePosition() const;
 
-		void Show();
+		void ClearKeys();
 	private:
 		
 		friend static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);

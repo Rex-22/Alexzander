@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Ruben/Desktop/GorillaAudio-0.3.1-src/build
+# Install script for directory: C:/Dev/Cpp/Alexzander/Dependencies/gorila-audio/build
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Ruben/Desktop/GorillaAudio-0.3.1-src/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Dev/Cpp/Alexzander/Dependencies/gorila-audio/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

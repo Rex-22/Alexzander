@@ -101,7 +101,6 @@
     pshinter_get_t2_funcs
   )
 
-
   FT_DEFINE_MODULE(
     pshinter_module_class,
 

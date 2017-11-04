@@ -2,50 +2,36 @@
 
 #include <GLFW/glfw3.h>
 
-#include "al/utils/Timer.h"
-
 #include <FreeImage.h>
 #include "al/Types.h"
 
 #include "gl/gl.h"
+#include "TextureManager.h"
+#include "al/utils/Log.h"
 
 namespace al { namespace graphics {
 
-	Window::Window(const char *title, int width, int height, app::Application* app)
+	Window::Window(const String& title, WindowProperties properties)
+		:m_Title(title), m_Properties(properties)
 	{
-		m_App = app;
-		m_Title = title;
-		m_Width = width;
-		m_Height = height;
 
-
-		for (int i = 0; i < MAX_KEYS; i++)
-		{
-			m_Keys[i] = false;
-			m_KeyState[i] = false;
-			m_KeyTyped[i] = false;
-		}
-
-		for (int i = 0; i < MAX_BUTTONS; i++)
-		{
-			m_MouseButtons[i] = false;
-			m_MouseState[i] = false;
-			m_MouseClicked[i] = false;
-		}
-
+		ClearKeys();
+		AL_INFO("[Engine] Initializing window...");
 		if (!glfwInit())
 		{
-			std::cout << "Failed to initialize GLFW!" << std::endl;
+			AL_ERROR("[Engine] Failed to initialize GLFW!");
 		}
-		m_Window = glfwCreateWindow(m_Width, m_Height, m_Title, NULL, NULL);
+		m_Window = glfwCreateWindow(m_Properties.width, m_Properties.height, m_Title.c_str(), NULL, NULL);
 		if (!m_Window)
 		{
-			std::cout << "Failed to create GLFW window!" << std::endl;
+			AL_ERROR("[Engine] Failed to create GLFW window!");
 		}
 
+		AL_INFO("[Engine] Window created");
+
 		const GLFWvidmode* vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		int xp = (vidmode->width - width) / 2;
-		int yp = (vidmode->height - height) / 2;
+		int xp = (vidmode->width - m_Properties.width) / 2;
+		int yp = (vidmode->height - m_Properties.height) / 2;
 
 		glfwSetWindowPos(m_Window, xp, yp);
 
@@ -59,105 +45,92 @@ namespace al { namespace graphics {
 		glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
 		glfwSetCursorPosCallback(m_Window, CursorPositionCallback);
 
-		glfwSwapInterval(0.0);
+		glfwSwapInterval(m_Properties.vsync);
 
+		AL_INFO("[Engine] Initializing GLEW...");
 		if (glewInit() != GLEW_OK)
 		{
-			std::cout << "Could not initialize GLEW!" << std::endl;
+			AL_ERROR("[Engine] Failed to initialize GLEW!");
 		}
 
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		std::cout << "OpenGL " << glGetString(GL_VERSION) << std::endl;
+		AL_INFO("[Engine] OpenGL ", glGetString(GL_VERSION));
 
 		FreeImage_Initialise(TRUE);
-		FontManager::Add(new Font("Jellee-Roman", "Jellee-Roman.ttf", 28, 0xffffff00));
+		FontManager::Add(new Font("Default", "src/fonts/Jellee-Roman.ttf", 28, 0xffffff00));
 
 		audio::AudioEngine::Init();
 	}
 
 	Window::~Window()
 	{
-		delete m_App;
 		audio::AudioEngine::Clean();
+		graphics::TextureManager::Clean();
 		glfwTerminate();
 	}
-
-	void Window::Show()
-	{
-		glfwShowWindow(m_Window);
-		Timer time;
-		float timer = 0;
-		uint frames = 0;
-		while (!Closed())
-		{
-			Clear();
-
-			m_App->OnUpdate(time.elapsed());
-			m_App->OnRender();
-
-			Update();
-			frames++;
-			if (time.elapsed() - timer > 1.0f)
-			{
-				timer += 1.0f;
-				printf("%d fps\n", frames);
-				m_App->SetFrames(frames);
-				frames = 0;
-			}
-		}
-
-		glfwTerminate();
-	}
-
+	
 	void Window::GLErrorCheck()
 	{
 		GLenum error = glGetError();
 		if (error != GL_NO_ERROR)
-			std::cout << "OpenGL Error: " << error << std::endl;
+			AL_ERROR("[Engine] OpenGL Error: ", error);
+	}
+
+	void Window::SetVsync(bool enabled)
+	{
+		m_Properties.vsync = enabled; 
+		glfwSwapInterval(enabled); 
 	}
 
 	bool Window::IsKeyPressed(unsigned int keycode) const
 	{
-		// TODO: Log this!
 		if (keycode >= MAX_KEYS)
+		{
+			AL_WARN("[Input] Keycode '", keycode, "' is out of range!");
 			return false;
+		}
 
 		return m_Keys[keycode];
 	}
 
 	bool Window::IsKeyTyped(unsigned keycode) const
 	{
-		// TODO: Log this!
 		if (keycode >= MAX_KEYS)
-		 return false;
+		{
+			AL_WARN("[Input] Keycode '", keycode, "' is out of range!");
+			return false;
+		}
 
 		return m_KeyTyped[keycode];
 	}
 
 	bool Window::IsMouseButtonPressed(unsigned int button) const
 	{
-		// TODO: Log this!
 		if (button >= MAX_BUTTONS)
+		{
+			AL_WARN("[Input] Mouse button '", button, "' is out of range!");
 			return false;
+		}
 
 		return m_MouseButtons[button];
 	}
 
 	bool Window::IsMouseClicked(unsigned int button) const
 	{
-		// TODO: Log this!
 		if (button >= MAX_BUTTONS)
+		{
+			AL_WARN("[Input] Mouse button '", button, "' is out of range!");
 			return false;
+		}
 	
 		return m_MouseClicked[button];
 	}
 
-	void Window::GetMousePosition(double& x, double& y) const
+	glm::vec2 Window::GetMousePosition() const
 	{
-		x = mx;
-		y = my;
+		return { mx, my };
 	}
 
 	void Window::Clear()
@@ -168,20 +141,24 @@ namespace al { namespace graphics {
  	void Window::Update()
 	{
 		GLErrorCheck();
-
-		for (int i = 0; i < MAX_KEYS; i++)
-			m_KeyTyped[i] = m_Keys[i] && !m_KeyState[i];
 		
-		for (int i = 0; i < MAX_BUTTONS; i++)
-			m_MouseClicked[i] = m_MouseButtons[i] && !m_MouseState[i];
-		
-		memcpy(m_KeyState, m_Keys, MAX_KEYS);
-		memcpy(m_MouseState, m_MouseButtons, MAX_BUTTONS);
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
 
 		audio::AudioEngine::Update();
+	}
+
+	void Window::UpdateInput()
+	{
+		for (int i = 0; i < MAX_KEYS; i++)
+			m_KeyTyped[i] = m_Keys[i] && !m_KeyState[i];
+
+		for (int i = 0; i < MAX_BUTTONS; i++)
+			m_MouseClicked[i] = m_MouseButtons[i] && !m_MouseState[i];
+
+		memcpy(m_KeyState, m_Keys, MAX_KEYS);
+		memcpy(m_MouseState, m_MouseButtons, MAX_BUTTONS);
 	}
 
 	bool Window::Closed()
@@ -193,8 +170,8 @@ namespace al { namespace graphics {
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
 
-		win->m_Width = width;
-		win->m_Height = height;
+		win->m_Properties.width = width;
+		win->m_Properties.height= height;
 	}
 
 	void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
@@ -221,4 +198,14 @@ namespace al { namespace graphics {
 		win->my = ypos;
 	}
 
+	void Window::ClearKeys()
+	{
+		memset(m_Keys, 0, MAX_KEYS);
+		memset(m_KeyState, 0, MAX_KEYS);
+		memset(m_KeyTyped, 0, MAX_KEYS);
+
+		memset(m_MouseButtons, 0, MAX_BUTTONS);
+		memset(m_MouseState, 0, MAX_BUTTONS);
+		memset(m_MouseClicked, 0, MAX_BUTTONS);
+	}
 } }

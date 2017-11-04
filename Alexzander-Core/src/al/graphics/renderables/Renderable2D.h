@@ -13,7 +13,7 @@
 
 namespace al { namespace graphics {
 
-	struct AL_API VertexData
+	struct VertexData
 	{
 		glm::vec3 vertex;
 		glm::vec2 uv;
