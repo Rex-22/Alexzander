@@ -8,7 +8,6 @@
 
 #include "al/events/Events.h"
 
-
 #include "gl/gl.h"
 #include "Input.h"
 

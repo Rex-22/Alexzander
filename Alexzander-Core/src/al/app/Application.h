@@ -11,6 +11,8 @@ namespace al {
 	
 	class AL_API Application
 	{
+	private:
+		static Application* s_Instance;
 	public :
 		Window* window;
 	protected:
@@ -58,6 +60,10 @@ namespace al {
 		void OnUpdate(const Timestep& ts);
 		void OnTick();
 		void OnRender();
+	private:
+		void OnEvent(events::Event& event);
+	public:
+		inline static Application& GetApplication() { return *s_Instance; }
 	};
 
 }

@@ -19,6 +19,13 @@ namespace al { namespace graphics {
 		
 	}
 
+	void Layer::OnEvent(events::Event& event)
+	{
+//		events::EventDispatcher dispatcher(event);
+//		dispatcher.Dispatch<events::ResizeWindowEvent>([this](events::ResizeWindowEvent& e) { return OnResize(e.GetWidth(), e.GetHeight()); });
+	}
+
+
 	void Layer::OnTick()
 	{
 		

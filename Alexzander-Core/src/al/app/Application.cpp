@@ -8,10 +8,13 @@ namespace al {
 	
 	using namespace graphics;
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application(const String& name, const WindowProperties& properties)
 		:m_Name(name), m_Properties(properties)
 	{
 		window = new Window(name.c_str(), properties);
+		s_Instance = this;
 	}
 
 	Application::~Application()
@@ -175,4 +178,20 @@ namespace al {
 		}
 	} 
 
+	void Application::OnEvent(events::Event& event)
+	{
+		for (int32 i = m_OverlayStack.size() - 1; i >= 0; i--)
+		{
+			m_OverlayStack[i]->OnEvent(event);
+			if (event.IsHandled())
+				return;
+		}
+
+		for (int32 i = m_LayerStack.size() - 1; i >= 0; i--)
+		{
+			m_LayerStack[i]->OnEvent(event);
+			if (event.IsHandled())
+				return;
+		}
+	}
 }

@@ -18,12 +18,15 @@ namespace al { namespace graphics {
 		inline void SetVisible(bool visible) { m_Visible = visible; }
 
 		virtual void OnInit();
-		virtual void OnRender();
-		virtual void OnUpdate(const Timestep& ts);
 		virtual void OnTick();
+		virtual void OnUpdate(const Timestep& ts);
+		virtual void OnEvent(events::Event& event);
+		virtual void OnRender();
 		
 		virtual void Clean();
 		inline void SetWindow(Window* window) { m_Window = window; }
+	public:
+		virtual bool OnResize(uint width, uint height) { return false; }
 	};
 
 } }
