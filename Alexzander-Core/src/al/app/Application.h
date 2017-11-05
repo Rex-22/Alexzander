@@ -58,8 +58,6 @@ namespace al {
 		void OnUpdate(const Timestep& ts);
 		void OnTick();
 		void OnRender();
-
-		void Clean();
 	};
 
 }

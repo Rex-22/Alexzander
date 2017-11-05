@@ -13,6 +13,9 @@
 
 namespace al {
 
+#define MOUSE_MOVE -1
+#define MOUSE_RELEASE -2
+
 	using namespace graphics;
 
 	GLFWwindow* Window::s_Instance = nullptr;
@@ -46,12 +49,13 @@ namespace al {
 
 		glfwSetWindowUserPointer(m_Window, this);
 
-		glfwSetWindowSizeCallback(m_Window, WindowResizeCallback);
-		glfwSetFramebufferSizeCallback(m_Window, FramebufferSizeCallback);
+		glfwSetWindowSizeCallback(m_Window, GLFWWindowResizeCallback);
+		glfwSetFramebufferSizeCallback(m_Window, GLFWFramebufferSizeCallback);
+		glfwSetWindowFocusCallback(m_Window, GLFWFocusCallback);
 
-		glfwSetKeyCallback(m_Window, KeyCallback);
-		glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
-		glfwSetCursorPosCallback(m_Window, CursorPositionCallback);
+		glfwSetKeyCallback(m_Window, GLFWKeyCallback);
+		glfwSetMouseButtonCallback(m_Window, GLFWMouseButtonCallback);
+		glfwSetCursorPosCallback(m_Window, GLFWCursorPositionCallback);
 
 		glfwSwapInterval(m_Properties.vsync);
 
@@ -86,16 +90,11 @@ namespace al {
 		glfwSwapInterval(enabled); 
 	}
 
-	//	bool Window::IsKeyTyped(unsigned keycode) const
-	//	{
-	//		if (keycode >= MAX_KEYS)
-	//		{
-	//			AL_WARN("[Input] Keycode '", keycode, "' is out of range!");
-	//			return false;
-	//		}
-	//
-	//		return m_KeyTyped[keycode];
-	//	}
+	void Window::SetEventCallback(const WindowEventCallback& callback)
+	{
+		m_EventCallback = callback;
+		m_InputManager->SetEventCallback(m_EventCallback);
+	}
 
 	void Window::Clear()
 	{
@@ -141,36 +140,122 @@ namespace al {
 		}
 	}
 
-
-	void WindowResizeCallback(GLFWwindow *window, int width, int height)
+	void ResizeCallback(Window* window, int32 width, int32 height)
 	{
-		Window* win = (Window*)glfwGetWindowUserPointer(window);
+		window->m_Properties.width = width;
+		window->m_Properties.height = height;
 
-		win->m_Properties.width = width;
-		win->m_Properties.height= height;
+		if (window->m_EventCallback)
+			window->m_EventCallback(events::ResizeWindowEvent((uint)width, (uint)height));
 	}
 
-	void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
+	void FocusCallback(Window* window, bool focused)
+	{
+		if (!focused)
+		{
+			window->m_InputManager->ClearKeys();
+			window->m_InputManager->ClearMouseButtons();
+		}
+	}
+
+	void KeyCallback(InputManager* inputManager, int32 flags, int32 key, uint message)
+	{
+		bool pressed = message == GLFW_PRESS || message == GLFW_RELEASE;
+		inputManager->m_KeyState[key] = pressed;
+
+		bool repeat = flags == GLFW_REPEAT;
+
+		int32 modifier = 0;
+		switch (key)
+		{
+		case AL_KEY_CONTROL:
+			modifier = AL_MODIFIER_LEFT_CONTROL;
+			break;
+		case AL_KEY_ALT:
+			modifier = AL_MODIFIER_LEFT_ALT;
+			break;
+		case AL_KEY_SHIFT:
+			modifier = AL_MODIFIER_LEFT_SHIFT;
+			break;
+		}
+		if (pressed)
+			inputManager->m_KeyModifiers |= modifier;
+		else
+			inputManager->m_KeyModifiers &= ~(modifier);
+
+		if (pressed)
+			inputManager->m_EventCallback(events::KeyPressedEvent(key, repeat, inputManager->m_KeyModifiers));
+		else
+			inputManager->m_EventCallback(events::KeyReleasedEvent(key));
+	}
+
+	void MouseButtonCallback(InputManager* inputManager, int32 button, int32 x, int32 y)
+	{
+		bool down = false;
+
+		static int32 last_button = button;
+
+		if (button == MOUSE_MOVE)
+		{
+			button = 32;
+			down = true;
+		}else if (button == MOUSE_RELEASE)
+		{
+			button = last_button;
+			down = false;
+		} else
+		{
+			last_button = button;
+		}
+
+		inputManager->m_MouseButtons[button] = down;
+		inputManager->m_MousePosition.x = (float)x;
+		inputManager->m_MousePosition.y = (float)y;
+
+		AL_ASSERT(inputManager->m_EventCallback);
+
+		if (down)
+			inputManager->m_EventCallback(events::MousePressedEvent(button, (float)x, (float)y));
+		else
+			inputManager->m_EventCallback(events::MouseReleasedEvent(button, (float)x, (float)y));
+	}
+
+	void GLFWWindowResizeCallback(GLFWwindow *window, int width, int height)
+	{
+		Window* win = (Window*)glfwGetWindowUserPointer(window);
+		ResizeCallback(win, width, height);
+	}
+
+	void GLFWFramebufferSizeCallback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}
 
-	void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+	void GLFWFocusCallback(GLFWwindow* window, int focused)
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_InputManager->m_KeyState[key] = action != GLFW_PRESS;
+		FocusCallback(win, focused);
 	}
 
-	void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+	void GLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_InputManager->m_MouseButtons[button] = action != GLFW_PRESS;
+		KeyCallback(win->m_InputManager, action , key, action);
 	}
 
-	void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+	void GLFWMouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_InputManager->m_MousePosition = { xpos, ypos };
+		if (action == GLFW_PRESS)
+			MouseButtonCallback(win->m_InputManager, button, win->m_InputManager->GetMousePosition().x, win->m_InputManager->GetMousePosition().y);
+		else if (action == GLFW_RELEASE)
+			MouseButtonCallback(win->m_InputManager, MOUSE_RELEASE, win->m_InputManager->GetMousePosition().x, win->m_InputManager->GetMousePosition().y);
+	}
+
+	void GLFWCursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+	{
+		Window* win = (Window*)glfwGetWindowUserPointer(window);
+		MouseButtonCallback(win->m_InputManager, MOUSE_MOVE, xpos, ypos);
 	}
 
 }

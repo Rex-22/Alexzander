@@ -5,6 +5,7 @@
 #include "al/utils/Log.h"
 
 namespace al { 
+	
 	using namespace graphics;
 
 	Application::Application(const String& name, const WindowProperties& properties)
@@ -172,6 +173,6 @@ namespace al {
 			if (m_OverlayStack[i]->IsVisible())
 				m_OverlayStack[i]->OnRender();
 		}
-	}
-	
+	} 
+
 }

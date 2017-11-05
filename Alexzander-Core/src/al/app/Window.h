@@ -6,6 +6,9 @@
 #include "al/audio/AudioEngine.h"
 #include "al/utils/Log.h"
 
+#include "al/events/Events.h"
+
+
 #include "gl/gl.h"
 #include "Input.h"
 
@@ -16,6 +19,8 @@ namespace al {
 #define MAX_KEYS	1024
 #define MAX_BUTTONS	32
 	
+	typedef std::function<void(events::Event& event)> WindowEventCallback;
+
 	struct AL_API WindowProperties
 	{
 		int width, height;
@@ -32,6 +37,7 @@ namespace al {
 		GLFWwindow *m_Window;
 		bool m_Closed;
 
+		WindowEventCallback m_EventCallback;
 		InputManager* m_InputManager;
 	public:
 		Window(const String& name, WindowProperties properties);
@@ -51,12 +57,18 @@ namespace al {
 		void SetVsync(bool enabled);
 		
 		inline InputManager* GetInputManager() const { return m_InputManager; }
+
+		void SetEventCallback(const WindowEventCallback& callback);
 	private:
-		friend void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		friend void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-		friend void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
-		friend void WindowResizeCallback(GLFWwindow *window, int width, int height);
-		friend void FramebufferSizeCallback(GLFWwindow *window, int width, int height);
+		friend void GLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
+		friend void GLFWMouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
+		friend void GLFWCursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+		friend void GLFWWindowResizeCallback(GLFWwindow *window, int width, int height);
+		friend void GLFWFramebufferSizeCallback(GLFWwindow *window, int width, int height);
+		friend void GLFWFocusCallback(GLFWwindow *window, int focused);
+
+		friend void ResizeCallback(Window* window, int32 width, int32 height);
+		friend void FocusCallback(Window* window, bool focused);
 	public:
 		inline static void GLErrorCheck()
 		{
