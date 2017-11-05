@@ -5,6 +5,7 @@
 
 #include "al/Types.h"
 #include "al/utils/Log.h"
+#include "Input.h"
 
 #include "gl/gl.h"
 #include <GLFW/glfw3.h>
@@ -14,11 +15,11 @@ namespace al {
 
 	using namespace graphics;
 
+	GLFWwindow* Window::s_Instance = nullptr;
+
 	Window::Window(const String& title, WindowProperties properties)
 		:m_Title(title), m_Properties(properties)
 	{
-
-		ClearKeys();
 		AL_INFO("[Engine] Initializing window...");
 		if (!glfwInit())
 		{
@@ -29,6 +30,9 @@ namespace al {
 		{
 			AL_ERROR("[Engine] Failed to create GLFW window!");
 		}
+
+
+		Window::s_Instance = m_Window;
 
 		AL_INFO("[Engine] Window created");
 
@@ -44,6 +48,7 @@ namespace al {
 
 		glfwSetWindowSizeCallback(m_Window, WindowResizeCallback);
 		glfwSetFramebufferSizeCallback(m_Window, FramebufferSizeCallback);
+
 		glfwSetKeyCallback(m_Window, KeyCallback);
 		glfwSetMouseButtonCallback(m_Window, MouseButtonCallback);
 		glfwSetCursorPosCallback(m_Window, CursorPositionCallback);
@@ -63,14 +68,15 @@ namespace al {
 
 		FreeImage_Initialise(TRUE);
 		FontManager::Add(new Font("Default", "src/fonts/Jellee-Roman.ttf", 28, 0xffffff00));
-
 		audio::AudioEngine::Init();
+
+		m_InputManager = new InputManager();
 	}
 
 	Window::~Window()
 	{
 		audio::AudioEngine::Clean();
-		graphics::TextureManager::Clean();
+		TextureManager::Clean();
 		glfwTerminate();
 	}
 
@@ -80,54 +86,16 @@ namespace al {
 		glfwSwapInterval(enabled); 
 	}
 
-	bool Window::IsKeyPressed(unsigned int keycode) const
-	{
-		if (keycode >= MAX_KEYS)
-		{
-			AL_WARN("[Input] Keycode '", keycode, "' is out of range!");
-			return false;
-		}
-
-		return m_Keys[keycode];
-	}
-
-	bool Window::IsKeyTyped(unsigned keycode) const
-	{
-		if (keycode >= MAX_KEYS)
-		{
-			AL_WARN("[Input] Keycode '", keycode, "' is out of range!");
-			return false;
-		}
-
-		return m_KeyTyped[keycode];
-	}
-
-	bool Window::IsMouseButtonPressed(unsigned int button) const
-	{
-		if (button >= MAX_BUTTONS)
-		{
-			AL_WARN("[Input] Mouse button '", button, "' is out of range!");
-			return false;
-		}
-
-		return m_MouseButtons[button];
-	}
-
-	bool Window::IsMouseClicked(unsigned int button) const
-	{
-		if (button >= MAX_BUTTONS)
-		{
-			AL_WARN("[Input] Mouse button '", button, "' is out of range!");
-			return false;
-		}
-	
-		return m_MouseClicked[button];
-	}
-
-	glm::vec2 Window::GetMousePosition() const
-	{
-		return { mx, my };
-	}
+	//	bool Window::IsKeyTyped(unsigned keycode) const
+	//	{
+	//		if (keycode >= MAX_KEYS)
+	//		{
+	//			AL_WARN("[Input] Keycode '", keycode, "' is out of range!");
+	//			return false;
+	//		}
+	//
+	//		return m_KeyTyped[keycode];
+	//	}
 
 	void Window::Clear()
 	{
@@ -138,6 +106,7 @@ namespace al {
 	{
 		GLErrorCheck();
 		
+		m_InputManager->Update();
 
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
@@ -145,22 +114,33 @@ namespace al {
 		audio::AudioEngine::Update();
 	}
 
-	void Window::UpdateInput()
-	{
-		for (int i = 0; i < MAX_KEYS; i++)
-			m_KeyTyped[i] = m_Keys[i] && !m_KeyState[i];
-
-		for (int i = 0; i < MAX_BUTTONS; i++)
-			m_MouseClicked[i] = m_MouseButtons[i] && !m_MouseState[i];
-
-		memcpy(m_KeyState, m_Keys, MAX_KEYS);
-		memcpy(m_MouseState, m_MouseButtons, MAX_BUTTONS);
-	}
-
 	bool Window::Closed()
 	{
 		return glfwWindowShouldClose(m_Window) == 1;
 	}
+
+	void Window::SetTitle(const String& title)
+	{
+		m_Title = title;
+		glfwSetWindowTitle(m_Window, title.c_str());
+	}
+
+	void InputManager::SetMousePosition(const glm::vec2& position)
+	{
+		glfwSetCursorPos(Window::GetCallback(), position.x, position.y);
+	}
+
+	void InputManager::SetMouseCursor(int32 cursor)
+	{
+		if (cursor == AL_NO_CURSOR)
+		{
+			if (IsMouseGrabbed())
+				glfwSetInputMode(Window::GetCallback(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+			else
+				glfwSetInputMode(Window::GetCallback(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		}
+	}
+
 
 	void WindowResizeCallback(GLFWwindow *window, int width, int height)
 	{
@@ -178,30 +158,19 @@ namespace al {
 	void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_Keys[key] = action != GLFW_RELEASE;
+		win->m_InputManager->m_KeyState[key] = action != GLFW_PRESS;
 	}
 
 	void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->m_MouseButtons[button] = action != GLFW_RELEASE;
+		win->m_InputManager->m_MouseButtons[button] = action != GLFW_PRESS;
 	}
 
 	void CursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 	{
 		Window* win = (Window*)glfwGetWindowUserPointer(window);
-		win->mx = xpos;
-		win->my = ypos;
+		win->m_InputManager->m_MousePosition = { xpos, ypos };
 	}
 
-	void Window::ClearKeys()
-	{
-		memset(m_Keys, 0, MAX_KEYS);
-		memset(m_KeyState, 0, MAX_KEYS);
-		memset(m_KeyTyped, 0, MAX_KEYS);
-
-		memset(m_MouseButtons, 0, MAX_BUTTONS);
-		memset(m_MouseState, 0, MAX_BUTTONS);
-		memset(m_MouseClicked, 0, MAX_BUTTONS);
-	}
 }

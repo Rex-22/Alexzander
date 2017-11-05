@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\al\app\Input.h" />
     <ClInclude Include="src\al\al.h" />
     <ClInclude Include="src\al\audio\AudioEngine.h" />
     <ClInclude Include="src\Alex.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="src\al\graphics\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\app\Input.cpp" />
     <ClCompile Include="src\al\app\Application.cpp" />
     <ClCompile Include="src\al\audio\AudioEngine.cpp" />
     <ClCompile Include="src\al\audio\Sound.cpp" />

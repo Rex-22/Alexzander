@@ -624,6 +624,9 @@
     <ClInclude Include="src\al\graphics\Texture.h">
       <Filter>Header Files\graphics\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\app\Input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\glm\gtx\associated_min_max.inl">
@@ -1050,6 +1053,9 @@
     </ClCompile>
     <ClCompile Include="src\al\graphics\Texture.cpp">
       <Filter>Source Files\graphics\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\app\Input.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

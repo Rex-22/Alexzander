@@ -11,7 +11,6 @@ Test2D::Test2D()
 {
 }
 
-
 void Test2D::OnInit()
 {
 	TextureManager::Add(new Texture("Text1", "src/textures/test1.png"));
@@ -44,35 +43,34 @@ void Test2D::OnInit()
 
 void Test2D::OnUpdate(const al::Timestep& ts)
 {
-	
-	vec2 mouse = m_Window->GetMousePosition();
+	vec2 mouse = m_Window->GetInputManager()->GetMousePosition();
 
 	m_Shader->Enable();
 	m_Shader->SetUniform2f("light_pos", vec2((float)(mouse.x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - mouse.y * 18.0f / m_Window->GetHeight())));
 	m_FPS->SetText("Hello There");
 
-	if (m_Window->IsKeyTyped(AL_KEY_B))
+	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_B))
 		AudioEngine::Get("Test")->Play();
 
-	if (m_Window->IsKeyTyped(AL_KEY_L))
+	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_L))
 		AudioEngine::Get("Test")->Loop();
 
-	if (m_Window->IsKeyTyped(AL_KEY_S))
+	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_S))
 		AudioEngine::Get("Test")->Stop();
 
-	if (m_Window->IsKeyTyped(AL_KEY_1))
+	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_1))
 		AudioEngine::Get("Test")->Pause();
 
-	if (m_Window->IsKeyTyped(AL_KEY_2))
+	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_2))
 		AudioEngine::Get("Test")->Resume();
 
-	if (m_Window->IsKeyTyped(AL_KEY_UP))
+	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_UP))
 	{
 		gain += 0.05f;
 		AudioEngine::Get("Test")->SetGain(gain);
 	}
 
-	if (m_Window->IsKeyTyped(AL_KEY_DOWN))
+	if (Input::IsKeyPressed(AL_KEY_DOWN))
 	{
 		gain -= 0.05f;
 		AudioEngine::Get("Test")->SetGain(gain);

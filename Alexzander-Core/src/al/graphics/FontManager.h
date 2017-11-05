@@ -14,12 +14,11 @@ namespace al { namespace graphics {
 		static std::vector<Font*> m_FontStack;
 	public:
 		FontManager(Font* font);
-		~FontManager();
-
+		
 		static void Add(Font* font);
 
 		static Font* Get(const String& name);
-		void Clean();
+		static void Clean();
 	};
 
 } }

@@ -118,7 +118,6 @@ namespace al {
 				OnUpdate(timestep);
 				updates++;
 				updateTimer += updateTick;
-				window->UpdateInput();
 			}
 			{
 				Timer frametime;

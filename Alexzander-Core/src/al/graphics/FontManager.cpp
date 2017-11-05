@@ -10,11 +10,6 @@ namespace al { namespace graphics {
 		m_FontStack.push_back(font);
 	}
 
-
-	FontManager::~FontManager()
-	{
-	}
-
 	void FontManager::Add(Font* font)
 	{
 		m_FontStack.push_back(font);
