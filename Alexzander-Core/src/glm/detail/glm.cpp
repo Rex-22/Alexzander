@@ -1,6 +1,6 @@
 /// @ref core
 /// @file glm/glm.cpp
-
+#include "al/al.h"
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
 #include <glm/ext/vec1.hpp>

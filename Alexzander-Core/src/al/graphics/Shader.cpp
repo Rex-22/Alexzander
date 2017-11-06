@@ -1,8 +1,9 @@
+#include "al/al.h"
+
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Shader.h"
-
-#include "al/app/Window.h"
+#include "al/utils/ShaderUtils.h"
 
 namespace al { namespace graphics {
 

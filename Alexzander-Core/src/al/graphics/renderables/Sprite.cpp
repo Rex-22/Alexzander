@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Sprite.h"
 
 namespace al { namespace graphics {

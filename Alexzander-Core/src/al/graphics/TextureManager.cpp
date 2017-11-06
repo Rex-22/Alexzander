@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "TextureManager.h"
 
 namespace al { namespace graphics {

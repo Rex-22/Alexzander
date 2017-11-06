@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma warning (disable:4251)
+
 #ifdef AL_PLATFORM_WINDOWS
 #ifdef AL_CORE_DLL
 #define AL_API __declspec(dllexport)
@@ -17,3 +19,8 @@
 #define METHOD_3(x) std::bind(x, this, std::placeholders::_3)
 
 #define METHOD(x) METHOD_1(x)
+
+template<typename Base, typename T>
+inline bool instanceof(const T *ptr) {
+	return dynamic_cast<const Base*>(ptr) != nullptr;
+}

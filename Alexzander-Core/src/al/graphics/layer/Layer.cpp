@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Layer.h"
 
 namespace al { namespace graphics {

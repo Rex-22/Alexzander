@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Font.h"
 
 #include <freetype-gl/freetype-gl.h>

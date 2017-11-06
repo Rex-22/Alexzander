@@ -16,6 +16,7 @@
  * EVENTS
  */
 #include <al/events/Event.h>
+#include <al/events/EventDispatcher.h>
 #include <al/events/KeyEvent.h>
 #include <al/events/MouseEvent.h>
 
@@ -29,14 +30,10 @@
 #include <al/graphics/FontManager.h>
 
 #include <al/graphics/renderer/IRenderer.h>
-#include <al/graphics/renderer/BasicRenderer2D.h>
-#include <al/graphics/renderer/BatchRenderer2D.h>
 #include <al/graphics/renderer/Renderer2D.h>
-
 
 #include <al/graphics/renderables/IRenderable.h>
 #include <al/graphics/renderables/Renderable2D.h>
-#include <al/graphics/renderables/BasicSprite.h>
 #include <al/graphics/renderables/Sprite.h>
 
 #include <al/graphics/layer/Layer.h>
@@ -50,6 +47,7 @@
  */
 #include <al/utils/FileUtils.h>
 #include <al/utils/Timer.h>
+#include <al/utils/Log.h>
 #include <al/utils/Timestep.h>
 #include <al/utils/ImageUtils.h>
 

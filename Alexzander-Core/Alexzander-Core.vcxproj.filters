@@ -537,18 +537,6 @@
     <ClInclude Include="src\al\Common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\renderer\BasicRenderer2D.h">
-      <Filter>Header Files\graphics\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\al\graphics\renderer\BatchRenderer2D.h">
-      <Filter>Header Files\graphics\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\al\graphics\renderer\Renderer2D.h">
-      <Filter>Header Files\graphics\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\al\graphics\renderables\BasicSprite.h">
-      <Filter>Header Files\graphics\renderable</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\graphics\renderables\Renderable2D.h">
       <Filter>Header Files\graphics\renderable</Filter>
     </ClInclude>
@@ -647,6 +635,9 @@
     </ClInclude>
     <ClInclude Include="src\al\events\WindowEvent.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\renderer\Renderer2D.h">
+      <Filter>Header Files\graphics\renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1006,15 +997,6 @@
     <ClCompile Include="src\al\utils\ImageUtils.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\graphics\renderer\BasicRenderer2D.cpp">
-      <Filter>Source Files\graphics\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\graphics\renderer\BatchRenderer2D.cpp">
-      <Filter>Source Files\graphics\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\graphics\renderables\BasicSprite.cpp">
-      <Filter>Source Files\graphics\renderable</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\graphics\renderables\Sprite.cpp">
       <Filter>Source Files\graphics\renderable</Filter>
     </ClCompile>
@@ -1097,6 +1079,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\platfrom\glfw\GLFWInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\al.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\renderer\Renderer2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

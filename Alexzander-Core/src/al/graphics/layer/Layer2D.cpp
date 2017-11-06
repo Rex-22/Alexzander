@@ -1,9 +1,10 @@
+#include "al/al.h"
 #include "Layer2D.h"
 #include "glm/gtc/matrix_transform.hpp"
 
 namespace al { namespace graphics {
 	
-	Layer2D::Layer2D(Renderer2D* renderer, Shader* shader, glm::mat4 projection)
+	Layer2D::Layer2D(Renderer* renderer, Shader* shader, glm::mat4 projection)
 		: m_Renderer(renderer), m_Shader(shader), m_ProjectionMatrix(projection)
 	{
 		m_Shader->Enable();

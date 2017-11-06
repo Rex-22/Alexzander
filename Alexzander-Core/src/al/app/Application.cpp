@@ -1,3 +1,5 @@
+#include "al/al.h"
+
 #include "Application.h"
 
 #include "al/graphics/layer/Layer.h"

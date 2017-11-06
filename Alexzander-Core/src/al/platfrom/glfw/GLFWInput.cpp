@@ -1,4 +1,5 @@
 #include "al/al.h"
+
 #include "al/app/Input.h"
 #include "al/utils/Log.h"
 

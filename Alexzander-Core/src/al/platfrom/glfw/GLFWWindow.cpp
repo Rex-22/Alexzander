@@ -1,8 +1,10 @@
 #include "al/al.h"
+
 #include "al/app/Window.h"
-#include <GLFW/glfw3.h>
 #include "al/graphics/renderer/IRenderer.h"
 
+#include <GLFW/glfw3.h>
+#include "al/events/WindowEvent.h"
 
 namespace al {
 
@@ -75,6 +77,12 @@ namespace al {
 
 		glfwPollEvents();
 		glfwSwapBuffers(window);
+	}
+
+	void Window::SetVsync(bool enabled)
+	{
+		m_Properties.vsync = enabled;
+		glfwSwapInterval(enabled);
 	}
 
 	void Window::SetTitle(const String& title)

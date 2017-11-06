@@ -1,11 +1,5 @@
 #pragma once
-
-#include <iostream>
-#include <vector>
-
 #include "gl/gl.h"
-#include "al/utils/ShaderUtils.h"
-
 #include "glm/glm.hpp"
 
 #include "al/Common.h"

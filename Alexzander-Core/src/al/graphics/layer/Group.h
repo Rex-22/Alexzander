@@ -5,8 +5,9 @@
 #include "al/Common.h"
 
 namespace al { namespace graphics {
+	class Renderer;
 
-		class AL_API Group : public Renderable2D
+	class AL_API Group : public Renderable2D
 		{
 		private:
 			std::vector<Renderable2D*> m_Renderables;
@@ -15,7 +16,7 @@ namespace al { namespace graphics {
 			Group(const glm::mat4& transform);
 			~Group();
 			void Add(Renderable2D* renderable);
-			void Submit(Renderer2D* renderer) const override;
+			void Submit(Renderer* renderer) const override;
 		};
 
 	}

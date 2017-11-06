@@ -41,14 +41,11 @@
     <ClInclude Include="src\al\graphics\layer\Group.h" />
     <ClInclude Include="src\al\graphics\layer\Layer.h" />
     <ClInclude Include="src\al\graphics\layer\Layer2D.h" />
-    <ClInclude Include="src\al\graphics\renderables\BasicSprite.h" />
     <ClInclude Include="src\al\graphics\renderables\IRenderable.h" />
     <ClInclude Include="src\al\graphics\renderables\Renderable2D.h" />
     <ClInclude Include="src\al\graphics\renderables\Sprite.h" />
     <ClInclude Include="src\al\graphics\renderer\IRenderer.h" />
     <ClInclude Include="src\al\graphics\Texture.h" />
-    <ClInclude Include="src\al\graphics\renderer\BasicRenderer2D.h" />
-    <ClInclude Include="src\al\graphics\renderer\BatchRenderer2D.h" />
     <ClInclude Include="src\al\graphics\renderer\Renderer2D.h" />
     <ClInclude Include="src\al\graphics\Shader.h" />
     <ClInclude Include="src\al\graphics\ui\Label.h" />
@@ -212,6 +209,10 @@
     <ClInclude Include="src\al\graphics\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\al.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\al\app\Input.cpp" />
     <ClCompile Include="src\al\app\Application.cpp" />
     <ClCompile Include="src\al\audio\AudioEngine.cpp" />
@@ -228,11 +229,9 @@
     <ClCompile Include="src\al\graphics\layer\Group.cpp" />
     <ClCompile Include="src\al\graphics\layer\Layer.cpp" />
     <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
-    <ClCompile Include="src\al\graphics\renderables\BasicSprite.cpp" />
     <ClCompile Include="src\al\graphics\renderables\Sprite.cpp" />
+    <ClCompile Include="src\al\graphics\renderer\Renderer2D.cpp" />
     <ClCompile Include="src\al\graphics\Texture.cpp" />
-    <ClCompile Include="src\al\graphics\renderer\BasicRenderer2D.cpp" />
-    <ClCompile Include="src\al\graphics\renderer\BatchRenderer2D.cpp" />
     <ClCompile Include="src\al\graphics\Shader.cpp" />
     <ClCompile Include="src\al\graphics\ui\Label.cpp" />
     <ClCompile Include="src\al\app\Window.cpp" />
@@ -455,6 +454,8 @@
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>al/al.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;openal32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -484,6 +485,8 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>al/al.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -492,7 +495,9 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
       <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
-      <Profile>true</Profile>
+      <Profile>false</Profile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

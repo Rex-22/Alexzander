@@ -1,56 +1,49 @@
 #pragma once
 
-#include <vector>
+#include "al/graphics/renderables/Renderable2D.h"
+#include "al/graphics/buffers/IndexBuffer.h"
 
 #include "al/graphics/Font.h"
+#include "al/graphics/FontManager.h"
 
 #include "al/Common.h"
 #include "al/Types.h"
+#include "IRenderer.h"
 
-#include "glm/glm.hpp"
-#include "gl/gl.h"
 
 namespace al { namespace graphics {
 
-	class Renderable2D;
+#define RENDERER_MAX_SPRITES	60000
+#define RENDERER_VERTEX_SIZE	sizeof(VertexData)
+#define RENDERER_SPRITE_SIZE	RENDERER_VERTEX_SIZE * 4
+#define RENDERER_BUFFER_SIZE	RENDERER_SPRITE_SIZE * RENDERER_MAX_SPRITES
+#define RENDERER_INDICES_SIZE	RENDERER_MAX_SPRITES * 6
 
-	class AL_API Renderer2D
+#define SHADER_VERTEX_INDEX 0
+#define SHADER_UV_INDEX		1
+#define SHADER_TID_INDEX	2
+#define SHADER_COLOR_INDEX	3
+
+	class AL_API Renderer2D : public Renderer
 	{
-	protected:
-		std::vector<glm::mat4> m_TransformationStack;
+	private:
+		GLuint m_VAO;
+		GLuint m_VBO;
+		IndexBuffer* m_IBO;
+		GLsizei m_IndexCount;
+		VertexData* m_Buffer;
 
-		const glm::mat4* m_LastMatrix;
-	protected:
-		Renderer2D()
-		{
-			m_TransformationStack.push_back(glm::mat4(1.0f));
-			m_LastMatrix = &m_TransformationStack.back();
-		}
+		std::vector<GLuint> m_TextureSlots;
 	public:
-		void push(glm::mat4 matrix, bool override = false)
-		{
-			if (override)
-				m_TransformationStack.push_back(matrix);
-			else 
-				m_TransformationStack.push_back(*m_LastMatrix * matrix);
-
-			m_LastMatrix = &m_TransformationStack.back();
-		}
-
-		void pop()
-		{
-			if (m_TransformationStack.size() > 1)
-			{
-				m_TransformationStack.pop_back();
-				m_LastMatrix = &m_TransformationStack.back();
-			}
-		}
-
-		virtual void Begin() {}
-		virtual void Submit(const Renderable2D* renderable) = 0;
-		virtual void DrawString(const String& text, float x, float y, Font* font) {}
-		virtual void End() {}
-		virtual void Flush() = 0;
+		Renderer2D();
+		~Renderer2D();
+		void Begin() override;
+		void Submit(const Renderable* renderable) override;
+		void DrawString(const String& text, float x, float y, Font* font) override;
+		void End() override;
+		void Flush() override;
+	private:
+		void Init();
 	};
 
 } }

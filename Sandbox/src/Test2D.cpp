@@ -8,7 +8,7 @@ using namespace audio;
 using namespace glm;
 
 Test2D::Test2D()
-	: Layer2D(new BatchRenderer2D, new Shader("src/shaders/basic.glsl") , ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f))
+	: Layer2D(new Renderer2D, new Shader("src/shaders/basic.glsl") , ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f))
 {
 }
 
@@ -98,7 +98,6 @@ bool Test2D::OnMouseMovedEvent(MouseMovedEvent& event)
 
 	m_Shader->Enable();
 	m_Shader->SetUniform2f("light_pos", vec2((float)(mouse.x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - mouse.y * 18.0f / m_Window->GetHeight())));
-	m_FPS->SetText("Hello There");
 	m_Shader->Disable();
 
 	return false;

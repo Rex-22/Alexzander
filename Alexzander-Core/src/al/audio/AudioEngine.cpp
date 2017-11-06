@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "AudioEngine.h"
 
 #define GAU_THREAD_POLICY_MULTI 2

@@ -1,12 +1,7 @@
 #pragma once
-
 #include "al/al.h"
 
 #include "al/graphics/FontManager.h"
-#include "al/audio/AudioEngine.h"
-#include "al/graphics/TextureManager.h"
-
-#include "al/events/Events.h"
 
 #include "al/app/Input.h"
 

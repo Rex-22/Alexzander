@@ -1,4 +1,4 @@
-
+#include "al/al.h"
 #include "Window.h"
 
 #include "al/graphics/TextureManager.h"
@@ -7,10 +7,9 @@
 #include "al/utils/Log.h"
 #include "Input.h"
 
-#include "gl/gl.h"
-#include <GLFW/glfw3.h>
 #include <FreeImage.h>
 #include "al/graphics/renderer/IRenderer.h"
+#include "al/audio/AudioEngine.h"
 
 namespace al {
 	
@@ -58,13 +57,6 @@ namespace al {
 
 		SetTitle(m_Title);
 		return true;
-	}
-
-
-	void Window::SetVsync(bool enabled)
-	{
-		m_Properties.vsync = enabled; 
-		glfwSwapInterval(enabled); 
 	}
 
 	void Window::SetEventCallback(const WindowEventCallback& callback)

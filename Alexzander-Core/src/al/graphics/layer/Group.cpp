@@ -1,4 +1,6 @@
-﻿#include "Group.h"
+﻿#include "al/al.h"
+#include "Group.h"
+#include "al/graphics/renderer/IRenderer.h"
 
 namespace al { namespace graphics {
 	
@@ -18,7 +20,7 @@ namespace al { namespace graphics {
 		m_Renderables.push_back(renderable);
 	}
 
-	void Group::Submit(Renderer2D* renderer) const
+	void Group::Submit(Renderer* renderer) const
 	{
 		renderer->push(m_TransformationMatrix);
 

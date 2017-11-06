@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Sound.h"
 #include "AudioEngine.h"
 

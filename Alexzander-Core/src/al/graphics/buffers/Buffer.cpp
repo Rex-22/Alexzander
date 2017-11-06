@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Buffer.h"
 
 namespace al { namespace graphics {

@@ -1,23 +1,23 @@
-#include "BatchRenderer2D.h"
+#include "Renderer2D.h"
 
 #include <freetype-gl/freetype-gl.h>
 
 namespace al { namespace graphics {
 
-	BatchRenderer2D::BatchRenderer2D()
+	Renderer2D::Renderer2D()
 		:m_IndexCount(0)
 	{
 		Init();
 	}
 
-	BatchRenderer2D::~BatchRenderer2D()
+	Renderer2D::~Renderer2D()
 	{
 		delete m_IBO;
 		glDeleteBuffers(1, &m_VBO);
 		glDeleteVertexArrays(1, &m_VAO);
 	}
 
-	void BatchRenderer2D::Init()
+	void Renderer2D::Init()
 	{
 		glGenVertexArrays(1, &m_VAO);
 		glGenBuffers(1, &m_VBO);
@@ -59,18 +59,19 @@ namespace al { namespace graphics {
 		glBindVertexArray(0);
 	}
 
-	void BatchRenderer2D::Begin()
+	void Renderer2D::Begin()
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
 		m_Buffer = (VertexData*)glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 	}
 
-	void BatchRenderer2D::Submit(const Renderable2D* renderable)
+	void Renderer2D::Submit(const Renderable* renderable)
 	{
+		AL_ASSERT(instanceof<Renderable2D>(renderable))
 		const glm::vec3& position = renderable->GetPosition();
 		const std::vector<glm::vec2>& uv = renderable->GetUV();
 		const glm::vec2& size = renderable->GetSize();
-		const uint color = renderable->GetColor();
+		const uint color = renderable->GetColour();
 		const GLuint tid = renderable->GetTID();
 
 		float ts = 0.0f;
@@ -128,7 +129,7 @@ namespace al { namespace graphics {
 		m_IndexCount += 6;
 	}
 
-	void BatchRenderer2D::DrawString(const String& text, float x, float y, Font* font)
+	void Renderer2D::DrawString(const String& text, float x, float y, Font* font)
 	{
 		using namespace ftgl;
 
@@ -216,18 +217,13 @@ namespace al { namespace graphics {
 		}
 	}
 
-	void BatchRenderer2D::DrawString(const String& text, glm::vec2 position, Font* font)
-	{
-		DrawString(text, position.x, position.y, font);
-	}
-
-	void BatchRenderer2D::End()
+	void Renderer2D::End()
 	{
 		glUnmapBuffer(GL_ARRAY_BUFFER);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	void BatchRenderer2D::Flush()
+	void Renderer2D::Flush()
 	{
 		for (int i = 0; i < m_TextureSlots.size(); i++)
 		{

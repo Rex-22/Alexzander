@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "VertexArray.h"
 
 namespace al { namespace graphics {

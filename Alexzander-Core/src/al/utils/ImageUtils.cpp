@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "ImageUtils.h"
 
 #include <FreeImage.h>

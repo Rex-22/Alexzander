@@ -24,7 +24,7 @@ namespace al { namespace graphics {
 
 		inline void SetText(const String& text) { this->m_Text = text; }
 
-		void Submit(Renderer2D* renderable) const override;
+		void Submit(Renderer* renderable) const override;
 	};
 
 } }

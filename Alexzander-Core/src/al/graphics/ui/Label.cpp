@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Label.h"
 
 #include "al/graphics/FontManager.h"
@@ -18,7 +19,7 @@ namespace al { namespace graphics {
 	{
 	}
 
-	void Label::Submit(Renderer2D* renderer) const
+	void Label::Submit(Renderer* renderer) const
 	{
 		renderer->DrawString(m_Text, m_Position.x, m_Position.y, m_Font);
 	}

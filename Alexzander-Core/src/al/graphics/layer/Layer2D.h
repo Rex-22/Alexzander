@@ -1,6 +1,6 @@
 #pragma once
 
-#include "al/graphics/renderer/Renderer2D.h"
+#include "al/graphics/renderer/IRenderer.h"
 #include "al/graphics/renderables/Renderable2D.h"
 
 #include "al/Common.h"
@@ -12,13 +12,13 @@ namespace al { namespace graphics {
 	{
 	protected:
 		
-		Renderer2D* m_Renderer;
+		Renderer* m_Renderer;
 		std::vector<Renderable2D*> m_Renderables;
 		Shader* m_Shader;
 
 		glm::mat4 m_ProjectionMatrix;
 	protected :
-		Layer2D(Renderer2D* renderer, Shader* shader, glm::mat4 projection);
+		Layer2D(Renderer* renderer, Shader* shader, glm::mat4 projection);
 	public :
 		~Layer2D();
 

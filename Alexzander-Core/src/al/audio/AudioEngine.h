@@ -4,7 +4,7 @@
 #include "al/Types.h"
 #include <vector>
 
-#include "sound.h"
+#include "al/audio/sound.h"
 
 
 #ifndef SOUND_STRUCT

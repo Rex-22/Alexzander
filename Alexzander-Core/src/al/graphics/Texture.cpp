@@ -1,3 +1,5 @@
+#include "al/al.h"
+
 #include "Texture.h"
 
 #include <FreeImage.h>
