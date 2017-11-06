@@ -19,6 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\al\graphics\camera\Camera.h" />
+    <ClInclude Include="src\al\scene\Scene.h" />
+    <ClInclude Include="src\al\scene\Scene2D.h" />
+    <ClInclude Include="src\al\entity\component\Component.h" />
+    <ClInclude Include="src\al\entity\component\SpriteComponent.h" />
+    <ClInclude Include="src\al\entity\component\TransformComponent.h" />
     <ClInclude Include="src\al\app\Input.h" />
     <ClInclude Include="src\al\al.h" />
     <ClInclude Include="src\al\audio\AudioEngine.h" />
@@ -26,6 +32,7 @@
     <ClInclude Include="src\al\app\Application.h" />
     <ClInclude Include="src\al\audio\Sound.h" />
     <ClInclude Include="src\al\Common.h" />
+    <ClInclude Include="src\al\entity\Entity.h" />
     <ClInclude Include="src\al\events\Event.h" />
     <ClInclude Include="src\al\events\EventDispatcher.h" />
     <ClInclude Include="src\al\events\Events.h" />
@@ -38,9 +45,9 @@
     <ClInclude Include="src\al\graphics\buffers\VertexArray.h" />
     <ClInclude Include="src\al\graphics\Font.h" />
     <ClInclude Include="src\al\graphics\FontManager.h" />
-    <ClInclude Include="src\al\graphics\layer\Group.h" />
-    <ClInclude Include="src\al\graphics\layer\Layer.h" />
-    <ClInclude Include="src\al\graphics\layer\Layer2D.h" />
+    <ClInclude Include="src\al\graphics\layers\Group.h" />
+    <ClInclude Include="src\al\graphics\layers\Layer.h" />
+    <ClInclude Include="src\al\graphics\layers\Layer2D.h" />
     <ClInclude Include="src\al\graphics\renderables\IRenderable.h" />
     <ClInclude Include="src\al\graphics\renderables\Renderable2D.h" />
     <ClInclude Include="src\al\graphics\renderables\Sprite.h" />
@@ -209,10 +216,17 @@
     <ClInclude Include="src\al\graphics\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\graphics\camera\Camera.cpp" />
+    <ClCompile Include="src\al\scene\Scene.cpp" />
+    <ClCompile Include="src\al\scene\Scene2D.cpp" />
+    <ClCompile Include="src\al\entity\component\Component.cpp" />
+    <ClCompile Include="src\al\entity\component\SpriteComponent.cpp" />
+    <ClCompile Include="src\al\entity\component\TransformComponent.cpp" />
     <ClCompile Include="src\al\app\Input.cpp" />
     <ClCompile Include="src\al\app\Application.cpp" />
     <ClCompile Include="src\al\audio\AudioEngine.cpp" />
     <ClCompile Include="src\al\audio\Sound.cpp" />
+    <ClCompile Include="src\al\entity\Entity.cpp" />
     <ClCompile Include="src\al\events\Event.cpp" />
     <ClCompile Include="src\al\events\KeyEvent.cpp" />
     <ClCompile Include="src\al\events\MouseEvent.cpp" />
@@ -222,9 +236,9 @@
     <ClCompile Include="src\al\graphics\buffers\VertexArray.cpp" />
     <ClCompile Include="src\al\graphics\Font.cpp" />
     <ClCompile Include="src\al\graphics\FontManager.cpp" />
-    <ClCompile Include="src\al\graphics\layer\Group.cpp" />
-    <ClCompile Include="src\al\graphics\layer\Layer.cpp" />
-    <ClCompile Include="src\al\graphics\layer\Layer2D.cpp" />
+    <ClCompile Include="src\al\graphics\layers\Group.cpp" />
+    <ClCompile Include="src\al\graphics\layers\Layer.cpp" />
+    <ClCompile Include="src\al\graphics\layers\Layer2D.cpp" />
     <ClCompile Include="src\al\graphics\renderables\Sprite.cpp" />
     <ClCompile Include="src\al\graphics\renderer\Renderer2D.cpp" />
     <ClCompile Include="src\al\graphics\Texture.cpp" />

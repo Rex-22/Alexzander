@@ -552,12 +552,6 @@
     <ClInclude Include="src\al\graphics\buffers\VertexArray.h">
       <Filter>Header Files\graphics\buffer</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\graphics\layer\Layer2D.h">
-      <Filter>Header Files\graphics\layer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\al\graphics\layer\Group.h">
-      <Filter>Header Files\graphics\layer</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\graphics\Font.h">
       <Filter>Header Files\graphics\ui</Filter>
     </ClInclude>
@@ -584,9 +578,6 @@
     </ClInclude>
     <ClInclude Include="src\al\graphics\renderer\IRenderer.h">
       <Filter>Header Files\graphics\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\al\graphics\layer\Layer.h">
-      <Filter>Header Files\graphics\layer</Filter>
     </ClInclude>
     <ClInclude Include="src\al\audio\Sound.h">
       <Filter>Header Files\audio</Filter>
@@ -638,6 +629,36 @@
     </ClInclude>
     <ClInclude Include="src\al\graphics\renderer\Renderer2D.h">
       <Filter>Header Files\graphics\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\layers\Group.h">
+      <Filter>Header Files\graphics\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\layers\Layer.h">
+      <Filter>Header Files\graphics\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\layers\Layer2D.h">
+      <Filter>Header Files\graphics\layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\entity\component\TransformComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\entity\component\SpriteComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\entity\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\entity\component\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\scene\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\scene\Scene2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\graphics\camera\Camera.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1021,19 +1042,10 @@
     <ClCompile Include="src\al\graphics\ui\Label.cpp">
       <Filter>Source Files\graphics\ui</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\graphics\layer\Layer2D.cpp">
-      <Filter>Source Files\graphics\layer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\graphics\layer\Group.cpp">
-      <Filter>Source Files\graphics\layer</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\audio\AudioEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\audio\Sound.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\graphics\layer\Layer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\app\Application.cpp">
@@ -1082,6 +1094,36 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\renderer\Renderer2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\layers\Group.cpp">
+      <Filter>Source Files\graphics\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\layers\Layer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\layers\Layer2D.cpp">
+      <Filter>Source Files\graphics\layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\entity\component\TransformComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\entity\component\SpriteComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\entity\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\entity\component\Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\scene\Scene2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\camera\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
