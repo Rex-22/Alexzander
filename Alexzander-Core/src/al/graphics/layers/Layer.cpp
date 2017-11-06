@@ -10,14 +10,17 @@ namespace al { namespace graphics {
 		
 	}
 
-	void Layer::OnInit()
+	void Layer::Init()
 	{
 		
 	}
 
 	void Layer::OnUpdate(const Timestep& ts)
 	{
-		
+	}
+
+	void Layer::OnUpdateInternal(const Timestep& ts)
+	{
 	}
 
 	void Layer::OnEvent(events::Event& event)

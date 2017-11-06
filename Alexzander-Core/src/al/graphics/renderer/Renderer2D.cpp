@@ -1,5 +1,6 @@
 #include "Renderer2D.h"
 
+#include "al/graphics/shader/ShaderDefines.h"
 #include <freetype-gl/freetype-gl.h>
 
 namespace al { namespace graphics {
@@ -57,6 +58,8 @@ namespace al { namespace graphics {
 		m_IBO = new IndexBuffer(indices, RENDERER_INDICES_SIZE);
 
 		glBindVertexArray(0);
+
+		m_Shader = Shaders::BasicLightingShader();
 	}
 
 	void Renderer2D::Begin()
@@ -67,7 +70,7 @@ namespace al { namespace graphics {
 
 	void Renderer2D::Submit(const Renderable* renderable)
 	{
-		AL_ASSERT(instanceof<Renderable2D>(renderable))
+		AL_ASSERT(!instanceof<Renderable2D>(renderable))
 		const glm::vec3& position = renderable->GetPosition();
 		const std::vector<glm::vec2>& uv = renderable->GetUV();
 		const glm::vec2& size = renderable->GetSize();
@@ -213,7 +216,6 @@ namespace al { namespace graphics {
 
 				x += glyph->advance_x / scaleX;
 			}
-
 		}
 	}
 
@@ -227,7 +229,7 @@ namespace al { namespace graphics {
 	{
 		m_Shader->Enable();
 		m_Shader->SetUniformMat4("pr_matrix", m_Camera->GetProjectionMatrix());
-
+		
 		for (int i = 0; i < m_TextureSlots.size(); i++)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);

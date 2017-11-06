@@ -3,7 +3,7 @@
 
 namespace al { namespace entity { namespace component {
 	
-	SpriteComponent::SpriteComponent(graphics::Sprite sprite)
+	SpriteComponent::SpriteComponent(graphics::Sprite* sprite)
 		: m_Sprite(sprite)
 	{
 	}

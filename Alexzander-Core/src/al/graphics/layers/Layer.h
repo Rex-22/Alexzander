@@ -17,8 +17,9 @@ namespace al { namespace graphics {
 		inline bool IsVisible() const { return m_Visible; }
 		inline void SetVisible(bool visible) { m_Visible = visible; }
 
-		virtual void OnInit();
+		virtual void Init();
 		virtual void OnTick();
+		virtual void OnUpdateInternal(const Timestep& ts);
 		virtual void OnUpdate(const Timestep& ts);
 		virtual void OnEvent(events::Event& event);
 		virtual void OnRender();

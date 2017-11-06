@@ -1,17 +1,33 @@
 #include "al/al.h"
+#include "Shader.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Shader.h"
 #include "al/utils/ShaderUtils.h"
+#include "al/utils/Log.h"
 
 namespace al { namespace graphics {
 
-	Shader::Shader(const char* shaderPath)
-		: m_ShaderPath(shaderPath)
+	Shader::Shader(const String& shaderPath)
+		:m_ShaderPath(shaderPath.c_str())
 	{
 		m_ShaderID = CreateProgram();
 
+		int texIDs[32];
+		for (int i = 0; i < 31; ++i)
+		{
+			texIDs[i] = i;
+		}
+
+		Enable();
+		SetUniform1iv("textures", texIDs, 31);
+		Disable();
+	}
+
+
+	Shader::Shader(const char* source)
+	{
+		m_ShaderID = CreateProgram(source);
 
 		int texIDs[32];
 		for (int i = 0; i < 31; ++i)
@@ -29,13 +45,45 @@ namespace al { namespace graphics {
 		glDeleteProgram(m_ShaderID);
 	}
 
-	GLuint Shader::CreateProgram() const
+	GLuint Shader::CreateProgram(const char* src) const
 	{
 		GLuint program = glCreateProgram();
 
-		//std::string vertSourceString = FileUtils::ReadFile(m_VertPath);
-		//std::string fragSourceString = FileUtils::ReadFile(m_FragPath);
-		//std::String vertSourceString = ShaderUtils::
+		ShaderData source = ShaderUtils::ParsSource(src);
+
+		const char* vertSource = source.VertexSource.c_str();
+		const char* fragSource = source.FragmentSource.c_str();
+
+		int vertex = CreateShader(GL_VERTEX_SHADER, vertSource);
+		int fragment = CreateShader(GL_FRAGMENT_SHADER, fragSource);
+
+		glAttachShader(program, vertex);
+		glAttachShader(program, fragment);
+
+		glLinkProgram(program);
+
+		GLint error;
+		glGetProgramiv(program, GL_LINK_STATUS, &error);
+		if (error == GL_FALSE)
+		{
+			GLint length;
+			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &length);
+			std::vector<char> error(length);
+			glGetProgramInfoLog(program, length, &length, &error[0]);
+			std::cout << "Failed to link program!" << std::endl << &error[0] << std::endl;
+		}
+
+		glValidateProgram(program);
+
+		glDeleteShader(vertex);
+		glDeleteShader(fragment);
+
+		return program;
+	}
+
+	GLuint Shader::CreateProgram() const
+	{
+		GLuint program = glCreateProgram();
 
 		ShaderData source = ShaderUtils::ParsShader(m_ShaderPath);
 
@@ -103,7 +151,16 @@ namespace al { namespace graphics {
 		case  GL_GEOMETRY_SHADER:
 			return "geometry";
 		}
+
+		return "unknowm";
 	}
+
+	Shader* Shader::CreateFromSource(const char* source)
+	{
+		Shader* result = new Shader(source);
+		return result;
+	}
+
 
 	GLint Shader::GetUniformLocation(const GLchar* name) const
 	{

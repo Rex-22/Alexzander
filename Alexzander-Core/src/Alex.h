@@ -13,6 +13,14 @@
 #include <al/audio/Sound.h>
 
 /*
+ *ENTITY
+ */
+#include <al/entity/Entity.h>
+#include <al/entity/component/Component.h>
+#include <al/entity/component/SpriteComponent.h>
+#include <al/entity/component/TransformComponent.h>
+
+/*
  * EVENTS
  */
 #include <al/events/Event.h>
@@ -41,6 +49,12 @@
 #include <al/graphics/layers/Group.h>
 
 #include <al/graphics/ui/Label.h>
+
+/*
+ * SCENE
+ */
+#include <al/scene/Scene2D.h>
+#include <al/scene/Scene.h>
 
  /*
  * UTILS

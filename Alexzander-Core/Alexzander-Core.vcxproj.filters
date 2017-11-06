@@ -660,6 +660,12 @@
     <ClInclude Include="src\al\graphics\camera\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\graphics\shader\ShaderDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\entity\component\Components.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\glm\gtx\associated_min_max.inl">
@@ -1010,6 +1016,7 @@
     <None Include="src\glm\gtx\wrap.inl">
       <Filter>Header Files\dependencies\math</Filter>
     </None>
+    <None Include="src\al\graphics\shader\default\BasicLight.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\glm\detail\glm.cpp">
@@ -1124,6 +1131,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\camera\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\graphics\shader\ShaderDefines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

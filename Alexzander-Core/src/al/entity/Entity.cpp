@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include "al/entity/component/Components.h"
 namespace al { namespace entity {
 	
 	using namespace component;

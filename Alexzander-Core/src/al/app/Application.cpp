@@ -2,7 +2,7 @@
 
 #include "Application.h"
 
-#include "al/graphics/layer/Layer.h"
+#include "al/graphics/layers/Layer.h"
 
 namespace al { 
 	
@@ -18,7 +18,7 @@ namespace al {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.push_back(layer);
-		layer->OnInit();
+		layer->Init();
 	}
 
 	Layer* Application::PopLayer()
@@ -45,7 +45,7 @@ namespace al {
 	void Application::PushOverlay(Layer* layer)
 	{
 		m_OverlayStack.push_back(layer);
-		layer->OnInit();
+		layer->Init();
 	}
 
 	Layer* Application::PopOverlay()
@@ -80,10 +80,10 @@ namespace al {
 	void Application::OnUpdate(const Timestep& ts)
 	{
 		for (uint i = 0; i < m_OverlayStack.size(); i++)
-			m_OverlayStack[i]->OnUpdate(ts);
+			m_OverlayStack[i]->OnUpdateInternal(ts);
 
 		for (uint i = 0; i < m_LayerStack.size(); i++)
-			m_LayerStack[i]->OnUpdate(ts);
+			m_LayerStack[i]->OnUpdateInternal(ts);
 	}
 
 	void Application::OnRender()

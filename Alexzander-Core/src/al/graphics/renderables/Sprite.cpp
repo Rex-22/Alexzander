@@ -2,7 +2,7 @@
 #include "Sprite.h"
 
 namespace al { namespace graphics {
-	
+
 	Sprite::Sprite(Texture* texture) 
 		:Renderable2D({ 0, 0, 0 }, { texture->GetWidth(), texture->GetHeight() }, texture)
 	{	}

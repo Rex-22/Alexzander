@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\al\entity\component\Components.h" />
     <ClInclude Include="src\al\graphics\camera\Camera.h" />
+    <ClInclude Include="src\al\graphics\shader\ShaderDefines.h" />
     <ClInclude Include="src\al\scene\Scene.h" />
     <ClInclude Include="src\al\scene\Scene2D.h" />
     <ClInclude Include="src\al\entity\component\Component.h" />
@@ -217,6 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\al\graphics\camera\Camera.cpp" />
+    <ClCompile Include="src\al\graphics\shader\ShaderDefines.cpp" />
     <ClCompile Include="src\al\scene\Scene.cpp" />
     <ClCompile Include="src\al\scene\Scene2D.cpp" />
     <ClCompile Include="src\al\entity\component\Component.cpp" />
@@ -270,6 +273,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="src\al\graphics\shader\default\BasicLight.glsl" />
     <None Include="src\glm\detail\func_common.inl" />
     <None Include="src\glm\detail\func_common_simd.inl" />
     <None Include="src\glm\detail\func_exponential.inl" />

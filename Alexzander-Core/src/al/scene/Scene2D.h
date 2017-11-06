@@ -22,12 +22,12 @@ namespace al {
 		void Add(entity::Entity* entity);
 
 		virtual void OnUpdate();
-		virtual void OnTick();
 		virtual void OnRender(graphics::Renderer2D& renderer);
 
 		void OnRender();
 
 		inline graphics::Renderer2D* GetRenderer() { return m_Renderer; }
+		inline graphics::Camera* const GetCamera() { return m_Camera; }
 	};
 
 }

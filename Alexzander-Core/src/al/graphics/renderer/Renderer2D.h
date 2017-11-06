@@ -10,7 +10,7 @@
 #include "al/Types.h"
 #include "IRenderer.h"
 #include "al/graphics/camera/Camera.h"
-
+#include "al/graphics/Shader.h"
 
 namespace al { namespace graphics {
 
@@ -46,6 +46,7 @@ namespace al { namespace graphics {
 		void End() override;
 		void Flush() override;
 		inline void SetCamera(Camera* camera) { m_Camera = camera; }
+		inline const Shader* GetShader() const { return m_Shader; }
 	private:
 		void Init();
 	};

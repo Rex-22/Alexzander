@@ -9,11 +9,14 @@ namespace al { namespace graphics {
 
 	class AL_API Shader
 	{
+	public:
+		static Shader* BasicLighting;
 	private:
 		GLuint m_ShaderID;
 		const char* m_ShaderPath;
 	public:
-		Shader(const char* shaderPath);
+		Shader(const char* source);
+		Shader(const String& shaderPath);
 		~Shader();
 
 		void SetUniform1f(const GLchar* name, float value) const;
@@ -27,7 +30,10 @@ namespace al { namespace graphics {
 
 		void Enable() const;
 		void Disable() const;
+		static Shader* CreateFromSource(const char* source);
+		
 	private:
+		GLuint CreateProgram(const char* source) const;
 		GLuint CreateProgram() const;
 		GLuint CreateShader(uint type, const char* source) const;
 		const char* GetType(uint type) const;

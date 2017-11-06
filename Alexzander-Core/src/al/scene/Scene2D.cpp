@@ -27,7 +27,8 @@ namespace al {
 	Scene2D::Scene2D(const glm::mat4& projectionMatrix)
 		:m_Camera(new Camera(projectionMatrix))
 	{
-		
+		m_Renderer = new Renderer2D();
+		m_Renderer->SetCamera(m_Camera);
 	}
 
 	Scene2D::~Scene2D()
@@ -40,15 +41,9 @@ namespace al {
 		m_Entities.push_back(entity);
 	}
 
-	void Scene2D::OnTick()
-	{
-		
-	}
-
 	void Scene2D::OnUpdate()
 	{
-//		for (uint i = 0; i < m_Entities.size(); i++)
-//			m_Entities[i].;
+
 	}
 
 	void Scene2D::OnRender(Renderer2D& renderer)
