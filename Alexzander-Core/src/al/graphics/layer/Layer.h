@@ -24,7 +24,6 @@ namespace al { namespace graphics {
 		virtual void OnRender();
 		
 		virtual void Clean();
-		inline void SetWindow(Window* window) { m_Window = window; }
 	public:
 		virtual bool OnResize(uint width, uint height) { return false; }
 	};

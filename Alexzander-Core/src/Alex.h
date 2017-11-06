@@ -13,6 +13,13 @@
 #include <al/audio/Sound.h>
 
 /*
+ * EVENTS
+ */
+#include <al/events/Event.h>
+#include <al/events/KeyEvent.h>
+#include <al/events/MouseEvent.h>
+
+/*
  * GRAPHICS
  */
 #include <al/graphics/Shader.h>

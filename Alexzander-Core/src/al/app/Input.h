@@ -2,8 +2,9 @@
 
 #include "al/Common.h"
 #include "al/Types.h"
+#include "al/events/Event.h"
 #include "glm/glm.hpp"
-#include "al/graphics/layer/Layer.h"
+#include <functional>
 
 namespace al {
 
@@ -18,27 +19,25 @@ namespace al {
 	{
 	private:
 		friend class Window;
-	public :
-		bool m_KeyState[MAX_KEYS];
-		bool m_MouseButtons[MAX_BUTTONS];
-		glm::vec2 m_MousePosition;
-
-		WindowEventCallback m_EventCallback;
-		int32 m_KeyModifiers;
 	private:
-		
+		bool m_KeyState[MAX_KEYS];
 		bool m_LastKeyState[MAX_KEYS];
-		
+
+		bool m_MouseButtons[MAX_BUTTONS];
 		bool m_MouseState[MAX_BUTTONS];
 		bool m_MouseClicked[MAX_BUTTONS];
-
 		bool m_MouseGrabbed;
+		int32 m_KeyModifiers;
+
+		glm::vec2 m_MousePosition;
+		WindowEventCallback m_EventCallback;
 	public:
 		InputManager();
 
 		inline void SetEventCallback(const WindowEventCallback& eventCallback) { m_EventCallback = eventCallback; }
 
 		void Update();
+		void PlatformUpdate();
 	
 		bool IsKeyPressed(uint keycode) const;
 		bool IsMouseButtonPressed(uint button) const;
@@ -52,7 +51,7 @@ namespace al {
 
 		void ClearKeys();
 		void ClearMouseButtons();
-		
+	private:
 		friend void KeyCallback(InputManager* inputManager, int32 flags, int32 key, uint message);
 		friend void MouseButtonCallback(InputManager* inputManager, int32 button, int32 x, int32 y);
 	};
@@ -146,10 +145,10 @@ namespace al {
 #define AL_KEY_NEXT           0x22
 #define AL_KEY_END            0x23
 #define AL_KEY_HOME           0x24
-#define AL_KEY_RIGHT          262
-#define AL_KEY_LEFT           263
-#define AL_KEY_DOWN           264
-#define AL_KEY_UP             265
+#define AL_KEY_RIGHT          0x25
+#define AL_KEY_LEFT           0x26
+#define AL_KEY_DOWN           0x27
+#define AL_KEY_UP             0x28
 #define AL_KEY_SELECT         0x29
 #define AL_KEY_PRINT          0x2A
 #define AL_KEY_EXECUTE        0x2B

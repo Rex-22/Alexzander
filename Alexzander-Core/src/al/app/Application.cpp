@@ -1,8 +1,6 @@
 #include "Application.h"
 
 #include "al/graphics/layer/Layer.h"
-#include <GLFW/glfw3.h>
-#include "al/utils/Log.h"
 
 namespace al { 
 	
@@ -10,22 +8,13 @@ namespace al {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application(const String& name, const WindowProperties& properties)
-		:m_Name(name), m_Properties(properties)
+	void Application::Init()
 	{
-		window = new Window(name.c_str(), properties);
-		s_Instance = this;
-	}
-
-	Application::~Application()
-	{
-		delete window;
-		delete m_Timer;
+		PlatformInit();
 	}
 
 	void Application::PushLayer(Layer* layer)
 	{
-		layer->SetWindow(window);
 		m_LayerStack.push_back(layer);
 		layer->OnInit();
 	}
@@ -53,7 +42,6 @@ namespace al {
 
 	void Application::PushOverlay(Layer* layer)
 	{
-		layer->SetWindow(window);
 		m_OverlayStack.push_back(layer);
 		layer->OnInit();
 	}
@@ -76,73 +64,6 @@ namespace al {
 			}
 		}
 		return layer;
-	}
-
-	void Application::Start()
-	{
-		Init();
-		m_Running = true;
-		m_Suspended = false;
-		Run();
-	}
-
-	void Application::Suspend()
-	{
-		m_Suspended = true;
-	}
-
-	void Application::Resume()
-	{
-		m_Suspended = false;
-	}
-
-	void Application::Stop()
-	{
-		m_Running = false;
-		AL_INFO("Stoping engine...");
-	}
-
-	void Application::Run()
-	{
-		m_Timer = new Timer();
-		float timer = 0.0f;
-		float updateTimer = m_Timer->ElapsedMillis();
-		float updateTick = 1000.0f / 60.0f;
-		uint frames = 0;
-		uint updates = 0;
-		Timestep timestep(m_Timer->ElapsedMillis());
-		while (m_Running)
-		{
-			Window::Clear();
-			float now = m_Timer->ElapsedMillis();
-			
-			if (now - updateTimer > updateTick)
-			{
-				timestep.Update(now);
-				OnUpdate(timestep);
-				updates++;
-				updateTimer += updateTick;
-			}
-			{
-				Timer frametime;
-				OnRender();
-				frames++;
-				m_Frametime = frametime.ElapsedMillis();
-			}
-			window->Update();
-			if (m_Timer->Elapsed() - timer > 1.0f)
-			{
-				timer += 1.0f;
-				m_FramesPerSecond = frames;
-				AL_DEBUG("FPS: ", m_FramesPerSecond, " | UPS: ", m_UpdatesPerSecond);
-				m_UpdatesPerSecond = updates;
-				frames = 0;
-				updates = 0;
-				OnTick();
-			}
-			if (window->Closed())
-				Stop();
-		}	
 	}
 
 	void Application::OnTick()
@@ -180,6 +101,9 @@ namespace al {
 
 	void Application::OnEvent(events::Event& event)
 	{
+		if (event.IsHandled())
+			return;
+
 		for (int32 i = m_OverlayStack.size() - 1; i >= 0; i--)
 		{
 			m_OverlayStack[i]->OnEvent(event);

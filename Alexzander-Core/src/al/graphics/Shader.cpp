@@ -20,7 +20,6 @@ namespace al { namespace graphics {
 
 		Enable();
 		SetUniform1iv("textures", texIDs, 31);
-		Window::GLErrorCheck();
 		Disable();
 	}
 

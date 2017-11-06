@@ -627,6 +627,27 @@
     <ClInclude Include="src\al\app\Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\al\events\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\events\EventDispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\events\Events.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\events\IEventListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\events\KeyEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\events\MouseEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\events\WindowEvent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\glm\gtx\associated_min_max.inl">
@@ -1036,16 +1057,10 @@
     <ClCompile Include="src\al\app\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\utils\PoixTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\graphics\TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\String.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\al\platfrom\Win32Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\app\Window.cpp">
@@ -1055,6 +1070,33 @@
       <Filter>Source Files\graphics\renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\al\app\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\events\Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\events\KeyEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\events\MouseEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\events\WindowEvent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\windows\Win32Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\glfw\GLFWApplicatipon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\glfw\PoixTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\glfw\GLFWWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\glfw\GLFWInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

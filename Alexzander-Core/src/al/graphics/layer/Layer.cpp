@@ -4,7 +4,7 @@ namespace al { namespace graphics {
 
 
 	Layer::Layer()
-		:	m_Window(nullptr), m_Visible(true)
+		: m_Window(Window::GetWindowClass(nullptr)), m_Visible(true) 
 	{
 		
 	}

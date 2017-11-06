@@ -2,10 +2,9 @@
 
 #include "al/Common.h"
 
-#include "Window.h"
-#include "al/utils/Timestep.h"
-#include "al/utils/Timer.h"
+#include "al/app/Window.h"
 #include "al/graphics/layer/Layer.h"
+#include "al/utils/Timer.h"
 
 namespace al {
 	
@@ -16,13 +15,13 @@ namespace al {
 	public :
 		Window* window;
 	protected:
+		String m_Name;
+		WindowProperties m_Properties;
+
 		bool m_Running, m_Suspended;
 		Timer* m_Timer;
 		uint m_UpdatesPerSecond, m_FramesPerSecond;
 		float m_Frametime;
-
-		String m_Name;
-		WindowProperties m_Properties;
 
 		std::vector<graphics::Layer*> m_LayerStack;
 		std::vector<graphics::Layer*> m_OverlayStack;
@@ -30,7 +29,7 @@ namespace al {
 		Application(const String& name, const WindowProperties& properties);
 		virtual ~Application();
 
-		virtual void Init() {}
+		virtual void Init();
 
 		void PushLayer(graphics::Layer* layer);
 		graphics::Layer* PopLayer();
@@ -53,8 +52,8 @@ namespace al {
 		inline uint GetWindowHeight() const { return window->GetHeight(); }
 		inline glm::vec2 GetWindowSize() const { return glm::vec2((float)window->GetWidth(), (float)window->GetHeight()); }
 
-		
 	private:
+		void PlatformInit();
 		void Run(); 
 
 		void OnUpdate(const Timestep& ts);

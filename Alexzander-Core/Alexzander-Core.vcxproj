@@ -26,6 +26,13 @@
     <ClInclude Include="src\al\app\Application.h" />
     <ClInclude Include="src\al\audio\Sound.h" />
     <ClInclude Include="src\al\Common.h" />
+    <ClInclude Include="src\al\events\Event.h" />
+    <ClInclude Include="src\al\events\EventDispatcher.h" />
+    <ClInclude Include="src\al\events\Events.h" />
+    <ClInclude Include="src\al\events\IEventListener.h" />
+    <ClInclude Include="src\al\events\KeyEvent.h" />
+    <ClInclude Include="src\al\events\MouseEvent.h" />
+    <ClInclude Include="src\al\events\WindowEvent.h" />
     <ClInclude Include="src\al\graphics\buffers\Buffer.h" />
     <ClInclude Include="src\al\graphics\buffers\IndexBuffer.h" />
     <ClInclude Include="src\al\graphics\buffers\VertexArray.h" />
@@ -209,6 +216,10 @@
     <ClCompile Include="src\al\app\Application.cpp" />
     <ClCompile Include="src\al\audio\AudioEngine.cpp" />
     <ClCompile Include="src\al\audio\Sound.cpp" />
+    <ClCompile Include="src\al\events\Event.cpp" />
+    <ClCompile Include="src\al\events\KeyEvent.cpp" />
+    <ClCompile Include="src\al\events\MouseEvent.cpp" />
+    <ClCompile Include="src\al\events\WindowEvent.cpp" />
     <ClCompile Include="src\al\graphics\buffers\Buffer.cpp" />
     <ClCompile Include="src\al\graphics\buffers\IndexBuffer.cpp" />
     <ClCompile Include="src\al\graphics\buffers\VertexArray.cpp" />
@@ -225,10 +236,13 @@
     <ClCompile Include="src\al\graphics\Shader.cpp" />
     <ClCompile Include="src\al\graphics\ui\Label.cpp" />
     <ClCompile Include="src\al\app\Window.cpp" />
-    <ClCompile Include="src\al\platfrom\Win32Log.cpp" />
+    <ClCompile Include="src\al\platfrom\glfw\GLFWApplicatipon.cpp" />
+    <ClCompile Include="src\al\platfrom\glfw\GLFWInput.cpp" />
+    <ClCompile Include="src\al\platfrom\glfw\GLFWWindow.cpp" />
+    <ClCompile Include="src\al\platfrom\windows\Win32Log.cpp" />
     <ClCompile Include="src\al\String.cpp" />
     <ClCompile Include="src\al\utils\ImageUtils.cpp" />
-    <ClCompile Include="src\al\utils\PoixTimer.cpp" />
+    <ClCompile Include="src\al\platfrom\glfw\PoixTimer.cpp" />
     <ClCompile Include="src\glm\detail\glm.cpp" />
     <ClCompile Include="src\al\graphics\TextureManager.cpp" />
   </ItemGroup>

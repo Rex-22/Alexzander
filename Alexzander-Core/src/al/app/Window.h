@@ -1,22 +1,16 @@
 #pragma once
 
-#include "al/Common.h"
-#include "al/graphics/FontManager.h"
+#include "al/al.h"
 
+#include "al/graphics/FontManager.h"
 #include "al/audio/AudioEngine.h"
-#include "al/utils/Log.h"
+#include "al/graphics/TextureManager.h"
 
 #include "al/events/Events.h"
 
-#include "gl/gl.h"
-#include "Input.h"
-
-struct GLFWwindow;
+#include "al/app/Input.h"
 
 namespace al {
-
-#define MAX_KEYS	1024
-#define MAX_BUTTONS	32
 	
 	typedef std::function<void(events::Event& event)> WindowEventCallback;
 
@@ -28,12 +22,12 @@ namespace al {
 
 	class AL_API Window
 	{
-	public:
-		static GLFWwindow* s_Instance;
+	private:
+		static std::map<void*, Window*> s_Handles;
 	private:
 		String m_Title;
 		WindowProperties m_Properties;
-		GLFWwindow *m_Window;
+		void *m_Handle;
 		bool m_Closed;
 
 		WindowEventCallback m_EventCallback;
@@ -41,40 +35,34 @@ namespace al {
 	public:
 		Window(const String& name, WindowProperties properties);
 		~Window();
-		inline static GLFWwindow* GetCallback() { return s_Instance; }
 
-		static void Clear();
+		void Clear() const;
 		void Update();
-		bool Closed();
+		bool Closed() const;
 
 		void SetTitle(const String& title);
 
 		inline int GetWidth() const { return m_Properties.width; }
 		inline int GetHeight() const { return m_Properties.height; }
 
-		inline bool IsVsyncEnabled() const { return m_Properties.vsync; }
 		void SetVsync(bool enabled);
-		
+		inline bool IsVsync() const { return m_Properties.vsync; }
+
 		inline InputManager* GetInputManager() const { return m_InputManager; }
 
 		void SetEventCallback(const WindowEventCallback& callback);
 	private:
-		friend void GLFWKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-		friend void GLFWMouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
-		friend void GLFWCursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
-		friend void GLFWWindowResizeCallback(GLFWwindow *window, int width, int height);
-		friend void GLFWFramebufferSizeCallback(GLFWwindow *window, int width, int height);
-		friend void GLFWFocusCallback(GLFWwindow *window, int focused);
+		bool Init();
+
+		bool PlatformInit();
+		void PlatformUpdate();
 
 		friend void ResizeCallback(Window* window, int32 width, int32 height);
 		friend void FocusCallback(Window* window, bool focused);
+
 	public:
-		inline static void GLErrorCheck()
-		{
-			GLenum error = glGetError();
-			if (error != GL_NO_ERROR)
-				AL_ERROR("[Engine] OpenGL Error: ", error);
-		}
+		static void RegisterWindowClass(void* handle, Window* window);
+		static Window* GetWindowClass(void* handle);
 	};
 
 }

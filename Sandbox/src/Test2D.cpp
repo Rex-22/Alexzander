@@ -3,6 +3,7 @@
 
 using namespace al;
 using namespace graphics;
+using namespace events;
 using namespace audio;
 using namespace glm;
 
@@ -40,39 +41,66 @@ void Test2D::OnInit()
 	AudioEngine::Add(new Sound("Test", "src/sound/FromHere.ogg"));
 }
 
-
-void Test2D::OnUpdate(const al::Timestep& ts)
+void Test2D::OnEvent(Event& event)
 {
-	vec2 mouse = m_Window->GetInputManager()->GetMousePosition();
+	EventDispatcher dispatcher(event);
+	dispatcher.Dispatch<KeyPressedEvent>(METHOD(&Test2D::OnKeyPressedEvent));
+	dispatcher.Dispatch<MouseMovedEvent>(METHOD(&Test2D::OnMouseMovedEvent));
+}
+
+bool Test2D::OnKeyPressedEvent(KeyPressedEvent& event)
+{
+	switch (event.GetKeyCode())
+	{
+	case AL_KEY_P:
+		AudioEngine::Get("Test")->Play();
+		return true;
+	case AL_KEY_S:
+		AudioEngine::Get("Test")->Stop();
+		return true;
+	case AL_KEY_L:
+		AudioEngine::Get("Test")->Loop();
+		return true;
+	case AL_KEY_1:
+		AudioEngine::Get("Test")->Pause();
+		return true;
+	case AL_KEY_2:
+		AudioEngine::Get("Test")->Resume();
+		return true;
+	case AL_KEY_UP:
+	{
+		if (event.GetRepeat())
+		{
+			gain += 0.05f;
+			AudioEngine::Get("Test")->SetGain(gain);
+			return true;
+		}
+
+	}
+	case AL_KEY_DOWN:
+	{
+		if (event.GetRepeat())
+		{
+			gain -= 0.05f;
+			AudioEngine::Get("Test")->SetGain(gain);
+			return true;
+		}
+	}
+	default :
+		return false;
+	}
+}
+
+
+bool Test2D::OnMouseMovedEvent(MouseMovedEvent& event)
+{
+	vec2 mouse = event.GetPosition();
 
 	m_Shader->Enable();
 	m_Shader->SetUniform2f("light_pos", vec2((float)(mouse.x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - mouse.y * 18.0f / m_Window->GetHeight())));
 	m_FPS->SetText("Hello There");
+	m_Shader->Disable();
 
-	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_B))
-		AudioEngine::Get("Test")->Play();
-
-	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_L))
-		AudioEngine::Get("Test")->Loop();
-
-	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_S))
-		AudioEngine::Get("Test")->Stop();
-
-	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_1))
-		AudioEngine::Get("Test")->Pause();
-
-	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_2))
-		AudioEngine::Get("Test")->Resume();
-
-	if (m_Window->GetInputManager()->IsKeyPressed(AL_KEY_UP))
-	{
-		gain += 0.05f;
-		AudioEngine::Get("Test")->SetGain(gain);
-	}
-
-	if (Input::IsKeyPressed(AL_KEY_DOWN))
-	{
-		gain -= 0.05f;
-		AudioEngine::Get("Test")->SetGain(gain);
-	}
+	return false;
 }
+

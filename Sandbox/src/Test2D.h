@@ -14,5 +14,8 @@ public:
 
 	void OnInit() override;
 
-	void OnUpdate(const al::Timestep& ts) override;
+	void OnEvent(al::events::Event& event) override;
+
+	bool OnKeyPressedEvent(al::events::KeyPressedEvent& event);
+	bool OnMouseMovedEvent(al::events::MouseMovedEvent& event);
 };
