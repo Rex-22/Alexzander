@@ -1081,9 +1081,6 @@
     <ClCompile Include="src\al\platfrom\glfw\GLFWInput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\al.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\graphics\renderer\Renderer2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

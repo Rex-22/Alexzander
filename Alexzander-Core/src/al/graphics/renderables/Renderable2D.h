@@ -14,14 +14,6 @@
 
 namespace al { namespace graphics {
 
-	struct VertexData
-	{
-		glm::vec3 vertex;
-		glm::vec2 uv;
-		GLfloat tid;
-		uint color;
-	};
-
 	class AL_API Renderable2D : public Renderable
 	{
 	protected :
