@@ -3,7 +3,15 @@
 #include "al/Common.h"
 
 namespace al { namespace graphics {
-	
+
+	struct VertexData
+	{
+		glm::vec3 vertex;
+		glm::vec2 uv;
+		GLfloat tid;
+		uint color;
+	};
+
 	class AL_API Renderable
 	{
 	protected:
@@ -13,6 +21,8 @@ namespace al { namespace graphics {
 		uint m_Colour;
 		Texture* m_Texture;
 	public :
+		virtual ~Renderable();
+
 		Renderable() = default;
 
 		Renderable(glm::vec3 position, glm::vec2 size, uint colour)
