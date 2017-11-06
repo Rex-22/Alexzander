@@ -3,7 +3,7 @@
 #include "al/Common.h"
 
 #include "al/app/Window.h"
-#include "al/graphics/layer/Layer.h"
+#include "al/graphics/layers/Layer.h"
 #include "al/utils/Timer.h"
 
 namespace al {

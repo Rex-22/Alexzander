@@ -9,6 +9,7 @@
 #include "al/Common.h"
 #include "al/Types.h"
 #include "IRenderer.h"
+#include "al/graphics/camera/Camera.h"
 
 
 namespace al { namespace graphics {
@@ -32,8 +33,10 @@ namespace al { namespace graphics {
 		IndexBuffer* m_IBO;
 		GLsizei m_IndexCount;
 		VertexData* m_Buffer;
+		Camera* m_Camera;
 
 		std::vector<GLuint> m_TextureSlots;
+		Shader* m_Shader;
 	public:
 		Renderer2D();
 		~Renderer2D();
@@ -42,6 +45,7 @@ namespace al { namespace graphics {
 		void DrawString(const String& text, float x, float y, Font* font) override;
 		void End() override;
 		void Flush() override;
+		inline void SetCamera(Camera* camera) { m_Camera = camera; }
 	private:
 		void Init();
 	};

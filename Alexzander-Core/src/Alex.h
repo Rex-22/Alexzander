@@ -36,9 +36,9 @@
 #include <al/graphics/renderables/Renderable2D.h>
 #include <al/graphics/renderables/Sprite.h>
 
-#include <al/graphics/layer/Layer.h>
-#include <al/graphics/layer/Layer2D.h>
-#include <al/graphics/layer/Group.h>
+#include <al/graphics/layers/Layer.h>
+#include <al/graphics/layers/Layer2D.h>
+#include <al/graphics/layers/Group.h>
 
 #include <al/graphics/ui/Label.h>
 

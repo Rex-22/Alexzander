@@ -225,6 +225,9 @@ namespace al { namespace graphics {
 
 	void Renderer2D::Flush()
 	{
+		m_Shader->Enable();
+		m_Shader->SetUniformMat4("pr_matrix", m_Camera->GetProjectionMatrix());
+
 		for (int i = 0; i < m_TextureSlots.size(); i++)
 		{
 			glActiveTexture(GL_TEXTURE0 + i);
