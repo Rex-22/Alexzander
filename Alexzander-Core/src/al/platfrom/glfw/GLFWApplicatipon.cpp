@@ -1,9 +1,14 @@
 #include "al/al.h"
 
-#include "al/app/Application.h"
-#include "al/utils/Log.h"
+#ifdef AL_PLATFORM_GLFW
 
-#include "al/utils/Timestep.h"
+#ifdef AL_PLATFORM_WINDOWS
+	#error Multiple platforms spesified
+#endif
+
+#include "al/app/Application.h"
+
+#include "al/utils/Log.h"
 
 namespace al {
 	
@@ -91,7 +96,6 @@ namespace al {
 				Stop();
 		}
 	}
-
-
-
 }
+
+#endif

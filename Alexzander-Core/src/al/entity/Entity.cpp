@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Entity.h"
 #include "al/entity/component/Components.h"
 namespace al { namespace entity {

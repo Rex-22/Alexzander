@@ -1,5 +1,11 @@
 #include "al/al.h"
 
+#ifdef AL_PLATFORM_GLFW
+
+#ifdef AL_PLATFORM_WINDOWS
+	#error Multiple platforms spesified
+#endif
+
 #include "al/app/Input.h"
 #include "al/utils/Log.h"
 
@@ -126,3 +132,5 @@ namespace al {
 	}
 
 }
+
+#endif

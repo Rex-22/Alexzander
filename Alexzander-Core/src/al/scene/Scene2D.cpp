@@ -1,3 +1,5 @@
+#include "al/al.h"
+
 #include "Scene2D.h"
 #include "al/app/Application.h"
 #include "al/entity/Entity.h"

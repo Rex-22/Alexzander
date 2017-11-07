@@ -1,7 +1,5 @@
 #pragma once
 
-#pragma once
-
 #include "al/Common.h"
 
 namespace al {
@@ -23,5 +21,4 @@ namespace al {
 		// Returns time in milliseconds
 		virtual float ElapsedMillis();
 	};
-
 }

@@ -1,5 +1,11 @@
 #include "al/al.h"
 
+#ifdef AL_PLATFORM_WINDOWS
+
+#ifdef AL_PLATFORM_GLFW
+	#error Multiple platforms spesified
+#endif
+
 #include <Windows.h>
 #include "al/utils/Log.h"
 
@@ -25,3 +31,5 @@ namespace al { namespace internal {
 	}
 
 } }
+
+#endif

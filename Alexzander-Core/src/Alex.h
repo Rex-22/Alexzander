@@ -13,7 +13,7 @@
 #include <al/audio/Sound.h>
 
 /*
- *ENTITY
+ * ENTITY
  */
 #include <al/entity/Entity.h>
 #include <al/entity/component/Component.h>
@@ -32,6 +32,7 @@
  * GRAPHICS
  */
 #include <al/graphics/Shader.h>
+#include <al/graphics/shader/ShaderDefines.h>
 #include <al/graphics/TextureManager.h>
 #include <al/graphics/Texture.h>
 #include <al/graphics/Font.h>
@@ -44,6 +45,8 @@
 #include <al/graphics/renderables/Renderable2D.h>
 #include <al/graphics/renderables/Sprite.h>
 
+#include <al/graphics/camera/Camera.h>
+
 #include <al/graphics/layers/Layer.h>
 #include <al/graphics/layers/Layer2D.h>
 #include <al/graphics/layers/Group.h>
@@ -54,7 +57,6 @@
  * SCENE
  */
 #include <al/scene/Scene2D.h>
-#include <al/scene/Scene.h>
 
  /*
  * UTILS

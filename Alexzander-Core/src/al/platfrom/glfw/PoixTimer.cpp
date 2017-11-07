@@ -1,4 +1,11 @@
 #include "al/al.h"
+
+#ifdef AL_PLATFORM_GLFW
+
+#ifdef AL_PLATFORM_WINDOWS
+	#error Multiple platforms spesified
+#endif
+
 #include "al/utils/Timer.h"
 
 #include <chrono>
@@ -35,3 +42,5 @@ namespace al {
 		return Elapsed() * 1000.0f;
 	}
 }
+
+#endif

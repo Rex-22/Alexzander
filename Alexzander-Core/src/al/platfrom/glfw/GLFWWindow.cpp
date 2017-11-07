@@ -1,5 +1,11 @@
 #include "al/al.h"
 
+#ifdef AL_PLATFORM_GLFW
+
+#ifdef AL_PLATFORM_WINDOWS
+	#error Multiple platforms spesified
+#endif
+
 #include "al/app/Window.h"
 #include "al/graphics/renderer/IRenderer.h"
 
@@ -150,3 +156,5 @@ namespace al {
 	}
 
 }
+
+#endif

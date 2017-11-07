@@ -11,12 +11,12 @@ class Game : public Application
 public :
 	Game()
 		: Application("Alexzander!", WindowProperties{ 960, 540, false })
-	{}
+	{	}
 
 	void Init() override
 	{
 		Application::Init();
-		
+
 		PushLayer(new Test2D());
 		// PushLayer(spnew Test3D());
 		// PushLayer(spnew SponzaTest());

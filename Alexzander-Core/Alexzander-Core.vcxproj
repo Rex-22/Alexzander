@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
@@ -22,7 +30,6 @@
     <ClInclude Include="src\al\entity\component\Components.h" />
     <ClInclude Include="src\al\graphics\camera\Camera.h" />
     <ClInclude Include="src\al\graphics\shader\ShaderDefines.h" />
-    <ClInclude Include="src\al\scene\Scene.h" />
     <ClInclude Include="src\al\scene\Scene2D.h" />
     <ClInclude Include="src\al\entity\component\Component.h" />
     <ClInclude Include="src\al\entity\component\SpriteComponent.h" />
@@ -61,6 +68,7 @@
     <ClInclude Include="src\al\app\Window.h" />
     <ClInclude Include="src\al\String.h" />
     <ClInclude Include="src\al\Types.h" />
+    <ClInclude Include="src\al\utils\Colorize.h" />
     <ClInclude Include="src\al\utils\FileUtils.h" />
     <ClInclude Include="src\al\utils\ImageUtils.h" />
     <ClInclude Include="src\al\utils\Log.h" />
@@ -218,9 +226,16 @@
     <ClInclude Include="src\al\graphics\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\al\al.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\al\graphics\camera\Camera.cpp" />
     <ClCompile Include="src\al\graphics\shader\ShaderDefines.cpp" />
-    <ClCompile Include="src\al\scene\Scene.cpp" />
+    <ClCompile Include="src\al\platfrom\glfw\GLFWLog.cpp" />
+    <ClCompile Include="src\al\platfrom\windows\Win32Log.cpp" />
     <ClCompile Include="src\al\scene\Scene2D.cpp" />
     <ClCompile Include="src\al\entity\component\Component.cpp" />
     <ClCompile Include="src\al\entity\component\SpriteComponent.cpp" />
@@ -251,7 +266,6 @@
     <ClCompile Include="src\al\platfrom\glfw\GLFWApplicatipon.cpp" />
     <ClCompile Include="src\al\platfrom\glfw\GLFWInput.cpp" />
     <ClCompile Include="src\al\platfrom\glfw\GLFWWindow.cpp" />
-    <ClCompile Include="src\al\platfrom\windows\Win32Log.cpp" />
     <ClCompile Include="src\al\String.cpp" />
     <ClCompile Include="src\al\utils\ImageUtils.cpp" />
     <ClCompile Include="src\al\platfrom\glfw\PoixTimer.cpp" />
@@ -404,7 +418,20 @@
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
@@ -432,7 +459,13 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -448,7 +481,15 @@
     <TargetName>AL-core</TargetName>
     <TargetExt>.dll</TargetExt>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;$(SolutionDir)Dependencies\gorilla-audio\src;%(AdditionalIncludeDirectories);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\Intermediates\</IntDir>
+    <TargetName>AL-core</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;$(SolutionDir)Dependencies\gorilla-audio\src;%(AdditionalIncludeDirectories);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
@@ -456,19 +497,47 @@
     <TargetName>AL-core</TargetName>
     <TargetExt>.dll</TargetExt>
     <LibraryPath>$(SolutionDir)Dependencies\GLFW\;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;%(AdditionalIncludeDirectories);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\Intermediates\</IntDir>
+    <TargetName>AL-core</TargetName>
+    <TargetExt>.dll</TargetExt>
+    <LibraryPath>$(SolutionDir)Dependencies\GLFW\;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;%(AdditionalIncludeDirectories);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;$(SolutionDir)Dependencies\gorilla-audio\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;AL_DEBUG_BUILD;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_AL_PLATFORM_WINDOWS;AL_PLATFORM_GLFW;AL_CORE_DLL;AL_DEBUG_BUILD;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
       <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>al/al.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;openal32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;AL_DEBUG_BUILD;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <BasicRuntimeChecks>UninitializedLocalUsageCheck</BasicRuntimeChecks>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>al/al.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -487,19 +556,48 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level2</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)src;$(SolutionDir)Dependencies\GLFW\Include;$(SolutionDir)Dependencies\FreeImage\Include;$(SolutionDir)Dependencies\gorila-audio\Include;$(SolutionDir)Dependencies\gorila-audio\ext\OpenAL\libs\Win32;$(SolutionDir)Dependencies\FreeType\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_PLATFORM_GLFW;AL_WIN32;AL_GLFW;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>al/al.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;openal32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalOptions>/FORCE:MULTIPLE %(AdditionalOptions)</AdditionalOptions>
+      <Profile>false</Profile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <WarningLevel>Level2</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <AdditionalIncludeDirectories>src</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>AL_PLATFORM_WINDOWS;AL_WIN32;AL_CORE_DLL;GLEW_STATIC;FREEIMAGE_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>al/al.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>

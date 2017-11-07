@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "Camera.h"
 
 namespace al { namespace graphics {

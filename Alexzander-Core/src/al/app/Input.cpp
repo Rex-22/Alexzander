@@ -93,6 +93,8 @@ namespace al {
 	{
 		m_MouseGrabbed = grabbed;
 	}
-		
-
 }
+
+#if !defined AL_PLATFORM_GLFW && !defined AL_PLATFORM_WINDOWS
+	#error No platform spesifide
+#endif

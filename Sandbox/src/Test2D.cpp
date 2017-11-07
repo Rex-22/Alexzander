@@ -39,6 +39,8 @@ void Test2D::OnInit(Renderer2D& renderer)
 	Submit(g);
 
 	AudioEngine::Add(new Sound("Test", "src/sound/FromHere.ogg"));
+
+	
 }
 
 void Test2D::OnRender(Renderer2D& renderer)
@@ -107,7 +109,6 @@ bool Test2D::OnMouseMovedEvent(MouseMovedEvent& event)
 {
 	const Shader *shader = m_Renderer->GetShader();
 	vec2 mouse = event.GetPosition();
-
 	shader->Enable();
 	shader->SetUniform2f("light_pos", vec2((float)(mouse.x * 32.0f / m_Window->GetWidth() - 16.0f), (float)(9.0f - mouse.y * 18.0f / m_Window->GetHeight())));
 	shader->Disable();

@@ -6,6 +6,8 @@
 #include "al/graphics/layers/Layer.h"
 #include "al/utils/Timer.h"
 
+#include "al/utils/Timestep.h"
+
 namespace al {
 	
 	class AL_API Application

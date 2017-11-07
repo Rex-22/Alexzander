@@ -1,3 +1,4 @@
+#include "al/al.h"
 #include "ShaderDefines.h"
 
 namespace al { namespace graphics { namespace Shaders {

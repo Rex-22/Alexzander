@@ -651,9 +651,6 @@
     <ClInclude Include="src\al\entity\component\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\al\scene\Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\al\scene\Scene2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -664,6 +661,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\al\entity\component\Components.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\al\utils\Colorize.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1085,9 +1085,6 @@
     <ClCompile Include="src\al\events\WindowEvent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\platfrom\windows\Win32Log.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\platfrom\glfw\GLFWApplicatipon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1124,9 +1121,6 @@
     <ClCompile Include="src\al\entity\component\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\al\scene\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\al\scene\Scene2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1134,6 +1128,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\al\graphics\shader\ShaderDefines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\al.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\glfw\GLFWLog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\al\platfrom\windows\Win32Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
