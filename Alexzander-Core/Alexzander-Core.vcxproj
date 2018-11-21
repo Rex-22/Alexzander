@@ -283,7 +283,7 @@
       <Project>{6e0deef6-f4c2-4b7e-a2fe-bb9bae5ec8d1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\Dependencies\gorila-audio\build\gorilla.vcxproj">
-      <Project>{745a3442-8f28-3f30-8303-cadaaf7e3d20}</Project>
+      <Project>{3afc79c4-dd23-3136-a39c-8e630474473c}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -409,7 +409,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{CA3B791F-356B-46C3-B76B-B814E6676EA8}</ProjectGuid>
     <RootNamespace>AlexzanderCore</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
